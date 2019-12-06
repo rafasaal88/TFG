@@ -9,10 +9,10 @@
 
 <body>
     <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-   <!--     <p>nif: {{ form.nif }} </p> -->
-        <button type="submit">Crear</button>
+        <p>Prueba</p>
+        {% for company in company %}
+        <p>{{company.name}}</p>
+        {% endfor %}
     </form>
 </body>
 
