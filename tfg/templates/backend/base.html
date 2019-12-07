@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>Hola soy el archivo base de HTML</p>
+
+  {% if user.is_authenticated %}
+
+  <p>Usuario: {{user.get_username}} </p>
+  <a href='/backend/logout'>Cerrar sesión</a>
+
+
+  {% else %}
+
+  {% endif %}
+
+
+
+
+
+
+  {% block contenido %}{% endblock %}
+
+</body>
+</html>
