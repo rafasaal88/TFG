@@ -13,8 +13,12 @@ from .models import Company
 from .forms import CompanyForm
 
 def home(request):
+    #Comprobamos si el usuario esta logueado
     if request.user.is_authenticated:
-        return render(request, 'backend/index.html')
+        #Contamos el número de companias que tenemos registradas para enviarlas al index
+        company = Company.objects.all().count()
+        context = {'company':company}
+        return render(request, 'backend/index.html', {'company':company})
     # En otro caso redireccionamos al login
     return redirect('login')
 
@@ -40,7 +44,7 @@ def login(request):
                 # Hacemos el login manualmente
                 do_login(request, user)
                 # Y le redireccionamos a la portada
-                return HttpResponseRedirect('index')
+                return redirect('index')
 
     # Si llegamos al final renderizamos el formulario
     return render(request, 'backend/login.html', {'form': form})
