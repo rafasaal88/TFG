@@ -57,13 +57,13 @@ def logout(request):
     return redirect('login')
 
 
-
+@login_required(login_url='login')
 def create_company(request):
     if request.method == 'POST':
         form = CompanyForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('index')
+            return redirect('index')
     else:
         form = CompanyForm()
     return render(request,'backend/create_company.html',{'form':form})
