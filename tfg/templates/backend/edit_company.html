@@ -1,0 +1,71 @@
+
+{% extends 'backend/base.html' %}
+
+{% block contenido %}
+
+<div class="container">
+    <form class="form-horizontal" role="form" action="" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            
+            <div class="col-sm-6">
+                <center><h2>Editar compañia</h2></center>
+                <hr>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nif" class="col-sm-3 control-label">NIF</label>
+            <div class="col-sm-6">
+                {{form.nif}}
+               <!-- <input type="text" id="nif" class="form-control" value="" autofocus>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-3 control-label">Nombre</label>
+            <div class="col-sm-6">
+                {{form.name}}
+                <!-- <input type="text" id="name" class="form-control" autofocus>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-3 control-label">Dirección</label>
+            <div class="col-sm-6">
+                {{form.address}}
+                <!-- <input type="text" id="address" class="form-control" autofocus>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone_number" class="col-sm-3 control-label">Número de teléfono</label>
+            <div class="col-sm-6">
+                {{form.phone_number}}
+                <!-- <input type="text" id="phone_number" class="form-control" autofocus>-->
+            </div>
+        </div>    
+        <div class="form-group">
+            <label for="mail" class="col-sm-3 control-label">eMail</label>
+            <div class="col-sm-6">
+                {{form.mail}}
+                <!-- <input type="mail" id="mail" class="form-control" autofocus>-->
+            </div>
+        </div>              
+        <div class="form-group">
+            <label for="web_adress" class="col-sm-3 control-label">Dirección web</label>
+            <div class="col-sm-6">
+                {{form.web_adress}}
+                <!-- <input type="web_adress" id="web_adress" class="form-control" autofocus>-->
+            </div>
+        </div>       
+        
+        <div class="form-group">
+            <div class="col-sm-6">
+                <hr>
+            <button type="submit" class="btn btn-primary btn-block">Modificar</button>
+            </div>
+        </div> 
+
+        
+    </form> <!-- /form -->
+</div> <!-- ./container -->
+
+{% endblock %}

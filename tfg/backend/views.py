@@ -84,8 +84,8 @@ def edit_company(request, id):
         form = CompanyForm(request.POST, instance=company)
         if form.is_valid():
             form.save()
-        return redirect('index')
-    return render(request,'backend/create_company.html', {'form':form})
+        return redirect('list_company')
+    return render(request,'backend/edit_company.html', {'form':form})
 
 def delete_company(request, id):
     company = Company.objects.get(id =id)
@@ -93,3 +93,9 @@ def delete_company(request, id):
         company.delete()
         return redirect('index')
     return render(request,'backend/delete_company.html', {'company':company})
+
+
+def confirm_delete_company(request, id):
+    company = Company.objects.get(id =id)
+    context = {'company':company}
+    return render(request, 'backend/confirm_company.html', context)
