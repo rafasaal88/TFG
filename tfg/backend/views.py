@@ -12,15 +12,13 @@ from django.contrib.auth import logout as django_logout
 from .models import Company
 from .forms import CompanyForm
 
-def home(request):
-    #Comprobamos si el usuario esta logueado
-    if request.user.is_authenticated:
-        #Contamos el número de companias que tenemos registradas para enviarlas al index
-        company = Company.objects.all().count()
-        context = {'company':company}
-        return render(request, 'backend/index.html', {'company':company})
-    # En otro caso redireccionamos al login
-    return redirect('login')
+
+@login_required(login_url='login')
+def index(request):
+    company = Company.objects.all().count()
+    context = {'company':company}
+    return render(request, 'backend/index.html', {'company':company})
+
 
 def login(request):
     if request.user.is_authenticated:
@@ -70,12 +68,15 @@ def create_company(request):
 
 
 
-
+@login_required(login_url='login')
 def list_company(request):
     company = Company.objects.all()
     context = {'company':company}
     return render(request, 'backend/list_company.html', context)
 
+
+
+@login_required(login_url='login')
 def edit_company(request, id):
     company = Company.objects.get(id =id)
     if request.method == 'GET':
@@ -87,6 +88,9 @@ def edit_company(request, id):
         return redirect('list_company')
     return render(request,'backend/edit_company.html', {'form':form})
 
+
+
+@login_required(login_url='login')
 def delete_company(request, id):
     company = Company.objects.get(id =id)
     if request.method == 'POST':
