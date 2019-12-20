@@ -91,11 +91,6 @@ def delete_company(request, id):
     company = Company.objects.get(id =id)
     if request.method == 'POST':
         company.delete()
-        return redirect('index')
+        return redirect('list_company')
     return render(request,'backend/delete_company.html', {'company':company})
 
-
-def confirm_delete_company(request, id):
-    company = Company.objects.get(id =id)
-    context = {'company':company}
-    return render(request, 'backend/confirm_company.html', context)
