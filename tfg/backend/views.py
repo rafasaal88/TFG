@@ -8,21 +8,29 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Company
 from .forms import CompanyForm
 
 
+
+
 @login_required(login_url='login')
+@staff_member_required(login_url='login')
 def index(request):
     company = Company.objects.all().count()
-    context = {'company':company}
-    return render(request, 'backend/index.html', {'company':company})
+    users = User.objects.filter(is_staff='False').count()
+    return render(request, 'backend/index.html',{'company':company, 'users':users})
 
 
 def login(request):
     if request.user.is_authenticated:
-        return render(request, 'backend/index.html')
+        if request.user.is_superuser:
+            return render(request, 'backend/index.html')
+        else:
+            django_logout(request)
+            return render(request, 'backend/user_not_staff.html')
     # Creamos el formulario de autenticación vacío
     form = AuthenticationForm()
     if request.method == "POST":
@@ -98,3 +106,9 @@ def delete_company(request, id):
         return redirect('list_company')
     return render(request,'backend/delete_company.html', {'company':company})
 
+
+@login_required(login_url='login')
+def list_users(request):
+    users = User.objects.filter(is_staff='False')
+    context = {'users':users}
+    return render(request, 'backend/list_users.html', context)
