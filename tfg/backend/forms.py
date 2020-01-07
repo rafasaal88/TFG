@@ -1,5 +1,5 @@
 from django import forms
-from .models import Company
+from .models import Company, User
 
 
 class CompanyForm(forms.ModelForm):
@@ -14,8 +14,12 @@ class CompanyForm(forms.ModelForm):
             'web_adress',
         ]
 
-
-
-
-
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+        ]
 

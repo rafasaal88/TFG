@@ -79,8 +79,7 @@ def create_company(request):
 @login_required(login_url='login')
 def list_company(request):
     company = Company.objects.all()
-    context = {'company':company}
-    return render(request, 'backend/list_company.html', context)
+    return render(request, 'backend/list_company.html', {'company':company} )
 
 
 
@@ -97,7 +96,6 @@ def edit_company(request, id):
     return render(request,'backend/edit_company.html', {'form':form})
 
 
-
 @login_required(login_url='login')
 def delete_company(request, id):
     company = Company.objects.get(id =id)
@@ -110,5 +108,4 @@ def delete_company(request, id):
 @login_required(login_url='login')
 def list_users(request):
     users = User.objects.filter(is_staff='False')
-    context = {'users':users}
-    return render(request, 'backend/list_users.html', context)
+    return render(request, 'backend/list_users.html', {'users':users})
