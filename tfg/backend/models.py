@@ -1,9 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 # from django_markdown.models import MarkdownField
 from django.utils import timezone
 
 # Create your models here.
+
 
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
@@ -13,6 +14,12 @@ class Company(models.Model):
     phone_number = models.CharField(max_length=12)
     mail = models.EmailField(max_length=40)
     web_adress = models.CharField(max_length=50)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
+    admin_company = models.BooleanField(blank=True)
+
 
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
