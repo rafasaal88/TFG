@@ -5,7 +5,7 @@ from django.utils import timezone
 
 # Create your models here.
 
-
+"""
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
     nif = models.CharField(max_length=10)
@@ -14,7 +14,7 @@ class Company(models.Model):
     phone_number = models.CharField(max_length=12)
     mail = models.EmailField(max_length=40)
     web_adress = models.CharField(max_length=50)
-
+"""
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
@@ -23,10 +23,11 @@ class UserProfile(models.Model):
 
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=40)
     date_start = models.DateField()
     date_end = models.DateField()
     description = models.TextField()
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, default=None)
+    #company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, default=None)
 
 
 class Product (models.Model):

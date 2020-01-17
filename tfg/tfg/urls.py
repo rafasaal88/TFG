@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-
+from django.conf.urls import handler404
+    
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('backend/',include('backend.urls')),
 ]
+
+handler404 = 'backend.views.mi_error_404'
 

@@ -1,7 +1,7 @@
 from django import forms
-from .models import Company, User
+from .models import User, Publicity_campaign
 
-
+"""
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
@@ -13,6 +13,21 @@ class CompanyForm(forms.ModelForm):
             'mail',
             'web_adress',
         ]
+"""
+
+
+
+
+class Publicity_Campaign_Form(forms.ModelForm):
+    class Meta:
+        model = Publicity_campaign
+        fields = [
+            'date_start',
+            'date_end',
+            'description',
+            'name',
+        ]
+
 
 class UserForm(forms.ModelForm):
     class Meta:

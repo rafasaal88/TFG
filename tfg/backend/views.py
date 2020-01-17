@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 
+from django.views.defaults import page_not_found
 from django.contrib.auth import login as do_login
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -10,18 +11,26 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
 
-from .models import Company
-from .forms import CompanyForm
+#from .models import Company
+from .forms import Publicity_Campaign_Form
+from .models import Publicity_campaign
 
+
+def mi_error_404(request, exception):
+    return render(request,'backend/404.html')
+
+def mi_error_500(request):
+    return render(request,'backend/500.html')
 
 
 
 @login_required(login_url='login')
 @staff_member_required(login_url='login')
 def index(request):
-    company = Company.objects.all().count()
+    #company = Company.objects.all().count()
+    campaign = Publicity_campaign.objects.all().count()
     users = User.objects.filter(is_staff='False').count()
-    return render(request, 'backend/index.html',{'company':company, 'users':users})
+    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign})
 
 
 def login(request):
@@ -64,36 +73,54 @@ def logout(request):
 
 
 @login_required(login_url='login')
-def create_company(request):
+def create_publicity_campaign(request):
     if request.method == 'POST':
-        form = CompanyForm(request.POST)
+        form = Publicity_Campaign_Form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-        form = CompanyForm()
-    return render(request,'backend/create_company.html',{'form':form})
-
-
+        form = Publicity_Campaign_Form()
+    return render(request,'backend/create_publicity_campaign.html',{'form':form})
 
 @login_required(login_url='login')
-def list_company(request):
-    company = Company.objects.all()
-    return render(request, 'backend/list_company.html', {'company':company} )
-
-
+def list_publicity_campaign(request):
+    campaign = Publicity_campaign.objects.all()
+    return render(request, 'backend/list_publicity_campaign.html', {'campaign':campaign})
 
 @login_required(login_url='login')
-def edit_company(request, id):
-    company = Company.objects.get(id =id)
+def edit_publicity_campaign(request, id):
+    publicity = Publicity_campaign.objects.get(id = id)
     if request.method == 'GET':
-        form = CompanyForm(instance = company)
+        form = Publicity_Campaign_Form(instance = publicity)
     else:
-        form = CompanyForm(request.POST, instance=company)
+        form = Publicity_Campaign_Form(request.POST, instance = publicity)
         if form.is_valid():
             form.save()
-        return redirect('list_company')
-    return render(request,'backend/edit_company.html', {'form':form})
+        return redirect ('list_publicity_campaign')
+    return render (request, 'backend/edit_publicity_campaign.html', {'form':form})
+
+
+@login_required(login_url='login')
+def delete_publicity_campaign(request, id):
+    publicity = Publicity_campaign.objects.get(id = id)
+    if request.method == 'POST':
+        publicity.delete()
+        return redirect('list_publicity_campaign')
+    return render(request, 'backend/delete_publicity_campaign.html', {'publicity':publicity})
+    
+
+"""
+
+
+@login_required(login_url='login')
+def delete_publicity_campaign(request, id):
+    publicity = Publicity_campaign.objects.get(id = id)
+    if request.method == 'POST':
+        publicity.delete()
+        return redirect('list_publicity_campaign')
+    return render(request, 'backend/delete_publicity_campaign.html', {'publicity':publicity})
+    
 
 
 @login_required(login_url='login')
@@ -103,7 +130,7 @@ def delete_company(request, id):
         company.delete()
         return redirect('list_company')
     return render(request,'backend/delete_company.html', {'company':company})
-
+"""
 
 @login_required(login_url='login')
 def list_users(request):
