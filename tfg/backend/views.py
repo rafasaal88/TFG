@@ -78,15 +78,29 @@ def create_publicity_campaign(request):
         form = Publicity_Campaign_Form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('list_publicity_campaign')
     else:
         form = Publicity_Campaign_Form()
     return render(request,'backend/create_publicity_campaign.html',{'form':form})
+
+
 
 @login_required(login_url='login')
 def list_publicity_campaign(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/list_publicity_campaign.html', {'campaign':campaign})
+
+@login_required(login_url='login')
+def list_publicity_campaign_edit(request):
+    campaign = Publicity_campaign.objects.all()
+    return render(request, 'backend/list_publicity_campaign_edit.html', {'campaign':campaign})
+
+@login_required(login_url='login')
+def list_publicity_campaign_delete(request):
+    campaign = Publicity_campaign.objects.all()
+    return render(request, 'backend/list_publicity_campaign_delete.html', {'campaign':campaign})
+
+
 
 @login_required(login_url='login')
 def edit_publicity_campaign(request, id):
