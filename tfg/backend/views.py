@@ -150,5 +150,11 @@ def profile(request):
     #user = User.objects.filter(id= user_login.id)
     return render(request, 'backend/profile.html')
 
+@login_required(login_url='login_user')
+def view_user(request, id):
+    user_profile = User.objects.get(id = id)
+    return render(request, 'backend/profile_user.html', {'user_profile':user_profile})
+
+
 
 

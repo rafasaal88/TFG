@@ -43,13 +43,13 @@
 
                 <div class="col-md-6">
                   <div class="bio-content"><br>
-                    <h1>{{ user.username }}</h1>
+                    <h1>{{ user_profile.username }}</h1>
 
                     <hr>
                     
-                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user.get_full_name }}</h5><br>
-                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user.email }}</h5><br>
-                    <h5><i class="fa fa-sign-in" aria-hidden="true"></i><b>Última sesión:</b> {{ user.last_login }}</h5>
+                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user_profile.get_full_name }}</h5><br>
+                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }}</h5><br>
+                    <h5><i class="fa fa-sign-in" aria-hidden="true"></i><b>Última sesión:</b> {{ user_profile.last_login }}</h5>
                     <hr>
                     
                     <td>
@@ -59,11 +59,6 @@
                       </a>             
                       <br>
 
-                      <a href="#" class="btn btn-primary btn-lg btn-block " style="width: 80%">
-                        <span class="text">Cambiar contraseña</span>
-                      </a>
-                     
-                    </td>
                     
                   <br><br>
                   </div>
