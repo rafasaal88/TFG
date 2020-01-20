@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 from django.views.defaults import page_not_found
-from django.contrib.auth import login as do_login
+
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout, get_user_model
@@ -24,8 +24,8 @@ def mi_error_500(request):
 
 
 
-@login_required(login_url='login')
-@staff_member_required(login_url='login')
+@login_required(login_url='login_user')
+@staff_member_required(login_url='login_user')
 def index(request):
     #company = Company.objects.all().count()
     campaign = Publicity_campaign.objects.all().count()
@@ -33,10 +33,10 @@ def index(request):
     return render(request, 'backend/index.html',{'users':users, 'campaign':campaign})
 
 
-def login(request):
+def login_user(request):
     if request.user.is_authenticated:
-        if request.user.is_superuser:
-            return render(request, 'backend/index.html')
+        if request.user.is_staff:
+            return redirect('index')
         else:
             django_logout(request)
             return render(request, 'backend/user_not_staff.html')
@@ -48,31 +48,40 @@ def login(request):
         # Si el formulario es válido...
         if form.is_valid():
             # Recuperamos las credenciales validadas
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            username = request.POST['username']
+            password = request.POST['password']
 
             # Verificamos las credenciales del usuario
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=username, password=password)
 
             # Si existe un usuario con ese nombre y contraseña
             if user is not None:
                 # Hacemos el login manualmente
-                do_login(request, user)
+                login(request, user)
                 # Y le redireccionamos a la portada
-                return redirect('index')
+                if request.user.is_active:
+                    return redirect('index')
+                else:
+                    return render(request, 'backend/user_not_active.html') #esto no funciona aun
 
     # Si llegamos al final renderizamos el formulario
     return render(request, 'backend/login.html', {'form': form})
-
 
 def logout(request):
     # Finalizamos la sesión
     django_logout(request)
     # Redireccionamos a la portada
-    return redirect('login')
+    return redirect('login_user')
 
 
-@login_required(login_url='login')
+
+
+
+###############################################################################################
+################################ Publicity Campaign CRUD Methods ##############################
+###############################################################################################
+
+@login_required(login_url='login_user')
 def create_publicity_campaign(request):
     if request.method == 'POST':
         form = Publicity_Campaign_Form(request.POST)
@@ -85,24 +94,22 @@ def create_publicity_campaign(request):
 
 
 
-@login_required(login_url='login')
+@login_required(login_url='login_user')
 def list_publicity_campaign(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/list_publicity_campaign.html', {'campaign':campaign})
 
-@login_required(login_url='login')
+@login_required(login_url='login_user')
 def list_publicity_campaign_edit(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/list_publicity_campaign_edit.html', {'campaign':campaign})
 
-@login_required(login_url='login')
+@login_required(login_url='login_user')
 def list_publicity_campaign_delete(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/list_publicity_campaign_delete.html', {'campaign':campaign})
 
-
-
-@login_required(login_url='login')
+@login_required(login_url='login_user')
 def edit_publicity_campaign(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
     if request.method == 'GET':
@@ -114,39 +121,34 @@ def edit_publicity_campaign(request, id):
         return redirect ('list_publicity_campaign')
     return render (request, 'backend/edit_publicity_campaign.html', {'form':form})
 
-
-@login_required(login_url='login')
+@login_required(login_url='login_user')
 def delete_publicity_campaign(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
     if request.method == 'POST':
         publicity.delete()
         return redirect('list_publicity_campaign')
     return render(request, 'backend/delete_publicity_campaign.html', {'publicity':publicity})
-    
-
-"""
 
 
-@login_required(login_url='login')
-def delete_publicity_campaign(request, id):
-    publicity = Publicity_campaign.objects.get(id = id)
-    if request.method == 'POST':
-        publicity.delete()
-        return redirect('list_publicity_campaign')
-    return render(request, 'backend/delete_publicity_campaign.html', {'publicity':publicity})
-    
+###############################################################################################
+###############################################################################################
+###############################################################################################
 
 
-@login_required(login_url='login')
-def delete_company(request, id):
-    company = Company.objects.get(id =id)
-    if request.method == 'POST':
-        company.delete()
-        return redirect('list_company')
-    return render(request,'backend/delete_company.html', {'company':company})
-"""
 
-@login_required(login_url='login')
+
+
+
+@login_required(login_url='login_user')
 def list_users(request):
     users = User.objects.filter(is_staff='False')
     return render(request, 'backend/list_users.html', {'users':users})
+
+@login_required(login_url='login_user')
+def profile(request):
+    #user_login = request.user
+    #user = User.objects.filter(id= user_login.id)
+    return render(request, 'backend/profile.html')
+
+
+

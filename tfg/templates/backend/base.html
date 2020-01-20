@@ -63,8 +63,10 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Acciones disponibles:</h6>
-            <a class="collapse-item" href="/backend/list_users">Ver usuarios</a>
+            <h6 class="collapse-header">Usuarios:</h6>
+            <a class="collapse-item" href="/backend/list_users">Ver</a>
+            <a class="collapse-item" href="#">Editar</a>
+            <a class="collapse-item" href="#">Eliminar</a>
           </div>
         </div>
       </li>
@@ -93,6 +95,24 @@
             </div>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fa fa-gift" aria-hidden="true"></i>
+          <span>Productos</span>
+        </a>
+        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Acciones disponibles:</h6>
+            <a class="collapse-item" href='#'>Añadir</a>
+            <a class="collapse-item" href="#">Ver</a>
+            <a class="collapse-item" href="#">Editar</a>
+            <a class="collapse-item" href="#">Eliminar</a>
+            </div>
+        </div>
+      </li>
+
+
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -152,19 +172,23 @@
           <ul class="navbar-nav ml-auto">
 
 
-            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.get_username}}</span>
+                <span class="mr-2 d-lg-inline text-gray-600 small">Hola {{user.get_username}}</span>
                 <!-- IMAGEN DE PERFIL-->
                 
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="{% static 'img/profile.jpg' %}">
               </a>
+
+
+
+
+              
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/backend/profile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Perfil
                 </a>

@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from django.conf.urls import handler404
-    
+from django.views import debug
+
 urlpatterns = [
+    path('', debug.default_urlconf),
     path('admin/', admin.site.urls),
     path('backend/',include('backend.urls')),
 ]
