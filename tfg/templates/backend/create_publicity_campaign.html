@@ -3,71 +3,129 @@
 
 {% block contenido %}
 
-
+{% load static %}
 
 <div class="card text-center">
+
     <div class="card-header">
         <center><h2>Añadir nueva campaña de publicidad</h2></center>
     </div>
+
     <div class="card-body text-justify">
+
         <div class="container">
+
             <center>
+
                 <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
                 {% csrf_token %}
                 
-                <div class="form-group">
-                    <label for="name" class="col-sm-6 control-label text-left">Nombre</label>
-                    <div class="col-sm-6">
-                        <input type="text" name="name" id="name" class="form-control" autofocus maxlength="40" required>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-6 control-label text-left">Nombre</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="name" id="name" class="form-control" autofocus maxlength="40" autofocus required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="date_start" class="col-sm-6 control-label text-left">Fecha inicio</label>
-                    <div class="col-sm-6">
-                        <input type="date" name="date_start" id="date_start" class="form-control" min="2020-01-01" autofocus required>
+
+                    <div class="form-group">
+                        <label for="date_start" class="col-sm-6 control-label text-left">Fecha inicio</label>
+                        <div class="col-sm-6">
+                            <input type="date" name="date_start" id="date_start" class="form-control" min="2020-01-01" autofocus required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="date_end" class="col-sm-6 control-label text-left">Fecha de finalización</label>
-                    <div class="col-sm-6">
-                        <input type="date" name="date_end" id="date_end" class="form-control" min="2020-01-01" oninput="validate()" autofocus required>
+
+                    <div class="form-group">
+                        <label for="date_end" class="col-sm-6 control-label text-left">Fecha de finalización</label>
+                        <div class="col-sm-6">
+                            <input type="date" name="date_end" id="date_end" class="form-control" min="2020-01-01" oninput="validate()" autofocus required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="description" class="col-sm-6 control-label text-left">Descripción</label>
-                    <div class="col-sm-6">
-                        <textarea name="description" id="description" class="form-control" autofocus required></textarea>
-                        
-                    </div>
-                </div>    
-     
-                
-                <div class="form-group">
-                    <div class="col-sm-6">
-                        <hr>
-                    <button type="submit" class="btn btn-primary btn-block">Añadir</button>
-                    </div>
-                </div> 
-       
-                
-            </form> <!-- /form -->
+
+                    <div class="form-group">
+                        <label for="description" class="col-sm-6 control-label text-left">Descripción</label>
+                        <div class="col-sm-6">
+                            <textarea name="description" id="description" class="form-control" autofocus required></textarea>
+                            
+                        </div>
+                    </div>    
+                            
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <hr>
+                        <button onClick="CompararFechas()" type="button" class="btn btn-primary btn-block">Añadir</button>
+                        </div>
+                    </div> 
+                       
+                </form> <!-- /form -->
+
             </center>
             
         </div> <!-- ./container -->
 
-   
-
-  
-  <script>
-
-  </script>
-
-
-
-
-
     </div>
+
 </div>
+
+<script>
+function CompararFechas()
+{
+    var fecha_start = new Date()
+    var fecha_start = document.getElementById("date_start").value
+    var fecha_end = document.getElementById("date_end").value
+
+
+    
+    //alert("Hola"+fecha_start+fecha_end);
+
+
+    if(fecha_start <= fecha_end)
+    {
+
+    document.getElementById('formu').submit();
+    }
+
+    if(fecha_start > fecha_end)
+    {
+    //alert("La fecha inicial no puede ser mayor a la final");
+    $( "#warning" ).modal('show');
+   
+    }
+}
+  
+
+
+
+</script>
+
+    
+
+
+
+              <div class="modal" id="warning" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="examplewarning">                          
+                        <b>AVISO</b>
+                     </h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <center>
+                        <div class="modal-body">La fecha de inicio no puede ser posterior a la final</div>
+                        
+                        <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
+                        <br><br>
+
+                        
+                    </center>
+                  </div>
+                </div>
+              </div>
+
+
+
 
 
 
