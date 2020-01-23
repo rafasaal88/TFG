@@ -93,11 +93,20 @@ def publicity_campaign_create(request):
     return render(request,'backend/publicity_campaign_create.html',{'form':form})
 
 
+@login_required(login_url='user_login')
+def publicity_campaign(request, id):
+    campaign = Publicity_campaign.objects.get(id = id)
+    return render(request, 'backend/publicity_campaign.html', {'campaign':campaign})
+
+
 
 @login_required(login_url='user_login')
 def publicity_campaign_list(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/publicity_campaign_list.html', {'campaign':campaign})
+
+
+
 
 @login_required(login_url='user_login')
 def publicity_campaign_list_edit(request):

@@ -1,0 +1,118 @@
+{% extends 'backend/base.html' %}
+
+
+{% block contenido %}
+{% load static %}
+
+
+
+<div class="d-none d-sm-none d-md-block">
+
+  <div class="container">
+
+    <div class="row">
+        
+      <div class="col-lg-12">
+
+        <div class="card shadow mb-3" >
+
+          <div class="card-body d-flex flex-row">
+
+            <!-- Avatar -->
+            <img src="{% static 'img/profile.jpg' %}" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+        
+            <!-- Content -->
+            <div>
+        
+              <!-- Title -->
+              <h4 class="card-title font-weight-bold mb-2">{{campaign.name}}</h4>
+              <!-- Subtitle -->
+              <p class="card-text"><i class="far fa-clock pr-2"></i>{{campaign.date_start}} - {{campaign.date_end}}</p>
+
+            </div>
+        
+          </div>
+
+          <div class="view overlay">
+            <img class="card-img-top rounded-0" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+            
+          
+          <div class="container portfolio">
+            <br>
+              <!-- Text -->
+              <p>{{campaign.description}}</p>
+              <!-- Button -->
+              
+        
+            </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+<!--Table mobile-->
+
+<div class="d-block d-sm-block d-md-none">
+  
+  <div class="container-fluid">
+  
+    <div class="card shadow mb-4">
+      
+      <div class="card-header py-3">
+        
+        <h6 class="m-0 font-weight-bold text-primary">Campañas de publicidad</h6>
+      
+      </div>
+      
+      <div class="card-body">
+        
+        <div class="table-responsive">
+          
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                
+              </tr>
+            </thead>
+            
+            <tbody>
+                
+              <tr>             
+                <td>{{campaign.name}}</td>
+
+              </tr>
+              
+                       
+             </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

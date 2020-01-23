@@ -2,7 +2,7 @@ from django.conf.urls import url
 from .views import index, user_login, user_logout, users_list, user_profile_admin, user_profile, user_edit_email, user_profile_edit, user_edit_name, users_list_edit, users_list_delete
 
 #publicity_campaign
-from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign_list_edit, publicity_campaign_list_delete
+from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign_list_edit, publicity_campaign_list_delete, publicity_campaign
 
 
 urlpatterns = [
@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^publicity_campaign_edit/(?P<id>\d+)/$',publicity_campaign_edit, name = "publicity_campaign_edit"),
     url(r'^publicity_campaign_delete/(?P<id>\d+)/$',publicity_campaign_delete, name = "publicity_campaign_delete"),
     url(r'^publicity_campaign_list_edit/',publicity_campaign_list_edit, name = "publicity_campaign_list_edit"),
-    url(r'^publicity_campaign_list_delete/',publicity_campaign_list_delete, name = "publicity_campaign_list_delete"),      
+    url(r'^publicity_campaign_list_delete/',publicity_campaign_list_delete, name = "publicity_campaign_list_delete"),
+    url(r'^publicity_campaign/(?P<id>\d+)/$',publicity_campaign, name = "publicity_campaign"),      
     ]
