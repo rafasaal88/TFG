@@ -29,8 +29,8 @@
                   <tr>
                     <th>Nick</th>
                     <th>eMail</th>
-                    <th>Fecha de registro</th>
-                    <th>Acciones</th>
+                    <th colspan="2">Fecha de registro</th>
+
                   </tr>
                 </thead>
 
@@ -44,26 +44,14 @@
                     
                     
                     <td>
-                      <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                        </span>
-                        <span class="text">Ver</span>
-                      </a>
 
-                      <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        </span>
-                        <span class="text">Editar</span>
-                      </a>   
 
-                      <a href="#" class="btn btn-danger btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-trash"></i>
-                        </span>
+                      <a href="#" class="btn btn-danger btn-icon-split" style="width: 100%">
+
                         <span class="text">Eliminar</span>
                       </a>
+
+
                     </td>
                   </tr>
                   
@@ -108,7 +96,7 @@
                 <thead>
                   <tr>
                     <th>Nick</th>
-                    <th>Acciones</th>
+                    <th colspan="2">eMail</th>
                   </tr>
                 </thead>
   
@@ -116,22 +104,17 @@
                     {% for users in users %}
                   <tr>             
                     <td>{{users.username}}</td>
+                    <td>{{users.email}}</td>
 
                     
                     
                     
                     <td>
-                      <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
-                        <span class="text"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                      <a href="#" class="btn btn-danger btn-icon-split" style="width: 100%">
+
+                        <span class="text">Eliminar</span>
                       </a>
-    
-                      <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
-                        <span class="text"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
-                      </a>   
-    
-                      <a href="#" class="btn btn-danger btn-icon-split">
-                        <span class="text"><i class="fas fa-trash"></i></span>
-                      </a>
+
                     </td>
                   </tr>
 

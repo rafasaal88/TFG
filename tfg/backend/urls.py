@@ -1,26 +1,29 @@
 from django.conf.urls import url
-from .views import index, login_user, logout, list_users, profile, view_user, edit_user_email, view_user_edit, edit_user_name
+from .views import index, user_login, user_logout, users_list, user_profile_admin, user_profile, user_edit_email, user_profile_edit, user_edit_name, users_list_edit, users_list_delete
 
 #publicity_campaign
-from .views import create_publicity_campaign, list_publicity_campaign, edit_publicity_campaign, delete_publicity_campaign, list_publicity_campaign_edit, list_publicity_campaign_delete
+from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign_list_edit, publicity_campaign_list_delete
 
 
 urlpatterns = [
     url(r'^$', index, name='index'),
-    url(r'^login_user/',login_user, name = 'login_user'),
-    url(r'^logout/',logout, name = 'logout'),
-    url(r'^list_users/',list_users, name = "list_users"),
-    url(r'^profile/',profile, name = "profile"),
-    url(r'^view_user/(?P<id>\d+)/$',view_user, name = "view_user"),
-    url(r'^view_user_edit/(?P<id>\d+)/$',view_user_edit, name = "view_user_edit"),
-    url(r'^edit_user_email/(?P<id>\d+)/$',edit_user_email, name = "edit_user_email"),
-    url(r'^edit_user_name/(?P<id>\d+)/$',edit_user_name, name = "edit_user_name"),
+    url(r'^user_login/',user_login, name = 'user_login'),
+    url(r'^user_logout/',user_logout, name = 'user_logout'),
+    url(r'^users_list/',users_list, name = "users_list"),
+    url(r'^user_profile_admin/',user_profile_admin, name = "user_profile_admin"),
+    url(r'^user_profile/(?P<id>\d+)/$',user_profile, name = "user_profile"),
+    url(r'^user_profile_edit/(?P<id>\d+)/$',user_profile_edit, name = "user_profile_edit"),
+    url(r'^user_edit_email/(?P<id>\d+)/$',user_edit_email, name = "user_edit_email"),
+    url(r'^user_edit_name/(?P<id>\d+)/$',user_edit_name, name = "user_edit_name"),
+    url(r'^users_list_edit',users_list_edit, name = "users_list_edit"),
+    url(r'^users_list_delete',users_list_delete, name = "users_list_delete"),
+
 
     #crud_publicity_campaign
-    url(r'^create_publicity_campaign/',create_publicity_campaign, name = "create_publicity_campaign"),
-    url(r'^list_publicity_campaign/',list_publicity_campaign, name = "list_publicity_campaign"),
-    url(r'^edit_publicity_campaign/(?P<id>\d+)/$',edit_publicity_campaign, name = "edit_publicity_campaign"),
-    url(r'^delete_publicity_campaign/(?P<id>\d+)/$',delete_publicity_campaign, name = "delete_publicity_campaign"),
-    url(r'^list_publicity_campaign_edit/',list_publicity_campaign_edit, name = "list_publicity_campaign_edit"),
-    url(r'^list_publicity_campaign_delete/',list_publicity_campaign_delete, name = "list_publicity_campaign_delete"),      
+    url(r'^publicity_campaign_create/',publicity_campaign_create, name = "publicity_campaign_create"),
+    url(r'^publicity_campaign_list/',publicity_campaign_list, name = "publicity_campaign_list"),
+    url(r'^publicity_campaign_edit/(?P<id>\d+)/$',publicity_campaign_edit, name = "publicity_campaign_edit"),
+    url(r'^publicity_campaign_delete/(?P<id>\d+)/$',publicity_campaign_delete, name = "publicity_campaign_delete"),
+    url(r'^publicity_campaign_list_edit/',publicity_campaign_list_edit, name = "publicity_campaign_list_edit"),
+    url(r'^publicity_campaign_list_delete/',publicity_campaign_list_delete, name = "publicity_campaign_list_delete"),      
     ]

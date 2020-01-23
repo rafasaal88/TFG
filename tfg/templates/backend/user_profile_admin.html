@@ -8,12 +8,9 @@
 <div class="container">
     
   <div class="row">
-
     
     <div class="col-lg-10">
 
-
-      <!-- Basic Card Example -->
       <div class="card shadow mb-4">
 
         <div class="card-header py-3">
@@ -23,23 +20,28 @@
           <div class="container portfolio">
 
             <div class="bio-info">
+
               <div class="row">
+
                 <div class="col-lg-6">
-                    <center>
+
+                  <center>
                      <br><br>
+
                       <div class="profile-img rounded-circle" >
+
                         <img src="{% static 'img/profile.jpg' %}" alt=""/>
+
                         <div class="file btn btn-lg btn-primary">
                             Cambiar
                             <input type="file" name="file"/>
                         </div>
-                        
-                    </div>	
-                    <br>		
+
+                      </div>	
+
+                      <br>		
                     </center>
                 </div>
-
-
 
                 <div class="col-lg-6">
                   <div class="bio-content"><br>
@@ -54,45 +56,40 @@
                     
                     <td>
                      
-                      <a href="/backend/edit_user_email/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 80%">
+                      <a href="/backend/user_edit_email/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
                         <span class="text">Editar email</span>
                       </a>             
                       <br>
 
-                      <a href="#" class="btn btn-primary btn-lg btn-block " style="width: 80%">
+                      <a href="#" class="btn btn-primary btn-lg btn-block " style="width: 100%">
                         <span class="text">Editar contraseña</span>
                       </a>
                       <br>
 
-                      <a href="/backend/edit_user_name/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 80%">
+                      <a href="/backend/user_edit_name/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
                         <span class="text">Editar nombre</span>
                       </a>  
 
                     </td>
                     
                   <br><br>
+
                   </div>
+
                 </div>
-              </div>	
+
+              </div>
+
             </div>
+
           </div>
-
-
-
-
-
-
-
-
-
-
-
-        
+      
       </div>
 
     </div>
 
   </div>
+
 </div>
 
 
