@@ -18,3 +18,25 @@ class Publicity_Campaign_Form(forms.ModelForm):
         'date_end': forms.DateInput(attrs={'class': 'form-control'}),
        
     }
+
+class User_Form_Email(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'email',
+        ]
+        widgets = {
+        'email': forms.TextInput(attrs={'class': 'form-control'}),       
+    }        
+
+class User_Form_Name(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+        ]
+        widgets = {
+        'first_name': forms.TextInput(attrs={'class': 'form-control'}),   
+        'last_name': forms.TextInput(attrs={'class': 'form-control'}),     
+    }    
