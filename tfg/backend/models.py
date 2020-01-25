@@ -18,8 +18,7 @@ class Company(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
-    admin_company = models.BooleanField(blank=True)
-
+    image = models.ImageField(upload_to='profile_image', blank=True)
 
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)

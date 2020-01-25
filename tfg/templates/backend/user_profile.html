@@ -28,9 +28,10 @@
                     <center>
                      <br>
                       <div class="profile-img rounded-circle" >
-                        <img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>
+                    <!--<img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>-->
+                        <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
                       </div>	
-                    <br>		
+                    <br>		<br>
                     </center>
                 </div>
 

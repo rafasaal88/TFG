@@ -3,7 +3,9 @@ from .views import index, user_login, user_logout, users_list, user_profile_admi
 
 #publicity_campaign
 from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign_list_edit, publicity_campaign_list_delete, publicity_campaign
-
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path, include 
 
 urlpatterns = [
     url(r'^$', index, name='index'),
@@ -27,4 +29,4 @@ urlpatterns = [
     url(r'^publicity_campaign_list_edit/',publicity_campaign_list_edit, name = "publicity_campaign_list_edit"),
     url(r'^publicity_campaign_list_delete/',publicity_campaign_list_delete, name = "publicity_campaign_list_delete"),
     url(r'^publicity_campaign/(?P<id>\d+)/$',publicity_campaign, name = "publicity_campaign"),      
-    ]
+    ] 

@@ -18,12 +18,14 @@ from django.urls import path
 from django.conf.urls import include, url
 from django.conf.urls import handler404
 from django.views import debug
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', debug.default_urlconf),
     path('admin/', admin.site.urls),
     path('backend/',include('backend.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'backend.views.mi_error_404'
 

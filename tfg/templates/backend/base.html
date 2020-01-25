@@ -179,7 +179,7 @@
                 <span class="mr-2 d-lg-inline text-gray-600">Hola {{user.get_username}}</span>
                 <!-- IMAGEN DE PERFIL-->
                 
-                <img class="img-profile rounded-circle" src="{% static 'img/profile.jpg' %}">
+                <img class="img-profile rounded-circle" src="{{ user.userprofile.image.url }}">
               </a>
 
 

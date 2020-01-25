@@ -13,7 +13,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 #from .models import Company
 from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name
-from .models import Publicity_campaign
+from .models import Publicity_campaign, UserProfile
 
 
 def mi_error_404(request, exception):
@@ -163,8 +163,6 @@ def users_list_delete(request):
 #Vista para el usuario logueado
 @login_required(login_url='user_login')
 def user_profile_admin(request):
-    #user_login = request.user
-    #user = User.objects.filter(id= user_login.id)
     return render(request, 'backend/user_profile_admin.html')
 
 #Vista para el resto de usuarios

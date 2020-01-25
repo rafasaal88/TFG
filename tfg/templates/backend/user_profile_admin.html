@@ -30,8 +30,9 @@
 
                       <div class="profile-img rounded-circle" >
 
-                        <img src="{% static 'img/profile.jpg' %}" alt=""/>
+                
 
+                        <img src="{{ user.userprofile.image.url}}" alt=""/>
                         <div class="file btn btn-lg btn-primary">
                             Cambiar
                             <input type="file" name="file"/>
