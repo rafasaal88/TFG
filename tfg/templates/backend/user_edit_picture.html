@@ -3,18 +3,7 @@
 {% block contenido %}
 {% load static %}
 
-<form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
-    {% csrf_token %}
 
-  <h5><i class="fa fa-envelope" aria-hidden="true"></i> Introduzca la imagen: </h5>
- 
-  <input id="id_image" type="file" class="" name="image">
-<hr>
-
-<td>
- 
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
-</form>
 
 
 
@@ -61,7 +50,18 @@
                     <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }}</h5><br>
                     <h5><i class="fa fa-clock-o" aria-hidden="true"></i><b>Última sesión:</b> {{ user_profile.last_login }}</h5>
                     
-
+                    <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
+                      {% csrf_token %}
+                  
+                    <h5><i class="fa fa-picture-o" aria-hidden="true"></i> Introduzca la imagen: </h5>
+                   
+                    <input id="id_image" type="file" class="" name="image">
+                  <hr>
+                  
+                  <td>
+                   
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
+                  </form>
                     
 
                     

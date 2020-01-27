@@ -149,6 +149,7 @@ def users_list(request):
     users = User.objects.filter(is_staff='False')
     return render(request, 'backend/users_list.html', {'users':users})
 
+"""
 @login_required(login_url='user_login')
 def users_list_edit(request):
     users = User.objects.filter(is_staff='False')
@@ -159,7 +160,7 @@ def users_list_delete(request):
     users = User.objects.filter(is_staff='False')
     return render(request, 'backend/users_list_delete.html', {'users':users})
 
-
+"""
 #Vista para el usuario logueado
 @login_required(login_url='user_login')
 def user_profile_admin(request):
