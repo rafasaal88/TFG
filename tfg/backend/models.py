@@ -16,9 +16,14 @@ class Company(models.Model):
     web_adress = models.CharField(max_length=50)
 """
 
+
+""" default="blabla.jpg" """
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
     image = models.ImageField(upload_to='profile_image', blank=True)
+
+
 
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
@@ -26,7 +31,6 @@ class Publicity_campaign(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
     description = models.TextField()
-    #company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, default=None)
 
 
 class Product (models.Model):

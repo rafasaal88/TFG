@@ -3,6 +3,20 @@
 {% block contenido %}
 {% load static %}
 
+<form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
+    {% csrf_token %}
+
+  <h5><i class="fa fa-envelope" aria-hidden="true"></i> Introduzca la imagen: </h5>
+ 
+  <input id="id_image" type="file" class="" name="image">
+<hr>
+
+<td>
+ 
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
+</form>
+
+
 
 
 <div class="container">
@@ -26,15 +40,12 @@
               <div class="row">
                 <div class="col-md-6">
                     <center>
-                     <br><br>
-                     <div class="profile-img rounded-circle" >
-                      <!--<img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>-->
-                          <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
-                        </div>	
-
-
-                        
-                    <br>		
+                     <br>
+                      <div class="profile-img rounded-circle" >
+                    <!--<img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>-->
+                        <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
+                      </div>	
+                    <br>		<br>
                     </center>
                 </div>
 
@@ -46,24 +57,12 @@
 
                     <hr>
                     
-                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user_profile.get_full_name }}</h5>
-                    
-                    
-                    
-                    <br>
+                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user_profile.get_full_name }}</h5><br>
                     <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }}</h5><br>
-                    <h5><i class="fa fa-sign-in" aria-hidden="true"></i><b>Última sesión:</b> {{ user_profile.last_login }}</h5>
-                    <hr>                                        
-                      <a href="/backend/user_edit_email/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                        <span class="text">Editar email</span>
-                      </a>          
-                      <a href="/backend/user_edit_name/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                        <span class="text">Editar nombre</span>
-                      </a>       
-                      <a href="/backend/user_edit_picture/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                        <span class="text">Editar foto de perfil</span>
-                      </a>  
-                      <br>
+                    <h5><i class="fa fa-clock-o" aria-hidden="true"></i><b>Última sesión:</b> {{ user_profile.last_login }}</h5>
+                    
+
+                    
 
                     
                   <br><br>

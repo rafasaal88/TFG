@@ -12,7 +12,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
 
 #from .models import Company
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form
 from .models import Publicity_campaign, UserProfile
 
 
@@ -206,3 +206,20 @@ def user_edit_name(request, id):
         else:
             return redirect ('user_profile_edit', id)
     return render (request, 'backend/user_edit_name.html', {'form':form, 'user_profile':user_profile})
+
+
+@login_required(login_url='user_login')
+def user_edit_picture(request, id):
+    user_profile = User.objects.get(id = id)
+    userprofile = UserProfile.objects.get (user = user_profile)
+    if request.method == 'GET':
+        form = User_Profile_Form(instance = userprofile)
+    else:
+        form = User_Profile_Form(request.POST, request.FILES, instance = userprofile)
+        if form.is_valid():
+            form.save()
+        if request.user.id == user_profile.id:
+            return redirect ('user_profile_admin')
+        else:
+            return redirect ('user_profile_edit', id)
+    return render (request, 'backend/user_edit_picture.html', {'form':form, 'user_profile':user_profile})

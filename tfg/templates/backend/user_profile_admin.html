@@ -28,17 +28,12 @@
                   <center>
                      <br><br>
 
-                      <div class="profile-img rounded-circle" >
 
-                
-
-                        <img src="{{ user.userprofile.image.url}}" alt=""/>
-                        <div class="file btn btn-lg btn-primary">
-                            Cambiar
-                            <input type="file" name="file"/>
-                        </div>
-
-                      </div>	
+                        <div class="profile-img rounded-circle" >
+                          <!--<img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>-->
+                              <img class="profile-img rounded-circle" src="{{ user.userprofile.image.url}}" alt="">
+                            </div>	
+                    
 
                       <br>		
                     </center>
@@ -70,7 +65,10 @@
                       <a href="/backend/user_edit_name/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
                         <span class="text">Editar nombre</span>
                       </a>  
-
+                      <br>
+                      <a href="/backend/user_edit_picture/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
+                        <span class="text">Editar foto de perfil</span>
+                      </a>  
                     </td>
                     
                   <br><br>

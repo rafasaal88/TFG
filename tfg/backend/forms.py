@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Publicity_campaign
+from .models import User, Publicity_campaign, UserProfile
 
 
 class Publicity_Campaign_Form(forms.ModelForm):
@@ -39,4 +39,13 @@ class User_Form_Name(forms.ModelForm):
         widgets = {
         'first_name': forms.TextInput(attrs={'class': 'form-control'}),   
         'last_name': forms.TextInput(attrs={'class': 'form-control'}),     
-    }    
+    }
+
+class User_Profile_Form(forms.ModelForm):
+    
+    class Meta:
+        model = UserProfile
+        fields = [
+            'image',
+        ]
+
