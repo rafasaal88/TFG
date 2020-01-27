@@ -16,12 +16,14 @@ class Company(models.Model):
     web_adress = models.CharField(max_length=50)
 """
 
+profile_default = 'profile_image/profile_default.png'
+
 
 """ default="blabla.jpg" """
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
-    image = models.ImageField(upload_to='profile_image', blank=True)
+    image = models.ImageField(upload_to='profile_image', blank=True, default=profile_default)
 
 
 
