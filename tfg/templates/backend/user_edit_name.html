@@ -30,11 +30,8 @@
                     <center>
                      <br><br>
                       <div class="profile-img rounded-circle" >
-                        <img src="{% static 'img/profile.jpg' %}" alt=""/>
-                        <div class="file btn btn-lg btn-primary">
-                            Cambiar
-                            <input type="file" name="file"/>
-                        </div>
+                        <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
+
                         
                     </div>	
                     <br>		
@@ -64,13 +61,30 @@
                       {{form.last_name}}
                       <br>
                     
-                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }}</h5>
+                      <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }} <a href="/backend/user_edit_email/{{user_profile.id}}">
+                        <span class="text"> <i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
+                      </a>              
+                      </h5>
+                      
+                      <br>
+                      
+                      <h5><i class="fas fa-sign-in-alt"></i><b> Última sesión:</b> {{ user_profile.last_login }}</h5>
+
+
+
                     <hr>
+
+
+                    
                     <td>
                      
                       <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
                     </form>
                      
+                    <br>
+                    <a href="/backend/user_edit_picture/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
+                      <span class="text">Editar foto de perfil</span>
+                    </a>  
                     </td>
                     
                   <br><br>

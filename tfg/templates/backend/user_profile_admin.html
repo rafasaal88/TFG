@@ -44,28 +44,32 @@
                     <h1>{{ user.username }}</h1>
 
                     <hr>
-                    
-                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user.get_full_name }}</h5><br>
-                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user.email }}</h5><br>
-                    <h5><i class="fa fa-sign-in" aria-hidden="true"></i><b>Última sesión:</b> {{ user.last_login }}</h5>
+                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user.get_full_name }} <a href="/backend/user_edit_name/{{user.id}}">
+                      <span class="text"> <i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
+                    </a></h5>
+
+                    <br>
+                
+                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user.email }} <a href="/backend/user_edit_email/{{user.id}}">
+                      <span class="text"> <i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
+                    </a>                 
+                  </h5>
+                  <br>
+
+
+                    <h5><i class="fas fa-sign-in-alt"></i><b> Última sesión:</b> {{ user.last_login }}</h5>
                     <hr>
                     
                     <td>
                      
-                      <a href="/backend/user_edit_email/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                        <span class="text">Editar email</span>
-                      </a>             
-                      <br>
+                      
 
                       <a href="#" class="btn btn-primary btn-lg btn-block " style="width: 100%">
                         <span class="text">Editar contraseña</span>
                       </a>
                       <br>
 
-                      <a href="/backend/user_edit_name/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                        <span class="text">Editar nombre</span>
-                      </a>  
-                      <br>
+                
                       <a href="/backend/user_edit_picture/{{user.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
                         <span class="text">Editar foto de perfil</span>
                       </a>  

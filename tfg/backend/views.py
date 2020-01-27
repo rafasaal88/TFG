@@ -107,7 +107,7 @@ def publicity_campaign_list(request):
 
 
 
-
+"""
 @login_required(login_url='user_login')
 def publicity_campaign_list_edit(request):
     campaign = Publicity_campaign.objects.all()
@@ -117,6 +117,7 @@ def publicity_campaign_list_edit(request):
 def publicity_campaign_list_delete(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/publicity_campaign_list_delete.html', {'campaign':campaign})
+"""
 
 @login_required(login_url='user_login')
 def publicity_campaign_edit(request, id):
