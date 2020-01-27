@@ -30,11 +30,9 @@
                       <div class="profile-img rounded-circle" >
                     <!--<img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>-->
 
-                          {% ifequal user_profile.userprofile.image None %}
-                          <img class="profile-img rounded-circle" src="{% static 'img/profile.png' %}" alt="">
-                          {% else %}
+         
                           <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
-                          {% endifequal %}
+                       
 
 
 
