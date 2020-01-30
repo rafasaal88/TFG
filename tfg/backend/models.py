@@ -26,7 +26,6 @@ class UserProfile(models.Model):
     image = models.ImageField(upload_to='profile_image', blank=True, default=profile_default)
 
 
-
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
@@ -34,6 +33,8 @@ class Publicity_campaign(models.Model):
     date_end = models.DateField()
     description = models.TextField()
     image = models.ImageField(upload_to='publicity_campaign_image', blank=True)
+    user = models.CharField(max_length=40, blank=True)
+
 
 class Product (models.Model):
     id = models.AutoField(primary_key=True)

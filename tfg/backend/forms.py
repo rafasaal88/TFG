@@ -11,6 +11,7 @@ class Publicity_Campaign_Form(forms.ModelForm):
             'description',
             'name',
             'image',
+            'user'
         ]
         widgets = {
         'name': forms.TextInput(attrs={'class': 'form-control'}),
