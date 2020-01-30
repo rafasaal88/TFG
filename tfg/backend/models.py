@@ -33,7 +33,7 @@ class Publicity_campaign(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
     description = models.TextField()
-
+    image = models.ImageField(upload_to='publicity_campaign_image', blank=True)
 
 class Product (models.Model):
     id = models.AutoField(primary_key=True)

@@ -25,14 +25,16 @@
               <!-- Title -->
               <h4 class="card-title font-weight-bold mb-2">{{campaign.name}}</h4>
               <!-- Subtitle -->
-              <p class="card-text"><i class="far fa-clock pr-2"></i>{{campaign.date_start}} - {{campaign.date_end}}</p>
-
+              <p class="card-text"><i class="fa fa-user" aria-hidden="true"></i> Creada por: {{campaign.date_start}} - {{campaign.date_end}}<br>
+              <i class="far fa-clock pr-2"></i>Duración: {{campaign.date_start}} al {{campaign.date_end}}<br>
+              </p>
+              
             </div>
         
           </div>
 
           <div class="view overlay">
-            <img class="card-img-top rounded-0" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg" alt="Card image cap">
+            <img class="card-img-top rounded-0" src="{{ campaign.image.url }}" alt="Card image cap">
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>

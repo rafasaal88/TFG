@@ -10,6 +10,7 @@ class Publicity_Campaign_Form(forms.ModelForm):
             'date_end',
             'description',
             'name',
+            'image',
         ]
         widgets = {
         'name': forms.TextInput(attrs={'class': 'form-control'}),

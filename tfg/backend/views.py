@@ -81,10 +81,13 @@ def user_logout(request):
 ################################ Publicity Campaign CRUD Methods ##############################
 ###############################################################################################
 
+
+
+
 @login_required(login_url='user_login')
 def publicity_campaign_create(request):
     if request.method == 'POST':
-        form = Publicity_Campaign_Form(request.POST)
+        form = Publicity_Campaign_Form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('publicity_campaign_list')
