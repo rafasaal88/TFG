@@ -31,11 +31,13 @@
                     <!--<img class="profile-img rounded-circle" src="{% static 'img/profile.jpg' %}" alt=""/>-->
 
          
-                          <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
                        
-
-
-
+                      {% if user_profile.userprofile.image.url %}
+                      <img class="profile-img rounded-circle" src="{{ user_profile.userprofile.image.url }}" alt="">
+                       {% else %}
+                       <img class="profile-img rounded-circle" src="{% static 'img/profile_default.png' %}" alt="">
+                       {% endif %}
+                  
 
                       </div>	
                     <br>		<br>
