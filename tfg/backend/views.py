@@ -222,3 +222,14 @@ def user_create(request):
         form = User_Profile_Create()
         return render(request, 'backend/user_create.html', {'form':form})
 
+@login_required(login_url='user_login')
+def user_delete(request, id):
+    user = User.objects.get(id = id)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('users_list')
+    if request.method == 'GET':
+        if user.is_staff:
+            return render(request, 'backend/user_delete_error.html', {'user':user})
+        else:
+            return render(request, 'backend/user_delete.html', {'user':user})
