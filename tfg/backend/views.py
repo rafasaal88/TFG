@@ -12,7 +12,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
 
 #from .models import Company
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create
 from .models import Publicity_campaign, UserProfile
 
 
@@ -112,18 +112,6 @@ def publicity_campaign_list(request):
 
 
 
-"""
-@login_required(login_url='user_login')
-def publicity_campaign_list_edit(request):
-    campaign = Publicity_campaign.objects.all()
-    return render(request, 'backend/publicity_campaign_list_edit.html', {'campaign':campaign})
-
-@login_required(login_url='user_login')
-def publicity_campaign_list_delete(request):
-    campaign = Publicity_campaign.objects.all()
-    return render(request, 'backend/publicity_campaign_list_delete.html', {'campaign':campaign})
-"""
-
 @login_required(login_url='user_login')
 def publicity_campaign_edit(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
@@ -155,18 +143,7 @@ def users_list(request):
     users = User.objects.filter(is_staff='False')
     return render(request, 'backend/users_list.html', {'users':users})
 
-"""
-@login_required(login_url='user_login')
-def users_list_edit(request):
-    users = User.objects.filter(is_staff='False')
-    return render(request, 'backend/users_list_edit.html', {'users':users})
 
-@login_required(login_url='user_login')
-def users_list_delete(request):
-    users = User.objects.filter(is_staff='False')
-    return render(request, 'backend/users_list_delete.html', {'users':users})
-
-"""
 #Vista para el usuario logueado
 @login_required(login_url='user_login')
 def user_profile_admin(request):
@@ -230,3 +207,29 @@ def user_edit_picture(request, id):
         else:
             return redirect ('user_profile_edit', id)
     return render (request, 'backend/user_edit_picture.html', {'form':form, 'user_profile':user_profile})
+
+@login_required(login_url='user_login')
+def user_create(request):
+    if request.method == 'POST':
+        form = User_Profile_Create(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect ('users_list')
+    else:
+        form = User_Profile_Create()
+        return render(request, 'backend/user_create.html', {'form':form})
+
+
+
+@login_required(login_url='user_login')
+def publicity_campaign_create(request):
+    user_profile = request.user
+    if request.method == 'POST':
+        form = Publicity_Campaign_Form(request.POST, request.FILES)
+        if form.is_valid():
+            form.cleaned_data['user'] = user_profile.username
+            form.save()
+            return redirect('publicity_campaign_list')
+    else:
+        form = Publicity_Campaign_Form(initial={'user': user_profile.username})
+    return render(request,'backend/publicity_campaign_create.html',{'form':form})

@@ -51,3 +51,25 @@ class User_Profile_Form(forms.ModelForm):
             'image',
         ]
 
+
+class User_Profile_Create(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password',
+        ]
+        widgets = {
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
+
+    def save(self, commit=True):
+            user = super(User_Profile_Create, self).save(commit=False)
+            user.set_password(self.cleaned_data["password"])
+            if commit:
+                user.save()
+            return user
