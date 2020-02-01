@@ -175,13 +175,8 @@
                 <span class="mr-2 d-lg-inline text-gray-600">Hola {{user.get_username}}</span>
                 <!-- IMAGEN DE PERFIL-->
                 
-
-
-                {% if user.userprofile.image.url %}
                 <img class="img-profile rounded-circle" src="{{ user.userprofile.image.url}}" alt="">
-                {% else %}
-                 <img class="img-profile rounded-circle" src="{% static 'img/profile_default.png' %}" alt="">
-                 {% endif %}
+
 
 
 

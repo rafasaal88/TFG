@@ -214,22 +214,11 @@ def user_create(request):
         form = User_Profile_Create(request.POST)
         if form.is_valid():
             form.save()
+            username = request.POST.get('username')
+            user = User.objects.get(username = username)
+            UserProfile.objects.create(user = user)    
             return redirect ('users_list')
     else:
         form = User_Profile_Create()
         return render(request, 'backend/user_create.html', {'form':form})
 
-
-
-@login_required(login_url='user_login')
-def publicity_campaign_create(request):
-    user_profile = request.user
-    if request.method == 'POST':
-        form = Publicity_Campaign_Form(request.POST, request.FILES)
-        if form.is_valid():
-            form.cleaned_data['user'] = user_profile.username
-            form.save()
-            return redirect('publicity_campaign_list')
-    else:
-        form = Publicity_Campaign_Form(initial={'user': user_profile.username})
-    return render(request,'backend/publicity_campaign_create.html',{'form':form})
