@@ -18,6 +18,7 @@ class Publicity_Campaign_Form(forms.ModelForm):
         'description': forms.Textarea(attrs={'class': 'form-control'}),
         'date_start': forms.DateInput(attrs={'class': 'form-control'}),
         'date_end': forms.DateInput(attrs={'class': 'form-control'}),
+        'user': forms.TextInput(attrs={'class': 'form-control'}),
        
     }
 
