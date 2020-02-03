@@ -63,6 +63,7 @@ class User_Profile_Create(forms.ModelForm):
             'last_name',
             'email',
             'password',
+            'is_staff'
         ]
         widgets = {
             'password': forms.PasswordInput(attrs={'class': 'form-control'}),
