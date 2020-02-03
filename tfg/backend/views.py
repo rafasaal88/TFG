@@ -119,11 +119,12 @@ def publicity_campaign_edit(request, id):
     if request.method == 'GET':
         form = Publicity_Campaign_Form(instance = publicity)
     else:
-        form = Publicity_Campaign_Form(request.POST, instance = publicity)
+        form = Publicity_Campaign_Form(request.POST, request.FILES, instance = publicity)
         if form.is_valid():
             form.save()
         return redirect ('publicity_campaign_list')
-    return render (request, 'backend/publicity_campaign_edit.html', {'form':form})
+    return render (request, 'backend/publicity_campaign_edit.html', {'form':form, 'publicity':publicity})
+
 
 @login_required(login_url='user_login')
 def publicity_campaign_delete(request, id):
