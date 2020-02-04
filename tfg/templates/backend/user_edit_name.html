@@ -6,107 +6,86 @@
 
 
 
-
-<div class="container">
-    
-  <div class="row">
-
-    
+<div class="container">    
+  <div class="row">    
     <div class="col-lg-10">
-
-
-      <!-- Basic Card Example -->
       <div class="card shadow mb-4">
 
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Perfil</h6>
         </div>
 
-          <div class="container portfolio">
+        <div class="container portfolio">
+          <div class="bio-info">
+            <div class="row">
 
-            <div class="bio-info">
-              <div class="row">
-                <div class="col-lg-6">
-                    <center>
-                     <br><br>
-                     <div class="profile-img rounded-circle containercut" >
+              <div class="col-lg-6">
+                  <center>
+                    <br>
+                    <br>
+
+                    <div class="profile-img rounded-circle containercut" >
                       <img class="profile-img rounded-circle crop" src="{{ user_profile.userprofile.image.url }}" alt="">
                     </div>	
+
                     <br>		
-                    </center>
-                </div>
+                  </center>
+              </div>
 
+              <div class="col-lg-6">
+                <div class="bio-content"><br>
+                  <h1>{{ user_profile.username }}</h1>
 
+                  <hr>              
 
-                <div class="col-lg-6">
-                  <div class="bio-content"><br>
-                    <h1>{{ user_profile.username }}</h1>
+                  <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
+                    {% csrf_token %}
+                  
+                    <h5><i class="fa fa-user" aria-hidden="true"></i> Nombre: </h5>
+                    {{form.first_name}}
 
-                    <hr>
-                    
+                    <br>
 
-
-
-                    <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
-                      {% csrf_token %}
-                    
-                      <h5><i class="fa fa-user" aria-hidden="true"></i> Nombre: </h5>
-                      {{form.first_name}}
-
-                      <br>
-
-                      <h5><i class="fa fa-user" aria-hidden="true"></i> Apellidos: </h5>
-                      {{form.last_name}}
-                      <br>
-                    
-                      <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }} <a href="/backend/user_edit_email/{{user_profile.id}}">
+                    <h5><i class="fa fa-user" aria-hidden="true"></i> Apellidos: </h5>
+                    {{form.last_name}}
+                    <br>
+                  
+                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ user_profile.email }} 
+                      <a href="/backend/user_edit_email/{{user_profile.id}}">
                         <span class="text"> <i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
                       </a>              
-                      </h5>
-                      
-                      <br>
-                      
-                      <h5><i class="fas fa-sign-in-alt"></i><b> Última sesión:</b> {{ user_profile.last_login }}</h5>
-
-
+                    </h5>
+                    
+                    <br>
+                    
+                    <h5><i class="fas fa-sign-in-alt"></i><b> Última sesión:</b> {{ user_profile.last_login }}</h5>
 
                     <hr>
-
-
-                    
+                  
                     <td>
-                     
-                      <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
-                    </form>
-                     
-                    <br>
-                    <a href="/backend/user_edit_picture/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                      <span class="text">Editar foto de perfil</span>
-                    </a>  
-                    </td>
                     
-                  <br><br>
-                  </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
+                  </form>
+                    
+                  <br>
+                  <a href="/backend/user_edit_picture/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
+                    <span class="text">Editar foto de perfil</span>
+                  </a>  
+                  </td>
+                  
+                  <br>
+                  <br>
+
                 </div>
-              </div>	
-            </div>
+              </div>
+
+            </div>	
           </div>
-
-
-
-
-
-
-
-
-
-
+        </div>
 
         
       </div>
-
     </div>
-
   </div>
 </div>
 

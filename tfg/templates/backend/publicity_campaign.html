@@ -1,66 +1,39 @@
 {% extends 'backend/base.html' %}
 
-
 {% block contenido %}
+
 {% load static %}
 
+<div class="container">
+  <div class="row">        
+    <div class="col-lg-10">
+      <div class="card shadow mb-3" >
 
-
-  <div class="container">
-
-    <div class="row">
-        
-      <div class="col-lg-10">
-
-        <div class="card shadow mb-3" >
-
-          <div class="card-body d-flex flex-row">
-
-            <!-- Avatar -->
-        
-            <!-- Content -->
-            <div>
-        
-              <!-- Title -->
-              <h4 class="card-title font-weight-bold mb-2">{{campaign.name}}</h4>
-              <!-- Subtitle -->
-              <p class="card-text"><i class="fa fa-user" aria-hidden="true"></i> Creada por: {{campaign.user}}<br>
+        <div class="card-body d-flex flex-row">      
+          <div>      
+            <h4 class="card-title font-weight-bold mb-2">{{campaign.name}}</h4>
+            <p class="card-text"><i class="fa fa-user" aria-hidden="true"></i> Creada por: {{campaign.user}}<br>
               <i class="far fa-clock pr-2"></i>Duración: {{campaign.date_start}} al {{campaign.date_end}}<br>
-              </p>
-              
-            </div>
+            </p>            
+          </div>      
+        </div>
+
+        <div class="view overlay">
+          <img class="card-img-top rounded-0" src="{{ campaign.image.url }}" alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>          
         
-          </div>
-
-          <div class="view overlay">
-            <img class="card-img-top rounded-0" src="{{ campaign.image.url }}" alt="Card image cap">
-            <a href="#!">
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-            
-          
-          <div class="container portfolio">
-            <br>
-            <h4 class="card-title font-weight-bold mb-2">Descripción:</h4>
-              <!-- Text -->
-              <p>{{campaign.description}}</p>
-              <!-- Button -->
-              
-        
-            </div>
-
-
+        <div class="container portfolio">
+          <br>
+          <h4 class="card-title font-weight-bold mb-2">Descripción:</h4>           
+            <p>{{campaign.description}}</p>
         </div>
 
       </div>
-
     </div>
-
   </div>
-
-
-
-
+</div>
 
 {% endblock %}

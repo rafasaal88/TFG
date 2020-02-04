@@ -66,8 +66,7 @@
                             <input id="id_image" type="file" name="image"  class="form-control-file" accept="image/x-png,image/gif,image/jpeg" autofocus required>
                             
                         </div>
-                    </div>     
-                    
+                    </div>                         
                            
                     <div class="form-group">
                         <div class="col-lg-6">
@@ -87,62 +86,53 @@
 </div>
 
 <script>
-function CompararFechas()
-{
-    var fecha_start = new Date()
-    var fecha_start = document.getElementById("date_start").value
-    var fecha_end = document.getElementById("date_end").value
-
-
     
-    //alert("Hola"+fecha_start+fecha_end);
-
-
-    if(fecha_start <= fecha_end)
+    function CompararFechas()
     {
+        var fecha_start = new Date()
+        var fecha_start = document.getElementById("date_start").value
+        var fecha_end = document.getElementById("date_end").value
+        
+        if(fecha_start <= fecha_end)
+        {
 
-    document.getElementById('formu').submit();
+        document.getElementById('formu').submit();
+        }
+
+        if(fecha_start > fecha_end)
+        {
+        $( "#warning" ).modal('show');   
+        }
     }
 
-    if(fecha_start > fecha_end)
-    {
-    //alert("La fecha inicial no puede ser mayor a la final");
-    $( "#warning" ).modal('show');
-   
-    }
-}
-  
+</script>   
 
+<div class="modal" id="warning" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <h5 class="modal-title" id="examplewarning"> 
+                <b>AVISO</b>
+                </h5>
 
-</script>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
 
-    
+        <center>
 
+            <div class="modal-body">La fecha de inicio no puede ser posterior a la final</div>            
+                <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
+                <br>
+                <br>
+            </div>
 
-
-              <div class="modal" id="warning" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="examplewarning">                          
-                        <b>AVISO</b>
-                     </h5>
-                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                    <center>
-                        <div class="modal-body">La fecha de inicio no puede ser posterior a la final</div>
-                        
-                        <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
-                        <br><br>
-
-                        
-                    </center>
-                  </div>
-                </div>
-              </div>
+        </center>
+             
+    </div>
+</div>
 
 
 

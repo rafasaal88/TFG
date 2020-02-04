@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Publicity_campaign, UserProfile
+from .models import User, Publicity_campaign, UserProfile, Product
 
 
 class Publicity_Campaign_Form(forms.ModelForm):
@@ -16,7 +16,7 @@ class Publicity_Campaign_Form(forms.ModelForm):
         widgets = {
         'name': forms.TextInput(attrs={'class': 'form-control'}),
         'description': forms.Textarea(attrs={'class': 'form-control'}),
-        'date_start': forms.DateInput(attrs={'class': 'form-control'}),
+        'date_start': forms.DateInput(attrs={'class': 'form-control datepicker'}),
         'date_end': forms.DateInput(attrs={'class': 'form-control'}),
         'user': forms.TextInput(attrs={'class': 'form-control'}),
        
@@ -79,3 +79,24 @@ class User_Profile_Create(forms.ModelForm):
             if commit:
                 user.save()
             return user
+
+
+class Product_Form(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = [
+            'price',
+            'description',
+            'date',
+            'picture',
+        ]
+        widgets = {
+            'price': forms.FloatField(),
+            'description': forms.TextInput(),
+            'date': forms.DateField(),
+        }
+
+
+
+
+

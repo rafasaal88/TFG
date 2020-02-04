@@ -16,14 +16,17 @@ from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, Use
 from .models import Publicity_campaign, UserProfile
 
 
+#Mostrar error 404
 def mi_error_404(request, exception):
     return render(request,'backend/404.html')
 
+
+#Mostrar error 500
 def mi_error_500(request):
     return render(request,'backend/500.html')
 
 
-
+#Mostrar index del backend
 @login_required(login_url='user_login')
 @staff_member_required(login_url='user_login')
 def index(request):
@@ -33,6 +36,7 @@ def index(request):
     return render(request, 'backend/index.html',{'users':users, 'campaign':campaign})
 
 
+#Loguear usuario
 def user_login(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
@@ -67,6 +71,8 @@ def user_login(request):
     # Si llegamos al final renderizamos el formulario
     return render(request, 'backend/login.html', {'form': form})
 
+
+#Cerrar sesión de usuario
 def user_logout(request):
     # Finalizamos la sesión
     django_logout(request)
@@ -74,16 +80,12 @@ def user_logout(request):
     return redirect('user_login')
 
 
-
-
-
 ###############################################################################################
 ################################ Publicity Campaign CRUD Methods ##############################
 ###############################################################################################
 
 
-
-
+#Crear campaña de publicidad
 @login_required(login_url='user_login')
 def publicity_campaign_create(request):
     user_profile = request.user
@@ -99,20 +101,21 @@ def publicity_campaign_create(request):
     return render(request,'backend/publicity_campaign_create.html',{'form':form})
 
 
+#Mostrar campaña de publicidad
 @login_required(login_url='user_login')
 def publicity_campaign(request, id):
     campaign = Publicity_campaign.objects.get(id = id)
     return render(request, 'backend/publicity_campaign.html', {'campaign':campaign})
 
 
-
+#Listar todas las campañas de publicidad
 @login_required(login_url='user_login')
 def publicity_campaign_list(request):
     campaign = Publicity_campaign.objects.all()
     return render(request, 'backend/publicity_campaign_list.html', {'campaign':campaign})
 
 
-
+#Editar campaña de publicidad
 @login_required(login_url='user_login')
 def publicity_campaign_edit(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
@@ -126,6 +129,7 @@ def publicity_campaign_edit(request, id):
     return render (request, 'backend/publicity_campaign_edit.html', {'form':form, 'publicity':publicity})
 
 
+#Eliminar campaña de publicidad
 @login_required(login_url='user_login')
 def publicity_campaign_delete(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
@@ -136,33 +140,38 @@ def publicity_campaign_delete(request, id):
 
 
 ###############################################################################################
-###############################################################################################
+########################## User Methods #######################################################
 ###############################################################################################
 
 
+#Listar usuarios que no son administradores
 @login_required(login_url='user_login')
 def users_list(request):
     users = User.objects.filter(is_staff='False')
     return render(request, 'backend/users_list.html', {'users':users})
 
 
-#Vista para el usuario logueado
+#Vista para ver el perfil del usuario logueado
 @login_required(login_url='user_login')
 def user_profile_admin(request):
     return render(request, 'backend/user_profile_admin.html')
 
-#Vista para el resto de usuarios
+
+#Vista para el perfil del resto de usuarios
 @login_required(login_url='user_login')
 def user_profile(request, id):
     user_profile = User.objects.get(id = id)
     return render(request, 'backend/user_profile.html', {'user_profile':user_profile})
 
-#Vista para el resto de usuarios
+
+#Vista para editar el perfil del resto de usuarios
 @login_required(login_url='user_login')
 def user_profile_edit(request, id):
     user_profile = User.objects.get(id = id)
     return render(request, 'backend/user_profile_edit.html', {'user_profile':user_profile})
 
+
+#Editar email del usuario pasado por referencia
 @login_required(login_url='user_login')
 def user_edit_email(request, id):
     user_profile = User.objects.get(id = id)
@@ -178,6 +187,8 @@ def user_edit_email(request, id):
             return redirect ('user_profile_edit', id)
     return render (request, 'backend/user_edit_email.html', {'form':form, 'user_profile':user_profile})
 
+
+#Editar nombre y apellidos del usuario pasado por referencia
 @login_required(login_url='user_login')
 def user_edit_name(request, id):
     user_profile = User.objects.get(id = id)
@@ -194,6 +205,7 @@ def user_edit_name(request, id):
     return render (request, 'backend/user_edit_name.html', {'form':form, 'user_profile':user_profile})
 
 
+#editar imagen de perfil del usuario pasado por referencia
 @login_required(login_url='user_login')
 def user_edit_picture(request, id):
     user_profile = User.objects.get(id = id)
@@ -210,6 +222,8 @@ def user_edit_picture(request, id):
             return redirect ('user_profile_edit', id)
     return render (request, 'backend/user_edit_picture.html', {'form':form, 'user_profile':user_profile})
 
+
+#Crear un nuevo usuario no administrador
 @login_required(login_url='user_login')
 def user_create(request):
     if request.method == 'POST':
@@ -224,14 +238,16 @@ def user_create(request):
         form = User_Profile_Create()
         return render(request, 'backend/user_create.html', {'form':form})
 
+
+#Eliminar el usuario pasado por referencia
 @login_required(login_url='user_login')
 def user_delete(request, id):
-    user = User.objects.get(id = id)
+    user_profile = User.objects.get(id = id)
     if request.method == 'POST':
-        user.delete()
+        user_profile.delete()
         return redirect('users_list')
     if request.method == 'GET':
-        if user.is_staff:
-            return render(request, 'backend/user_delete_error.html', {'user':user})
+        if user_profile.is_staff:
+            return render(request, 'backend/user_delete_error.html', {'user_profile':user_profile})
         else:
-            return render(request, 'backend/user_delete.html', {'user':user})
+            return render(request, 'backend/user_delete.html', {'user_profile':user_profile})

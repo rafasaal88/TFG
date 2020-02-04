@@ -6,13 +6,9 @@
 <!--Desktop version-->
 
 <div class="d-none d-sm-none d-md-block">
-
   <div class="container">
-
-    <div class="row">
-        
+    <div class="row">        
       <div class="col-lg-12">
-
         <div class="card shadow mb-3" >
           
           <div class="card-header py-3">
@@ -20,14 +16,13 @@
           </div>
 
           <div class="card-body">
-
             <div class="table-responsive">
 
               <table class="table table-bordered" id="dataTable" cellspacing="0">
 
                 <thead>
                   <tr>
-                    <th>Nick</th>
+                    <th>Nombre de usuario</th>
                     <th>eMail</th>
                     <th>Fecha de registro</th>
                     <th>Acciones</th>
@@ -36,78 +31,69 @@
 
                 <tbody>
                     {% for users in users %}
-                  <tr>             
-                    <td>{{users.username}}</td>
-                    <td>{{users.email}}</td>
-                    <td>{{users.date_joined}}</td>
-                    
-                    
-                    
-                    <td>
-                      <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                        </span>
-                        <span class="text">Ver</span>
-                      </a>
+                    <tr>             
+                      <td>{{users.username}}</td>
+                      <td>{{users.email}}</td>
+                      <td>{{users.date_joined}}</td>                  
+                      <td>
+                        <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                          </span>
+                          <span class="text">Ver</span>
+                        </a>
 
-                      <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        </span>
-                        <span class="text">Editar</span>
-                      </a>   
+                        <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                          </span>
+                          <span class="text">Editar</span>
+                        </a>   
 
-                      <a href="/backend/user_delete/{{users.id}}" class="btn btn-danger btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-trash"></i>
-                        </span>
-                        <span class="text">Eliminar</span>
-                      </a>
-                    </td>
-                  </tr>
-                  
-                  {% endfor %}              
+                        <a href="/backend/user_delete/{{users.id}}" class="btn btn-danger btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                          <span class="text">Eliminar</span>
+                        </a>
+                      </td>
+                    </tr>                  
+                    {% endfor %}              
                 </tbody>
 
               </table>
 
-            </div>
-            
+            </div>            
           </div>
 
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
 
 
 <!--Mobile version-->
 
 <div class="d-block d-sm-block d-md-none">
+  <div class="container">  
+    <div class="row">        
+      <div class="col-lg-12">  
 
-  <div class="container">
-  
-    <div class="row">
-        
-      <div class="col-lg-12">
-  
-        <!-- DataTales Example -->
         <div class="card shadow mb-3" >
+
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
           </div>
+
           <div class="card-body">
             <div class="table-responsive">
+
               <table class="table table-bordered" id="dataTable" cellspacing="0">
+
                 <thead>
                   <tr>
-                    <th>Nick</th>
+                    <th>Nombre de usuario</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -116,9 +102,6 @@
                     {% for users in users %}
                   <tr>             
                     <td>{{users.username}}</td>
-
-                    
-                    
                     
                     <td>
                       <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
@@ -135,20 +118,18 @@
                     </td>
                   </tr>
 
-
-
-
                   {% endfor %}              
                 </tbody>
+
               </table>
+
             </div>
-          </div>
-        </div>
-  
+          </div> 
+
+        </div>  
+
       </div>
-    </div>
-  
-  
+     </div>  
   </div>
-  </div>
+</div>
 {% endblock %}

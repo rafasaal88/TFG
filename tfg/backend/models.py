@@ -25,6 +25,12 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
     image = models.ImageField(upload_to='profile_image', blank=True, default=profile_default)
 
+class Product (models.Model):
+    id = models.AutoField(primary_key=True)
+    price = models.FloatField(max_length=10)
+    description = models.TextField(blank=True)
+    date = models.DateField(blank=True, default=None)
+    picture = models.ImageField(blank=True)
 
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
@@ -34,15 +40,9 @@ class Publicity_campaign(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='publicity_campaign_image', blank=True)
     user = models.CharField(max_length=40, blank=True)
+    publicity_campaing = models.ManyToManyField(Product, blank=True)
 
 
-class Product (models.Model):
-    id = models.AutoField(primary_key=True)
-    price = models.FloatField(max_length=10)
-    description = models.TextField(blank=True)
-    summary = models.TextField()
-    picture = models.ImageField(blank=True)
-    publicity_campaing = models.ManyToManyField(Publicity_campaign, blank=True)
 
 #falta relacion N a N
 

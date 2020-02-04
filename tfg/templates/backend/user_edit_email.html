@@ -4,56 +4,52 @@
 {% load static %}
 
 
-
-
-
-<div class="container">
-    
-  <div class="row">
-
-    
+<div class="container">    
+  <div class="row">    
     <div class="col-lg-10">
-
-
-      <!-- Basic Card Example -->
       <div class="card shadow mb-4">
 
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Perfil</h6>
         </div>
 
-          <div class="container portfolio">
+        <div class="container portfolio">
 
-            <div class="bio-info">
-              <div class="row">
-                <div class="col-lg-6">
-                    <center>
-                     <br><br>
-                     <div class="profile-img rounded-circle containercut" >
+          <div class="bio-info">
+            <div class="row">
+              <div class="col-lg-6">
+                  <center>
+                    <br>
+                    <br>
+
+                    <div class="profile-img rounded-circle containercut" >
                       <img class="profile-img rounded-circle crop" src="{{ user_profile.userprofile.image.url }}" alt="">
                     </div>	
+
                     <br>		
-                    </center>
-                </div>
+                  </center>
+              </div>
 
+              <div class="col-lg-6">
+                <div class="bio-content"><br>
+                  <h1>{{ user_profile.username }}</h1>
 
-
-                <div class="col-lg-6">
-                  <div class="bio-content"><br>
-                    <h1>{{ user_profile.username }}</h1>
-
-                    <hr>
-                    
-                    <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user_profile.get_full_name }} <a href="/backend/user_edit_name/{{user_profile.id}}">
+                  <hr>
+                  
+                  <h5><i class="fa fa-user" aria-hidden="true"></i> {{ user_profile.get_full_name }} 
+                    <a href="/backend/user_edit_name/{{user_profile.id}}">
                       <span class="text"> <i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
-                    </a></h5><br>
+                    </a>
+                  </h5>
+                  
+                  <br>
 
 
-                    <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
-                      {% csrf_token %}
-                    
-                      <h5><i class="fa fa-envelope" aria-hidden="true"></i> Introduzca la nueva dirección de correo: </h5>
-                      {{form.email}}
+                  <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
+                    {% csrf_token %}
+                  
+                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> Introduzca la nueva dirección de correo: </h5>
+                    {{form.email}}
 
                     <br>
 
@@ -63,37 +59,27 @@
                     <hr>
                     
                     <td>
-                     
-                      <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
-                    </form>
-                     <br>
-                     <a href="/backend/user_edit_picture/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
-                      <span class="text">Editar foto de perfil</span>
-                    </a>  
-                    </td>
                     
-                  <br><br>
-                  </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%">Modificar</button>
+                  </form>
+
+                  <br>
+                  <a href="/backend/user_edit_picture/{{user_profile.id}}" class="btn btn-primary btn-lg btn-block" style="width: 100%">
+                    <span class="text">Editar foto de perfil</span>
+                  </a>  
+                                   
+                  <br>
+                  <br>
+                  
                 </div>
-              </div>	
-            </div>
+              </div>
+              
+            </div>	
           </div>
-
-
-
-
-
-
-
-
-
-
-
+        </div>
         
       </div>
-
     </div>
-
   </div>
 </div>
 

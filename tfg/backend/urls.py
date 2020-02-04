@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^user_login/',user_login, name = 'user_login'),
     url(r'^user_logout/',user_logout, name = 'user_logout'),
+
+    #crud_user
     url(r'^users_list/',users_list, name = "users_list"),
     url(r'^user_profile_admin/',user_profile_admin, name = "user_profile_admin"),
     url(r'^user_profile/(?P<id>\d+)/$',user_profile, name = "user_profile"),

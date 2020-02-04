@@ -5,7 +5,6 @@ from .models import UserProfile, Publicity_campaign, Product, Recipe, Tag_nfc, S
 
 admin.site.register(Publicity_campaign)
 admin.site.register(UserProfile)
-#admin.site.register(Company)
 
 admin.site.register(Product)
 admin.site.register(Recipe)
