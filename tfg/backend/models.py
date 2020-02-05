@@ -27,10 +27,11 @@ class UserProfile(models.Model):
 
 class Product (models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.TextField(blank=True)
     price = models.FloatField(max_length=10)
-    description = models.TextField(blank=True)
-    date = models.DateField(blank=True, default=None)
-    picture = models.ImageField(blank=True)
+    description = models.TextField()
+    date = models.DateField()
+    image = models.ImageField(upload_to='product_image', blank=True)
 
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)

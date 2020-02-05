@@ -12,8 +12,8 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
 
 #from .models import Company
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create
-from .models import Publicity_campaign, UserProfile
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form
+from .models import Publicity_campaign, UserProfile, Product
 
 
 #Mostrar error 404
@@ -33,7 +33,8 @@ def index(request):
     #company = Company.objects.all().count()
     campaign = Publicity_campaign.objects.all().count()
     users = User.objects.filter(is_staff='False').count()
-    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign})
+    products = Product.objects.all().count()
+    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products})
 
 
 #Loguear usuario
@@ -251,3 +252,20 @@ def user_delete(request, id):
             return render(request, 'backend/user_delete_error.html', {'user_profile':user_profile})
         else:
             return render(request, 'backend/user_delete.html', {'user_profile':user_profile})
+
+###############################################################################################
+########################## Product Methods ####################################################
+###############################################################################################
+
+
+#Añadir nuevo producto
+@login_required(login_url='user_login')
+def product_create(request):
+    if request.method == 'POST':
+        form = Product_Form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = Product_Form()
+        return render(request, 'backend/product_create.html', {'form':form})

@@ -3,6 +3,10 @@ from .views import index, user_login, user_logout, users_list, user_profile_admi
 
 #publicity_campaign
 from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign
+
+#product
+from .views import product_create
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include 
@@ -30,4 +34,9 @@ urlpatterns = [
     url(r'^publicity_campaign_edit/(?P<id>\d+)/$',publicity_campaign_edit, name = "publicity_campaign_edit"),
     url(r'^publicity_campaign_delete/(?P<id>\d+)/$',publicity_campaign_delete, name = "publicity_campaign_delete"),
     url(r'^publicity_campaign/(?P<id>\d+)/$',publicity_campaign, name = "publicity_campaign"),      
+
+
+    #crud_product
+    url(r'^product_create/',product_create, name = "product_create"),
+
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

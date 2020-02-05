@@ -85,15 +85,16 @@ class Product_Form(forms.ModelForm):
     class Meta:
         model = Product
         fields = [
+            'name',
             'price',
             'description',
             'date',
-            'picture',
+            'image',
         ]
         widgets = {
-            'price': forms.FloatField(),
-            'description': forms.TextInput(),
-            'date': forms.DateField(),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'date': forms.DateInput(attrs={'class': 'form-control'}),
         }
 
 
