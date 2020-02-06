@@ -95,13 +95,3 @@ class Product_Form(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-
-class Product_Form_Price(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = [
-            'price',
-        ]
-
-
-
