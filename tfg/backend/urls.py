@@ -5,7 +5,7 @@ from .views import index, user_login, user_logout, users_list, user_profile_admi
 from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign
 
 #product
-from .views import product_create
+from .views import product_create, product_list, product
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -38,5 +38,6 @@ urlpatterns = [
 
     #crud_product
     url(r'^product_create/',product_create, name = "product_create"),
-
+    url(r'^product_list/',product_list, name = "product_list"),
+    url(r'^product/(?P<id>\d+)/$',product, name = "product"),      
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

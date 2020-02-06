@@ -269,3 +269,17 @@ def product_create(request):
     else:
         form = Product_Form()
         return render(request, 'backend/product_create.html', {'form':form})
+
+
+#Listar productos
+@login_required(login_url='user_login')
+def product_list(request):
+    product = Product.objects.all()
+    return render(request, 'backend/product_list.html', {'product':product})
+
+
+#Ver producto
+@login_required(login_url='user_login')
+def product(request, id):
+    product = Product.objects.get(id = id)
+    return render(request, 'backend/product.html', {'product':product})

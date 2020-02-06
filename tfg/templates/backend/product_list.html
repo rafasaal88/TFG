@@ -5,14 +5,15 @@
 
 <!--Desktop version-->
 
+
 <div class="d-none d-sm-none d-md-block">
   <div class="container">
     <div class="row">        
-      <div class="col-lg-12">
+      <div class="col-lg-10">
         <div class="card shadow mb-3" >
           
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
           </div>
 
           <div class="card-body">
@@ -22,35 +23,35 @@
 
                 <thead>
                   <tr>
-                    <th>Nombre de usuario</th>
-                    <th>eMail</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
                     <th>Fecha de registro</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                    {% for users in users %}
+                    {% for product in product %}
                     <tr>             
-                      <td>{{users.username}}</td>
-                      <td>{{users.email}}</td>
-                      <td>{{users.date_joined}}</td>                  
+                      <td>{{product.name}}</td>
+                      <td>{{product.price}} €</td>
+                      <td>{{product.date}}</td>                  
                       <td>
-                        <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
+                        <a href="/backend/product/{{product.id}}" class="btn btn-primary btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                           </span>
                           <span class="text">Ver</span>
                         </a>
 
-                        <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
+                        <a href="#" class="btn btn-warning btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                           </span>
                           <span class="text">Editar</span>
                         </a>   
 
-                        <a href="/backend/user_delete/{{users.id}}" class="btn btn-danger btn-icon-split">
+                        <a href="#" class="btn btn-danger btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-trash"></i>
                           </span>
@@ -93,26 +94,27 @@
 
                 <thead>
                   <tr>
-                    <th>Nombre de usuario</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
   
                 <tbody>
-                    {% for users in users %}
+                    {% for product in product %}
                   <tr>             
-                    <td>{{users.username}}</td>
-                    
+                    <td>{{product.name}}</td>
+                    <td>{{product.date}}</td>
                     <td>
-                      <a href="/backend/user_profile/{{users.id}}" class="btn btn-primary btn-icon-split">
+                      <a href="/backend/product/{{product.id}}" class="btn btn-primary btn-icon-split">
                         <span class="text"><i class="fa fa-eye" aria-hidden="true"></i></span>
                       </a>
     
-                      <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
+                      <a href="#" class="btn btn-warning btn-icon-split">
                         <span class="text"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
                       </a>   
     
-                      <a href="/backend/user_delete/{{users.id}}" class="btn btn-danger btn-icon-split">
+                      <a href="#" class="btn btn-danger btn-icon-split">
                         <span class="text"><i class="fas fa-trash"></i></span>
                       </a>
                     </td>
