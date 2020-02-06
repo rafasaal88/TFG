@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 # from django_markdown.models import MarkdownField
 from django.utils import timezone
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -19,7 +20,6 @@ class Company(models.Model):
 profile_default = 'profile_image/profile_default.png'
 
 
-""" default="blabla.jpg" """
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
@@ -30,7 +30,9 @@ class Product (models.Model):
     name = models.TextField(blank=True)
     price = models.FloatField(max_length=10)
     description = models.TextField()
-    date = models.DateField()
+    date = models.DateTimeField(default=now, editable=True)
+    available = models.BooleanField(null=True, default=True)
+    user = models.CharField(max_length=40, blank=True)
     image = models.ImageField(upload_to='product_image', blank=True)
 
 class Publicity_campaign(models.Model):

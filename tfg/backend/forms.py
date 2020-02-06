@@ -88,13 +88,11 @@ class Product_Form(forms.ModelForm):
             'name',
             'price',
             'description',
-            'date',
             'image',
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'date': forms.DateInput(attrs={'class': 'form-control'}),
         }
 
 

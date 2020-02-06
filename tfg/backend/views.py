@@ -264,8 +264,9 @@ def product_create(request):
     if request.method == 'POST':
         form = Product_Form(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.user = request.user.username
             form.save()
-            return redirect('index')
+            return redirect('product_list')
     else:
         form = Product_Form()
         return render(request, 'backend/product_create.html', {'form':form})
