@@ -275,7 +275,7 @@ def product_create(request):
 #Listar productos
 @login_required(login_url='user_login')
 def product_list(request):
-    product = Product.objects.all()
+    product = Product.objects.all().filter(available='True')
     return render(request, 'backend/product_list.html', {'product':product})
 
 
@@ -284,3 +284,21 @@ def product_list(request):
 def product(request, id):
     product = Product.objects.get(id = id)
     return render(request, 'backend/product.html', {'product':product})
+
+
+def product_edit_price(request, id):
+    product = Product.objects.get(id = id)
+    if request.method == 'POST':        
+        precio = float(request.POST.get("newprice"))     
+        product.available = 'False'
+        product.save()
+        product_new = Product.objects.create(name=product.name, price = precio)
+        product_new.description = product.description
+        product_new.user = request.user.username
+        product_new.image = product.image
+        product_new.save()
+        return redirect('product_list')
+    else:
+        return render(request, 'backend/product_edit_price.html', {'product':product, })
+
+

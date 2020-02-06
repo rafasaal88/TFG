@@ -96,6 +96,12 @@ class Product_Form(forms.ModelForm):
         }
 
 
+class Product_Form_Price(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = [
+            'price',
+        ]
 
 
 
