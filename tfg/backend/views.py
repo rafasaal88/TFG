@@ -33,7 +33,7 @@ def index(request):
     #company = Company.objects.all().count()
     campaign = Publicity_campaign.objects.all().count()
     users = User.objects.filter(is_staff='False').count()
-    products = Product.objects.all().count()
+    products = Product.objects.filter(available='True').count()
     return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products})
 
 
@@ -285,7 +285,7 @@ def product(request, id):
     product = Product.objects.get(id = id)
     return render(request, 'backend/product.html', {'product':product})
 
-
+#Editar precio
 def product_edit_price(request, id):
     product = Product.objects.get(id = id)
     if request.method == 'POST':        
@@ -299,6 +299,17 @@ def product_edit_price(request, id):
         product_new.save()
         return redirect('product_list')
     else:
-        return render(request, 'backend/product_edit_price.html', {'product':product, })
+        return render(request, 'backend/product_edit_price.html', {'product':product})
 
+
+#Deshabilitar producto
+@login_required(login_url='user_login')
+def product_disable(request, id):
+    product = Product.objects.get(id = id)
+    if request.method == 'POST':
+        product.available = 'False'
+        product.save()
+        return redirect('product_list')
+    else:
+        return render(request, 'backend/product_disable.html', {'product':product})
 
