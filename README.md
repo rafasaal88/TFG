@@ -1,25 +1,17 @@
-```
-PETICIÓN DE TEMA DE TRABAJO
-FIN DE GRADO EN INGENIERÍA
-INFORMÁTICA
+TRABAJO FIN DE GRADO EN INGENIERÍA INFORMÁTICA
 Escuela Politécnica Superior (Córdoba)
-```
+
 # Sistema basado en IOT para
 
 # la implantación de campañas
 
 # de marketing
 
-**Autor:** Rafael Salido Álvarez – i22saalr@uco.es
-
-**Director:** Gonzalo Cerruela García – gcerruela@uco.es
-
-
 ## ÍNDICE DE CONTENIDOS
 
 - 1. INTRODUCCIÓN.................................................................................................................
 - 2. OBJETIVOS..........................................................................................................................
-- 3. ANTECEDENTES (EN SU CASO)......................................................................................
+- 3. ANTECEDENTES......................................................................................
 - 4. PARTES DE QUE CONSTARÁ EL TFG............................................................................
 - 5. FASES DE DESARROLLO Y CRONOGRAMA...............................................................
 - 6. RECURSOS...........................................................................................................................
@@ -29,7 +21,7 @@ Escuela Politécnica Superior (Córdoba)
 - 7. BIBLIOGRAFÍA...................................................................................................................
 
 
-## 1. INTRODUCCIÓN.................................................................................................................
+## 1. INTRODUCCIÓN
 
 La tecnología NFC (Near Field Communication) es ampliamente en marketing y aplicaciones
 de publicidad (Ahson and Ilyas, 2011; NFC Forum, 2013; Garrido et al., 2010; Riekki et al.,
@@ -58,7 +50,7 @@ de marketing sobre determinados productos y pueda ser utilizada en diferentes ti
 establecimientos con los menores cambios posibles.
 
 
-## 2. OBJETIVOS..........................................................................................................................
+## 2. OBJETIVOS
 
 El objetivo principal del proyecto es el análisis, diseño e implementación de un sistema de
 Sistema basado en IOT para la implantación de campañas de marketing asociadas a
@@ -98,19 +90,18 @@ El sistema debe almacenar y gestionar información sobre:
     b) Externo: el servidor sólo es una pasarela a una web externa.
     c) Combinado: Si no se puede ejecutar el procedimiento interno se ejecuta el externo.
 
-```
+
 Además, se deben considerar atributos específicos para describir si es obligado o no el
 inicio de sesión del usuario, el objetivo es garantizar la seguridad en el acceso a
 determinados servicios. Además, será necesario establecer otros atributos para definir si
 es obligatorio conocer la geolocalización del usuario para el acceso al servicio o, para
 indicar la fecha en que cada servicio ha sido ejecutado por última vez.
-```
-```
+
 Por último, es importante almacenar información histórica de los servicios ejecutados,
 sus contenidos y formato, de los usuarios que interaccionan con los Tags NFC, etc. Esta
 información permitirá evaluar y realizar un estudio de usabilidad cuando la plataforma
 esté en fase de explotación.
-```
+
 
 ## 3. ANTECEDENTES
 
@@ -161,26 +152,26 @@ Aprendizaje de las tecnologías a usar en el proyecto
     **Total: 60**
 Desarrollo e implementación
 - Análisis y diseño **50**
- Análisis y diseño de la base de datos 4
- Análisis y diseño de los métodos CRUD de los modelos 2
- Análisis y diseño del panel de administración 9
- Análisis y diseño de la interfaz de publicidad 7
- Análisis y diseño de la interfaz de productos 7
- Análisis y diseño del registro de usuarios 9
- Análisis y diseño de los métodos para la API REST 12
+    - Análisis y diseño de la base de datos 4
+    - Análisis y diseño de los métodos CRUD de los modelos 2
+    - Análisis y diseño del panel de administración 9
+    - Análisis y diseño de la interfaz de publicidad 7
+    - Análisis y diseño de la interfaz de productos 7
+    - Análisis y diseño del registro de usuarios 9
+    - Análisis y diseño de los métodos para la API REST 12
 
 
 - Programación de funcionalidades **105**
-     Despliegue de Django y MariaDB 4
-     Implementación del diseño de la base de datos 12
-     Métodos CRUD para los modelos 10
-     Interfaz de administración 22
-     Interfaz de publicidad 24
-     Interfaz de productos 18
-     Registro de usuario 16
-     Métodos para la API REST y configuración 30
-     Despliegue VueJS sobre Django REST Framework 6
-     Manejo e identificación de los tags NFC en el sistema 10
+    - Despliegue de Django y MariaDB 4
+    - Implementación del diseño de la base de datos 12
+    - Métodos CRUD para los modelos 10
+    - Interfaz de administración 22
+    - Interfaz de publicidad 24
+    - Interfaz de productos 18
+    - Registro de usuario 16
+    - Métodos para la API REST y configuración 30
+    - Despliegue VueJS sobre Django REST Framework 6
+    - Manejo e identificación de los tags NFC en el sistema 10
        **Total: 152**
 Pruebas cíclicas **38**
 Documentación **50
@@ -196,15 +187,13 @@ Pruebas cíclicas
 Documentación
 ```
 
-## 6. RECURSOS...........................................................................................................................
-
-### 6.1 Recursos humanos...........................................................................................................................
+## 6. RECURSOS
+### 6.1 Recursos humanos
 
 Esta herramienta está desarrollada por Rafael Salido Álvarez y dirigida por Gonzalo Cerruela
 García.
 
-### 6.2 Recursos hardware..........................................................................................................................
-
+### 6.2 Recursos hardware
 - Equipo del desarrollador:
     ◦ Host: Lenovo Flex 2 Pro-
     ◦ CPU: Intel i7-45710U
@@ -216,8 +205,7 @@ García.
     ◦ GPU: VideoCore IV 400 Mhz
     ◦ RAM: 1GB
 
-### 6.3 Recursos software............................................................................................................................
-
+### 6.3 Recursos software
 En este apartado vamos a diferenciar las partes que tiene el proyecto y con que software va a
 funcionar cada una de ellas.
 
@@ -244,7 +232,7 @@ Javascript. Dicho framework realizará las llamadas a la API REST y mostrará lo
 por pantalla.
 
 
-## 7. BIBLIOGRAFÍA...................................................................................................................
+## 7. BIBLIOGRAFÍA
 
 _[Ahson and Ilyas, 2011] Ahson, S.A. and Ilyas, M. (2011) Near Field Communications
 Handbook, Taylor & Francis, New York, USA._

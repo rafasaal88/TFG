@@ -12,7 +12,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
 
 #from .models import Company
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit
 from .models import Publicity_campaign, UserProfile, Product
 
 
@@ -313,3 +313,24 @@ def product_disable(request, id):
     else:
         return render(request, 'backend/product_disable.html', {'product':product})
 
+
+@login_required(login_url='user_login')
+def product_edit(request, id):
+    product = Product.objects.get(id = id)
+    if request.method == 'GET':
+        form = Product_Form_Edit(instance = product)
+        return render(request, 'backend/product_edit.html', {'product':product, 'form':form})
+    else:
+        form = Product_Form_Edit(request.POST, request.FILES, instance = product)
+        if form.is_valid():
+            form.instance.available = 'False'
+            form.save()
+            if request.POST.get("newprice"):
+                product_new = Product.objects.create(name=product.name, price = float(request.POST.get("newprice")))
+            else:
+                product_new = Product.objects.create(name=product.name, price = product.price)
+            product_new.description = product.description
+            product_new.user = request.user.username
+            product_new.image = product.image
+            product_new.save()
+            return redirect('product_list')
