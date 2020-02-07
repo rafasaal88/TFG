@@ -11,7 +11,8 @@ class Publicity_Campaign_Form(forms.ModelForm):
             'description',
             'name',
             'image',
-            'user'
+            'user',
+            'product',
         ]
         widgets = {
         'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -19,7 +20,7 @@ class Publicity_Campaign_Form(forms.ModelForm):
         'date_start': forms.DateInput(attrs={'class': 'form-control datepicker'}),
         'date_end': forms.DateInput(attrs={'class': 'form-control'}),
         'user': forms.TextInput(attrs={'class': 'form-control'}),
-       
+        'product': forms.CheckboxSelectMultiple(),
     }
 
 class User_Form_Email(forms.ModelForm):

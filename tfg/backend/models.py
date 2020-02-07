@@ -35,6 +35,10 @@ class Product (models.Model):
     user = models.CharField(max_length=40, blank=True)
     image = models.ImageField(upload_to='product_image', blank=True)
 
+    def __str__(self):
+
+        return "{}, {} €".format(self.name, self.price)
+
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
@@ -43,7 +47,7 @@ class Publicity_campaign(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='publicity_campaign_image', blank=True)
     user = models.CharField(max_length=40, blank=True)
-    publicity_campaing = models.ManyToManyField(Product, blank=True)
+    product = models.ManyToManyField(Product, blank=True)
 
 
 

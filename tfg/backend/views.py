@@ -99,6 +99,7 @@ def publicity_campaign_create(request):
             return redirect('publicity_campaign_list')
     else:
         form = Publicity_Campaign_Form(initial={'user': user_profile_name})
+        form.fields['product'].queryset = Product.objects.filter(available = 'True')  # for example
     return render(request,'backend/publicity_campaign_create.html',{'form':form})
 
 
