@@ -1,0 +1,103 @@
+{% extends 'backend/base.html' %}
+
+{% block contenido %}
+
+{% load static %}
+
+<div class="container">
+  <div class="row">        
+    <div class="col-lg-12">
+      <div class="card shadow mb-3" >
+
+        <div class="card-body d-flex flex-row">      
+          <div>      
+            <h4 class="card-title font-weight-bold mb-2">{{campaign.name}}</h4>
+            <p class="card-text"><i class="fa fa-user" aria-hidden="true"></i> Creada por: {{campaign.user}}<br>
+              <i class="far fa-clock pr-2"></i>Duración: {{campaign.date_start}} al {{campaign.date_end}}<br>
+            </p>            
+          </div>      
+        </div>
+
+        <div class="view overlay">
+          <img class="card-img-top rounded-0" src="{{ campaign.image.url }}" alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>          
+        
+        <div class="container portfolio">
+          <br>
+          <h4 class="card-title font-weight-bold mb-2">Descripción:</h4>           
+            <p>{{campaign.description}}</p>
+        </div>
+
+
+
+     
+
+              
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+
+
+<div class="container">
+  <div class="row">   
+    {% for product in campaign.product.all %}
+    <div class="col-lg-4">
+      <div class="card shadow mb-3" >
+
+        <div class="card-body d-flex flex-row">      
+          <div>      
+            <h4 class="card-title font-weight-bold mb-2">{{product.name}}</h4>                          
+          </div>      
+        </div>
+
+        
+
+        <div class="view overlay containercut">
+          <img class="card-img-top rounded-0 crop2" src="{{ product.image.url }}" alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>          
+        
+        <div class="container portfolio text-right">
+          <br>
+            {% if product.available == True %}
+              <h4><i class="fas fa-money-bill" aria-hidden="true"></i> {{product.price}} €/Kg<br></h4>
+
+            {% else %}
+
+              <h4>NO DISPONIBLE</h4> <br>
+            {% endif %}
+
+            <p><a href="/backend/product/{{product.id}}" style="color: dimgray;">Detalles del producto</a></p>
+
+        </div>
+
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

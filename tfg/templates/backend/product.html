@@ -11,9 +11,13 @@
 
         <div class="card-body d-flex flex-row">      
           <div>      
+            {% if product.available == False %}
+            <h4>Este producto ha sido actualizado, consulte la lista de productos para encontrar su versión actualizada</h4>
+            {% endif %}
+
             <h4 class="card-title font-weight-bold mb-2">{{product.name}}</h4>
             <p class="card-text"><i class="far fa-clock pr-2"></i> Última actualización realizada por: {{product.user}} el {{product.date}}<br>
-              <i class="fas fa-money-bill" aria-hidden="true"></i> Precio: {{product.price}} €<br>
+              <i class="fas fa-money-bill" aria-hidden="true"></i> Precio: {{product.price}} €/Kg<br>
               </p>            
           </div>      
         </div>

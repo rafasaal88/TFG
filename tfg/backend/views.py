@@ -12,7 +12,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
 
 #from .models import Company
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Publicity_Campaign_Form_Edit
 from .models import Publicity_campaign, UserProfile, Product
 
 
@@ -109,6 +109,13 @@ def publicity_campaign(request, id):
     campaign = Publicity_campaign.objects.get(id = id)
     return render(request, 'backend/publicity_campaign.html', {'campaign':campaign})
 
+#Mostrar campaña de publicidad
+@login_required(login_url='user_login')
+def publicity_campaign_complete(request, id):
+    campaign = Publicity_campaign.objects.get(id = id)
+    return render(request, 'backend/publicity_campaign_complete.html', {'campaign':campaign})
+
+
 
 #Listar todas las campañas de publicidad
 @login_required(login_url='user_login')
@@ -122,9 +129,9 @@ def publicity_campaign_list(request):
 def publicity_campaign_edit(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
     if request.method == 'GET':
-        form = Publicity_Campaign_Form(instance = publicity)
+        form = Publicity_Campaign_Form_Edit(instance = publicity)
     else:
-        form = Publicity_Campaign_Form(request.POST, request.FILES, instance = publicity)
+        form = Publicity_Campaign_Form_Edit(request.POST, request.FILES, instance = publicity)
         if form.is_valid():
             form.save()
         return redirect ('publicity_campaign_list')

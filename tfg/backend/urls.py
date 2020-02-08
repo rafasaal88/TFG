@@ -2,7 +2,7 @@ from django.conf.urls import url
 from .views import index, user_login, user_logout, users_list, user_profile_admin, user_profile, user_edit_email, user_profile_edit, user_edit_name, user_edit_picture, user_create, user_delete
 
 #publicity_campaign
-from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign
+from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign, publicity_campaign_complete
 
 #product
 from .views import product_create, product_list, product, product_edit_price, product_disable, product_edit
@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^publicity_campaign_edit/(?P<id>\d+)/$',publicity_campaign_edit, name = "publicity_campaign_edit"),
     url(r'^publicity_campaign_delete/(?P<id>\d+)/$',publicity_campaign_delete, name = "publicity_campaign_delete"),
     url(r'^publicity_campaign/(?P<id>\d+)/$',publicity_campaign, name = "publicity_campaign"),      
+    url(r'^publicity_campaign_complete/(?P<id>\d+)/$',publicity_campaign_complete, name = "publicity_campaign_complete"),      
 
 
     #crud_product
