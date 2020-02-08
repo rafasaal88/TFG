@@ -250,16 +250,37 @@ def user_create(request):
 
 #Eliminar el usuario pasado por referencia
 @login_required(login_url='user_login')
-def user_delete(request, id):
+def user_disable(request, id):
     user_profile = User.objects.get(id = id)
     if request.method == 'POST':
-        user_profile.delete()
+        user_profile.is_active= 'False'
+        user_profile.save()
         return redirect('users_list')
     if request.method == 'GET':
         if user_profile.is_staff:
-            return render(request, 'backend/user_delete_error.html', {'user_profile':user_profile})
+            return render(request, 'backend/user_disable_error.html', {'user_profile':user_profile})
         else:
-            return render(request, 'backend/user_delete.html', {'user_profile':user_profile})
+            return render(request, 'backend/user_disable.html', {'user_profile':user_profile})
+
+
+
+#Eliminar el usuario pasado por referencia
+@login_required(login_url='user_login')
+def user_enable(request, id):
+    user_profile = User.objects.get(id = id)
+    if request.method == 'POST':
+        user_profile.is_active= 'True'
+        user_profile.save()
+        return redirect('users_list')
+    if request.method == 'GET':
+        if user_profile.is_staff:
+            return render(request, 'backend/user_enable_error.html', {'user_profile':user_profile})
+        else:
+            return render(request, 'backend/user_enable.html', {'user_profile':user_profile})
+
+
+
+
 
 ###############################################################################################
 ########################## Product Methods ####################################################

@@ -24,7 +24,7 @@
                 <th>Nombre</th>                
                 <th>Fecha inicio</th>
                 <th>Fecha final</th>
-                <th>Descripción</th>
+                <th>Creador</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -35,31 +35,31 @@
                 <td>{{campaign.name}}</td>
                 <td>{{campaign.date_start}}</td>
                 <td>{{campaign.date_end}}</td>
-                <td>{{campaign.description}}</td>
+                <td>{{campaign.user}}</td>
                 <td>
                   <a href="/backend/publicity_campaign/{{campaign.id}}" class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
+                    <span class="icon">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>
                     <span class="text">Ver</span>
                   </a>
 
                   <a href="/backend/publicity_campaign_complete/{{campaign.id}}" class="btn btn-success btn-icon-split">
-                    <span class="icon text-white-50">
+                    <span class="icon">
                       <i class="fas fa-book-open" aria-hidden="true"></i>
                     </span>
                     <span class="text">Ver campaña completa</span>
                   </a>
 
                   <a href="/backend/publicity_campaign_edit/{{campaign.id}}" class="btn btn-warning btn-icon-split">
-                    <span class="icon text-white-50">
+                    <span class="icon">
                       <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                     </span>
                     <span class="text">Editar</span>
                   </a>   
 
                   <a href="/backend/publicity_campaign_delete/{{campaign.id}}" class="btn btn-danger btn-icon-split">
-                    <span class="icon text-white-50">
+                    <span class="icon">
                       <i class="fas fa-trash"></i>
                     </span>
                     <span class="text">Eliminar</span>

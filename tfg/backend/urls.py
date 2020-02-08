@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import index, user_login, user_logout, users_list, user_profile_admin, user_profile, user_edit_email, user_profile_edit, user_edit_name, user_edit_picture, user_create, user_delete
+from .views import index, user_login, user_logout, users_list, user_profile_admin, user_profile, user_edit_email, user_profile_edit, user_edit_name, user_edit_picture, user_create, user_disable, user_enable
 
 #publicity_campaign
 from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign, publicity_campaign_complete
@@ -25,7 +25,9 @@ urlpatterns = [
     url(r'^user_edit_name/(?P<id>\d+)/$',user_edit_name, name = "user_edit_name"),
     url(r'^user_edit_picture/(?P<id>\d+)/$',user_edit_picture, name = "user_edit_picture"),
     url(r'^user_create/',user_create, name = "user_create"),
-    url(r'^user_delete/(?P<id>\d+)/$',user_delete, name = "user_delete"),
+    url(r'^user_disable/(?P<id>\d+)/$',user_disable, name = "user_disable"),
+    url(r'^user_enable/(?P<id>\d+)/$',user_enable, name = "user_enable"),
+
 
 
     #crud_publicity_campaign
