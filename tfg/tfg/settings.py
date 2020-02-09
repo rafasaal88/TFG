@@ -28,6 +28,12 @@ DEBUG = True
 THIRD_PARTY_APPS = ['rest_framework'] # this list shall contain many more of those useful apps and stuff.
 
 
+CORS_ORIRIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [ 
+'http://localhost:8080'
+]
+
 ALLOWED_HOSTS = ['*']
 # Application definition
 
@@ -40,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backend',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'tfg.urls'
