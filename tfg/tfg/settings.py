@@ -25,6 +25,8 @@ SECRET_KEY = 'vs%6n(3xkiz_m+dzv#%5jp#q5q^tc(3#m9icq)4@jbzk%eu9wt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+THIRD_PARTY_APPS = ['rest_framework'] # this list shall contain many more of those useful apps and stuff.
+
 
 ALLOWED_HOSTS = ['*']
 # Application definition

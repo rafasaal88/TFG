@@ -11,6 +11,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include 
 
+
+#REST
+
+from rest_framework import routers
+
+from .viewsets import ProductViewSet
+
+router = routers.SimpleRouter()
+router.register('product', ProductViewSet)
+
+urlpatterns = router.urls
+
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^user_login/',user_login, name = 'user_login'),
@@ -46,4 +58,4 @@ urlpatterns = [
     url(r'^product_edit_price/(?P<id>\d+)/$',product_edit_price, name = "product_edit_price"),
     url(r'^product_disable/(?P<id>\d+)/$',product_disable, name = "product_disable"),
     url(r'^product_edit/(?P<id>\d+)/$',product_edit, name = "product_edit"),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + router.urls
