@@ -25,7 +25,7 @@ urlpatterns = [
     path('', debug.default_urlconf),
     path('admin/', admin.site.urls),
     path('backend/',include('backend.urls')),
-    path('api/v1.0/',include('backend.urls')),
+    path('api/v1.0/',include('backend.api_urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'backend.views.mi_error_404'
