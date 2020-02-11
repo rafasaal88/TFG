@@ -10,6 +10,8 @@ from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as django_logout
 from django.contrib.admin.views.decorators import staff_member_required
+from django.utils import timezone
+from datetime import datetime
 
 #from .models import Company
 from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Publicity_Campaign_Form_Edit
@@ -33,7 +35,7 @@ def index(request):
     #company = Company.objects.all().count()
     campaign = Publicity_campaign.objects.all().count()
     users = User.objects.filter(is_staff='False').count()
-    products = Product.objects.filter(available='True').count()
+    products = Product.objects.count()
     return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products})
 
 
@@ -304,7 +306,7 @@ def product_create(request):
 #Listar productos
 @login_required(login_url='user_login')
 def product_list(request):
-    product = Product.objects.all().filter(available='True')
+    product = Product.objects.all()
     return render(request, 'backend/product_list.html', {'product':product})
 
 
@@ -313,23 +315,6 @@ def product_list(request):
 def product(request, id):
     product = Product.objects.get(id = id)
     return render(request, 'backend/product.html', {'product':product})
-
-#Editar precio
-def product_edit_price(request, id):
-    product = Product.objects.get(id = id)
-    if request.method == 'POST':        
-        precio = float(request.POST.get("newprice"))     
-        product.available = 'False'
-        product.save()
-        product_new = Product.objects.create(name=product.name, price = precio)
-        product_new.description = product.description
-        product_new.user = request.user.username
-        product_new.image = product.image
-        product_new.save()
-        return redirect('product_list')
-    else:
-        return render(request, 'backend/product_edit_price.html', {'product':product})
-
 
 #Deshabilitar producto
 @login_required(login_url='user_login')
@@ -342,6 +327,17 @@ def product_disable(request, id):
     else:
         return render(request, 'backend/product_disable.html', {'product':product})
 
+#Deshabilitar producto
+@login_required(login_url='user_login')
+def product_enable(request, id):
+    product = Product.objects.get(id = id)
+    if request.method == 'POST':
+        product.available = 'True'
+        product.save()
+        return redirect('product_list')
+    else:
+        return render(request, 'backend/product_enable.html', {'product':product})
+
 
 @login_required(login_url='user_login')
 def product_edit(request, id):
@@ -352,14 +348,10 @@ def product_edit(request, id):
     else:
         form = Product_Form_Edit(request.POST, request.FILES, instance = product)
         if form.is_valid():
-            form.instance.available = 'False'
-            form.save()
+            form.instance.date = datetime.now()
             if request.POST.get("newprice"):
-                product_new = Product.objects.create(name=product.name, price = float(request.POST.get("newprice")))
+                form.instance.price = request.POST.get("newprice")
             else:
-                product_new = Product.objects.create(name=product.name, price = product.price)
-            product_new.description = product.description
-            product_new.user = request.user.username
-            product_new.image = product.image
-            product_new.save()
+                form.instance.price = product.price
+            form.save()
             return redirect('product_list')

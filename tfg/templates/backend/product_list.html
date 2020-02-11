@@ -51,12 +51,33 @@
                           <span class="text">Editar</span>
                         </a>
 
+                        
+
+                        {% if product.available == True %}
+
                         <a href="/backend/product_disable/{{product.id}}" class="btn btn-info btn-icon-split">
                           <span class="icon">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                           </span>
                           <span class="text">Deshabilitar</span>
                         </a>
+  
+                        {% else %}
+
+                        <a href="/backend/product_enable/{{product.id}}" class="btn btn-success btn-icon-split">
+                          <span class="icon">
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                          </span>
+                          <span class="text">Habilitar</span>
+                        </a>
+
+  
+                        {% endif %}
+  
+
+
+
+
                       </td>
                     </tr>                  
                     {% endfor %}              

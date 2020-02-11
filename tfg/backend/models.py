@@ -19,6 +19,12 @@ class Company(models.Model):
 
 profile_default = 'profile_image/profile_default.png'
 
+unit_choices = (
+    ('kg','Kilogramo'),
+    ('litros', 'Litro'),
+    ('unidad','Unidad'),
+)
+
 
 
 class UserProfile(models.Model):
@@ -32,6 +38,7 @@ class Product (models.Model):
     description = models.TextField()
     date = models.DateTimeField(default=now, editable=True)
     available = models.BooleanField(null=True, default=True)
+    unit = models.CharField(max_length=6, choices=unit_choices, default='Unidad')
     user = models.CharField(max_length=40, blank=True)
     image = models.ImageField(upload_to='product_image', blank=True)
 

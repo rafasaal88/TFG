@@ -49,7 +49,54 @@
               </div>
           </div>
 
+
           
+
+
+
+
+          {% if product.unit == 'kg' %}
+
+          <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="unit">Unidad</label>
+            </div>
+            <select class="custom-select" name = "unit" id="unit">
+              <option selected value="kg">Kilogramo</option>
+              <option value="litros">Litro</option>
+              <option value="unidad">Unidad</option>
+            </select>
+          </div>
+          {% endif %}
+
+          {% if product.unit == 'litros' %}
+
+          <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="unit">Unidad</label>
+            </div>
+            <select class="custom-select" name = "unit" id="unit">
+              <option value="kg">Kilogramo</option>
+              <option selected value="litros">Litro</option>
+              <option value="unidad">Unidad</option>
+            </select>
+          </div>
+          {% endif %}
+
+          {% if product.unit == 'unidad' %}
+
+          <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="unit">Unidad</label>
+            </div>
+            <select class="custom-select" name = "unit" id="unit">
+              <option value="kg">Kilogramo</option>
+              <option value="litros">Litro</option>
+              <option selected value="unidad">Unidad</option>
+            </select>
+          </div>
+          {% endif %}
+
           
 
           

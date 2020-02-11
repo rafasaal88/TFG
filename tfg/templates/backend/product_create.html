@@ -50,8 +50,24 @@
                             <input id="image" type="file" name="image"  class="form-control-file" accept="image/x-png,image/gif,image/jpeg" autofocus required>
                         </div>
                     </div>
+                    
 
-            
+                    <br>
+
+                    <div class="input-group col-lg-6">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="unit">Unidad</label>
+                      </div>
+                      <select class="custom-select" name = "unit" id="unit">
+                        <option selected value="kg">Kilogramo</option>
+                        <option value="litros">Litro</option>
+                        <option value="unidad">Unidad</option>
+                      </select>
+                    </div>
+
+
+
+
                     <div class="form-group">
                         <div class="col-lg-6">
                             <hr>
@@ -69,101 +85,6 @@
 </div>
 
 
-
-
-
-
-
-<script>
-function CompararPass()
-{
-    var username = document.getElementById("username").value
-    var password = document.getElementById("password").value
-    var password2 = document.getElementById("password2").value
-
-
-    
-    if (username.indexOf(" ") > -1) 
-    {
-        $( "#warning2" ).modal('show');
-    }
-    else
-    {
-        if(password == password2)
-        {
-
-        document.getElementById('formu').submit();
-        }
-
-        if(password != password2)
-        {
-        $( "#warning" ).modal('show');
-    
-        }
-    }
-    
-}
-  
-
-
-
-
-
-
-
-
-
-</script>
-
-    
-
-
-
-              <div class="modal" id="warning" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="examplewarning">                          
-                        <b>AVISO</b>
-                     </h5>
-                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                    <center>
-                        <div class="modal-body">Las contraseñas no son iguales</div>
-                        
-                        <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
-                        <br><br>
-
-                        
-                    </center>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modal" id="warning2" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="examplewarning">                          
-                        <b>AVISO</b>
-                     </h5>
-                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                    <center>
-                        <div class="modal-body">El nombre de usuario no puede contener espacios</div>
-                        
-                        <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
-                        <br><br>
-
-                        
-                    </center>
-                  </div>
-                </div>
-              </div>
 
 
 

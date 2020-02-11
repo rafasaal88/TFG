@@ -113,6 +113,7 @@ class Product_Form(forms.ModelForm):
             'price',
             'description',
             'image',
+            'unit',
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -127,6 +128,7 @@ class Product_Form_Edit(forms.ModelForm):
             'name',
             'description',
             'image',
+            'unit',
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),

@@ -70,11 +70,28 @@
         <div class="container portfolio text-right">
           <br>
             {% if product.available == True %}
+
+              {% if product.unit == 'kg' %}
+
               <h4><i class="fas fa-money-bill" aria-hidden="true"></i> {{product.price}} €/Kg<br></h4>
+
+              {% endif %}
+
+              {% if product.unit == 'litros' %}
+
+              <h4><i class="fas fa-money-bill" aria-hidden="true"></i> {{product.price}} €/Litro<br></h4>
+
+              {% endif %}
+
+              {% if product.unit == 'unidad' %}
+
+              <h4><i class="fas fa-money-bill" aria-hidden="true"></i> {{product.price}} €/Unidad<br></h4>
+
+              {% endif %}
 
             {% else %}
 
-              <p>PRECIO NO DISPONIBLE (Se ha actualizado posteriormente)</p>
+              <p>PRODUCTO NO DISPONIBLE</p>
             {% endif %}
 
             <p><a href="/backend/product/{{product.id}}" style="color: dimgray;">Detalles del producto</a></p>
