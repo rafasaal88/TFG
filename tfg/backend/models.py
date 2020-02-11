@@ -46,6 +46,32 @@ class Product (models.Model):
 
         return "{}, {} €".format(self.name, self.price)
 
+class Product_history (models.Model):
+    id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
+    name = models.TextField(blank=True)
+    price = models.FloatField(max_length=10)
+    description = models.TextField()
+    date = models.DateTimeField()
+    available = models.BooleanField(null=True, default=True)
+    unit = models.CharField(max_length=6, choices=unit_choices, default='Unidad')
+    user = models.CharField(max_length=40, blank=True)
+    image = models.ImageField(upload_to='product_image', blank=True)
+
+    def __str__(self):
+
+        return "{}, {} €".format(self.name, self.price)
+
+
+
+
+
+
+
+
+
+
+
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)

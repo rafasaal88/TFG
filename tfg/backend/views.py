@@ -13,9 +13,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
 from datetime import datetime
 
+
 #from .models import Company
 from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Publicity_Campaign_Form_Edit
-from .models import Publicity_campaign, UserProfile, Product
+from .models import Publicity_campaign, UserProfile, Product, Product_history
 
 
 #Mostrar error 404
@@ -341,6 +342,7 @@ def product_enable(request, id):
 
 @login_required(login_url='user_login')
 def product_edit(request, id):
+    product_original = Product.objects.get(id = id)
     product = Product.objects.get(id = id)
     if request.method == 'GET':
         form = Product_Form_Edit(instance = product)
@@ -353,5 +355,16 @@ def product_edit(request, id):
                 form.instance.price = request.POST.get("newprice")
             else:
                 form.instance.price = product.price
+            ProductOld = Product_history.objects.create(product = product_original, price = product_original.price, date = product_original.date)
+            ProductOld.name = product_original.name
+            ProductOld.description = product_original.description
+            ProductOld.available = False
+            ProductOld.unit = product_original.unit
+            ProductOld.user = product_original.user
+            ProductOld.image = product_original.image
+            ProductOld.save()
             form.save()
             return redirect('product_list')
+
+
+# ProductOld = Product_history.objects.create(product = product, name = product.name, price = product.price, date = product.date, description = product.description, available = False, unit = product.unit, user = product.user, image = product.image)
