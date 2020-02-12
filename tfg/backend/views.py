@@ -367,4 +367,23 @@ def product_edit(request, id):
             return redirect('product_list')
 
 
+
+#Listar productos
+@login_required(login_url='user_login')
+def product_list_history(request, id):
+    product = Product.objects.get(id = id)
+    product_history = Product_history.objects.filter(product = id).order_by('date').reverse()
+    return render(request, 'backend/product_list_history.html', {'product':product, 'product_history':product_history})
+
+
+
+
+
+
+
+
+
+
+
+
 # ProductOld = Product_history.objects.create(product = product, name = product.name, price = product.price, date = product.date, description = product.description, available = False, unit = product.unit, user = product.user, image = product.image)
