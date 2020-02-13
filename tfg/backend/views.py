@@ -317,6 +317,14 @@ def product(request, id):
     product = Product.objects.get(id = id)
     return render(request, 'backend/product.html', {'product':product})
 
+
+#Ver producto
+@login_required(login_url='user_login')
+def product_history(request, id):
+    product = Product_history.objects.get(id = id)
+    return render(request, 'backend/product_history.html', {'product':product})
+
+
 #Deshabilitar producto
 @login_required(login_url='user_login')
 def product_disable(request, id):
