@@ -68,16 +68,19 @@
                         </div>
                     </div>  
                     
-                    <div class="form-group">
-                        <label for="image" class="col-lg-6 control-label text-left">Productos</label>
-                        <div class="col-lg-6">
-                            <left>{{form.product}}</left>
-                            
-                            
+                    
+                    <label for="product" class="col-lg-6 control-label text-left">Productos:</label>
+                    {% for checkbox in form.product %}
+
+                    <div class="input-group col-lg-6">
+                        <div class="input-group-prepend">
+                            <div class="">
+                                 {{ checkbox.tag }} {{ checkbox.choice_label }}
+                            </div>
                         </div>
-                    </div>                       
+                    </div>
 
-
+                    {% endfor %}
 
 
                     <div class="form-group">
@@ -105,17 +108,32 @@
         var fecha_start = document.getElementById("date_start").value
         var fecha_end = document.getElementById("date_end").value
         
+        var picture = document.getElementById("id_image").value
+
         if(fecha_start <= fecha_end)
         {
+            if (picture != "")
+            {
+                document.getElementById('formu').submit();
+            }
 
-        document.getElementById('formu').submit();
+        
         }
 
         if(fecha_start > fecha_end)
         {
         $( "#warning" ).modal('show');   
         }
-    }
+
+        if (picture == "")
+        {
+            $( "#warning2" ).modal('show');   
+        }
+
+}
+
+
+
 
 </script>   
 
@@ -148,7 +166,32 @@
 
 
 
+<div class="modal" id="warning2" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <h5 class="modal-title" id="examplewarning"> 
+                <b>AVISO</b>
+                </h5>
+
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+        <center>
+
+            <div class="modal-body">Debe introducir una imagen para la campaña publicitaria</div>            
+                <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
+                <br>
+                <br>
+            </div>
+
+        </center>
+             
+    </div>
+</div>
 
 
 

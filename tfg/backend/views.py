@@ -123,7 +123,7 @@ def publicity_campaign_complete(request, id):
 #Listar todas las campañas de publicidad
 @login_required(login_url='user_login')
 def publicity_campaign_list(request):
-    campaign = Publicity_campaign.objects.all()
+    campaign = Publicity_campaign.objects.all().order_by('id').reverse()
     return render(request, 'backend/publicity_campaign_list.html', {'campaign':campaign})
 
 
@@ -132,9 +132,9 @@ def publicity_campaign_list(request):
 def publicity_campaign_edit(request, id):
     publicity = Publicity_campaign.objects.get(id = id)
     if request.method == 'GET':
-        form = Publicity_Campaign_Form_Edit(instance = publicity)
+        form = Publicity_Campaign_Form(instance = publicity)
     else:
-        form = Publicity_Campaign_Form_Edit(request.POST, request.FILES, instance = publicity)
+        form = Publicity_Campaign_Form(request.POST, request.FILES, instance = publicity)
         if form.is_valid():
             form.save()
         return redirect ('publicity_campaign_list')
@@ -159,7 +159,7 @@ def publicity_campaign_delete(request, id):
 #Listar usuarios que no son administradores
 @login_required(login_url='user_login')
 def users_list(request):
-    users = User.objects.filter(is_staff='False')
+    users = User.objects.filter(is_staff='False').order_by('id').reverse()
     return render(request, 'backend/users_list.html', {'users':users})
 
 
@@ -307,7 +307,7 @@ def product_create(request):
 #Listar productos
 @login_required(login_url='user_login')
 def product_list(request):
-    product = Product.objects.all()
+    product = Product.objects.all().order_by('id').reverse()
     return render(request, 'backend/product_list.html', {'product':product})
 
 
