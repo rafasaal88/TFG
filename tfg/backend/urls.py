@@ -7,6 +7,9 @@ from .views import publicity_campaign_create, publicity_campaign_list, publicity
 #product
 from .views import product_create, product_list, product, product_disable, product_edit, product_enable, product_list_history, product_history
 
+#recipte
+from .views import recipe_create
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include 
@@ -50,4 +53,9 @@ urlpatterns = [
     url(r'^product_enable/(?P<id>\d+)/$',product_enable, name = "product_enable"),
     url(r'^product_edit/(?P<id>\d+)/$',product_edit, name = "product_edit"),
     url(r'^product_list_history/(?P<id>\d+)/$',product_list_history, name = "product_list_history"),
+
+    #crud_recipe
+    url(r'^recipe_create/',recipe_create, name = "recipe_create"),
+
+
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

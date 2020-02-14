@@ -14,9 +14,10 @@ from django.utils import timezone
 from datetime import datetime
 
 
-#from .models import Company
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Publicity_Campaign_Form_Edit
-from .models import Publicity_campaign, UserProfile, Product, Product_history
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Recipe_Form
+
+
+from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe
 
 
 #Mostrar error 404
@@ -336,6 +337,7 @@ def product_disable(request, id):
     else:
         return render(request, 'backend/product_disable.html', {'product':product})
 
+
 #Deshabilitar producto
 @login_required(login_url='user_login')
 def product_enable(request, id):
@@ -348,6 +350,7 @@ def product_enable(request, id):
         return render(request, 'backend/product_enable.html', {'product':product})
 
 
+#Editar producto
 @login_required(login_url='user_login')
 def product_edit(request, id):
     product_original = Product.objects.get(id = id)
@@ -375,7 +378,6 @@ def product_edit(request, id):
             return redirect('product_list')
 
 
-
 #Listar productos
 @login_required(login_url='user_login')
 def product_list_history(request, id):
@@ -387,11 +389,22 @@ def product_list_history(request, id):
 
 
 
+###############################################################################################
+########################## Recipe Methods #####################################################
+###############################################################################################
 
 
+#Crear recetas
+@login_required(login_url='user_login')
+def recipe_create(request):
+    if request.method == 'POST':
+        form = Recipe_Form(request.POST, request.FILES)
+        if form.is_valid():
+            form.instance.user = request.user.username
+            form.save()
+            return redirect('index')
+    else:
+        form = Recipe_Form()
+        return render(request, 'backend/recipe_create.html', {'form' : form})
 
 
-
-
-
-# ProductOld = Product_history.objects.create(product = product, name = product.name, price = product.price, date = product.date, description = product.description, available = False, unit = product.unit, user = product.user, image = product.image)

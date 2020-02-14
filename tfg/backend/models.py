@@ -65,15 +65,6 @@ class Product_history (models.Model):
         return "{}, {} €".format(self.name, self.price)
 
 
-
-
-
-
-
-
-
-
-
 class Publicity_campaign(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
@@ -92,8 +83,9 @@ class Recipe (models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     description = models.TextField()
-    picture = models.ImageField()
+    image = models.ImageField(upload_to='recipe_image', blank=True)
     product = models.ManyToManyField(Product, blank=True)
+    user = models.CharField(max_length=40, blank=True)
 
 
 class Tag_nfc(models.Model):
