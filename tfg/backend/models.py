@@ -86,6 +86,7 @@ class Recipe (models.Model):
     image = models.ImageField(upload_to='recipe_image', blank=True)
     product = models.ManyToManyField(Product, blank=True)
     user = models.CharField(max_length=40, blank=True)
+    date = models.DateTimeField(default=now, editable=True)
 
 
 class Tag_nfc(models.Model):

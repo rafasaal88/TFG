@@ -38,7 +38,8 @@ def index(request):
     campaign = Publicity_campaign.objects.all().count()
     users = User.objects.filter(is_staff='False').count()
     products = Product.objects.count()
-    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products})
+    recipes = Recipe.objects.count()
+    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes})
 
 
 #Loguear usuario
@@ -407,4 +408,10 @@ def recipe_create(request):
         form = Recipe_Form()
         return render(request, 'backend/recipe_create.html', {'form' : form})
 
+
+#Listar recetas
+@login_required(login_url='user_login')
+def recipe_list(request):
+    recipe = Recipe.objects.all().order_by('id').reverse()
+    return render(request, 'backend/recipe_list.html', {'recipe':recipe})
 
