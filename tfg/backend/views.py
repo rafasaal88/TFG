@@ -406,7 +406,7 @@ def recipe_create(request):
             return redirect('index')
     else:
         form = Recipe_Form()
-        return render(request, 'backend/recipe_create.html', {'form' : form})
+        return render(request, 'backend/recipe_create.html', {'form':form})
 
 
 #Listar recetas
@@ -415,3 +415,9 @@ def recipe_list(request):
     recipe = Recipe.objects.all().order_by('id').reverse()
     return render(request, 'backend/recipe_list.html', {'recipe':recipe})
 
+
+#Ver receta
+@login_required(login_url='user_login')
+def recipe(request, id):
+    recipe = Recipe.objects.get(id = id)
+    return render(request, 'backend/recipe.html', {'recipe':recipe})
