@@ -403,7 +403,7 @@ def recipe_create(request):
         if form.is_valid():
             form.instance.user = request.user.username
             form.save()
-            return redirect('index')
+            return redirect('recipe_list')
     else:
         form = Recipe_Form()
         return render(request, 'backend/recipe_create.html', {'form':form})
@@ -421,3 +421,18 @@ def recipe_list(request):
 def recipe(request, id):
     recipe = Recipe.objects.get(id = id)
     return render(request, 'backend/recipe.html', {'recipe':recipe})
+
+
+#Editar receta
+@login_required(login_url='user_login')
+def recipe_edit(request, id):
+    recipe = Recipe.objects.get(id = id)
+    if request.method == 'GET':
+        form = Recipe_Form(instance = recipe)
+    else:
+        form = Recipe_Form(request.POST, request.FILES, instance = recipe)
+        if form.is_valid():
+            form.save()
+        return redirect ('recipe_list')
+    return render (request, 'backend/recipe_edit.html', {'form':form, 'recipe':recipe})
+

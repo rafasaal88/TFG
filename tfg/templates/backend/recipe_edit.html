@@ -1,0 +1,145 @@
+
+{% extends 'backend/base.html' %}
+
+{% block contenido %}
+
+{% load static %}
+
+
+<div class="card text-center">
+
+    <div class="card-header">
+        <center><h2>Añadir nueva campaña de publicidad</h2></center>
+    </div>
+
+    <div class="card-body text-justify">
+
+        <div class="container">
+
+            <center>
+
+                <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
+                {% csrf_token %}
+                
+     
+              
+                    <div class="form-group">
+                        <label for="name" class="col-lg-6 control-label text-left">Nombre</label>
+                        <div class="col-lg-6">
+                            {{form.name}}
+                        </div>
+                    </div>
+
+
+
+                   
+
+                    <div class="form-group">
+                        <label for="description" class="col-lg-6 control-label text-left">Descripción</label>
+                        <div class="col-lg-6">
+                            {{form.description}}
+                            
+                        </div>
+                    </div>    
+
+                    <div class="view overlay">
+                        <img  width="50%" src="{{ recipe.image.url }}" alt="Card image cap">
+                      </div>        
+            
+                      <div class="form-group">
+                        <div class="col-lg-6">
+            
+                        <label for="image" class="col-lg-6 control-label text-left">Cambiar imagen</label>
+                          {{form.image}}
+                          </div>
+                      </div>
+                    
+                    
+                    <label for="product" class="col-lg-6 control-label text-left">Productos:</label>
+                    {% for checkbox in form.product %}
+
+                    <div class="input-group col-lg-6">
+                        <div class="input-group-prepend">
+                            <div class="">
+                                 {{ checkbox.tag }} {{ checkbox.choice_label }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <hr>
+                        <button type="submit" class="btn btn-primary btn-block">Añadir</button>
+                        </div>
+                    </div> 
+                       
+                </form> <!-- /form -->
+
+            </center>
+            
+        </div> <!-- ./container -->
+
+    </div>
+
+</div>
+
+<script>
+    
+    function Checkimage()
+    {
+        
+        var picture = document.getElementById("id_image").value
+
+        if (picture != "")
+        {
+            document.getElementById('formu').submit();
+        }
+     
+        if (picture == "")
+        {
+            $( "#warning2" ).modal('show');   
+        }
+
+}
+
+
+
+
+</script>   
+
+
+
+
+<div class="modal" id="warning2" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="examplewarning"> 
+                <b>AVISO</b>
+                </h5>
+
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+        <center>
+
+            <div class="modal-body">Debe introducir una imagen para la campaña publicitaria</div>            
+                <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
+                <br>
+                <br>
+            </div>
+
+        </center>
+             
+    </div>
+</div>
+
+
+
+{% endblock %}

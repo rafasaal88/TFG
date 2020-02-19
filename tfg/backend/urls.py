@@ -8,7 +8,7 @@ from .views import publicity_campaign_create, publicity_campaign_list, publicity
 from .views import product_create, product_list, product, product_disable, product_edit, product_enable, product_list_history, product_history
 
 #recipte
-from .views import recipe_create, recipe_list, recipe
+from .views import recipe_create, recipe_list, recipe, recipe_edit
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -58,5 +58,6 @@ urlpatterns = [
     url(r'^recipe_create/',recipe_create, name = "recipe_create"),
     url(r'^recipe_list/',recipe_list, name = "recipe_list"),
     url(r'^recipe/(?P<id>\d+)/$',recipe, name = "recipe"),
+    url(r'^recipe_edit/(?P<id>\d+)/$',recipe_edit, name = "recipe_edit"),
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
