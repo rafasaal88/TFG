@@ -432,6 +432,8 @@ def recipe_edit(request, id):
     else:
         form = Recipe_Form(request.POST, request.FILES, instance = recipe)
         if form.is_valid():
+            form.instance.date = datetime.now()
+            form.instance.user = request.user.username
             form.save()
         return redirect ('recipe_list')
     return render (request, 'backend/recipe_edit.html', {'form':form, 'recipe':recipe})

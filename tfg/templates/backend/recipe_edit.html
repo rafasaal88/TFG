@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <div class="col-lg-6">
                             <hr>
-                        <button type="submit" class="btn btn-primary btn-block">Añadir</button>
+                        <button type="submit" class="btn btn-primary btn-block">Modificar</button>
                         </div>
                     </div> 
                        
@@ -85,61 +85,5 @@
     </div>
 
 </div>
-
-<script>
-    
-    function Checkimage()
-    {
-        
-        var picture = document.getElementById("id_image").value
-
-        if (picture != "")
-        {
-            document.getElementById('formu').submit();
-        }
-     
-        if (picture == "")
-        {
-            $( "#warning2" ).modal('show');   
-        }
-
-}
-
-
-
-
-</script>   
-
-
-
-
-<div class="modal" id="warning2" tabindex="-1" role="dialog" aria-labelledby="examplewarning" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title" id="examplewarning"> 
-                <b>AVISO</b>
-                </h5>
-
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-
-        <center>
-
-            <div class="modal-body">Debe introducir una imagen para la campaña publicitaria</div>            
-                <button class="btn btn-primary" type="button" data-dismiss="modal" style="width: 30%">Aceptar</button>
-                <br>
-                <br>
-            </div>
-
-        </center>
-             
-    </div>
-</div>
-
-
 
 {% endblock %}
