@@ -438,3 +438,14 @@ def recipe_edit(request, id):
         return redirect ('recipe_list')
     return render (request, 'backend/recipe_edit.html', {'form':form, 'recipe':recipe})
 
+
+
+#Eliminar receta
+@login_required(login_url='user_login')
+def recipe_delete(request, id):
+    recipe = Recipe.objects.get(id = id)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('recipe_list')
+    return render(request, 'backend/recipe_delete.html', {'recipe':recipe})
+

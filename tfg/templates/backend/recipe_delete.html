@@ -1,0 +1,33 @@
+{% extends 'backend/base.html' %}
+
+{% block contenido %}     
+        
+<div class="col-lg-6 mx-auto">
+    <div class="card rounded shadow shadow-sm">
+      <div class="card-body">
+        <div class="text-center">
+          <br><font size="5" style="color:black;">¿Está seguro que desea eliminar la receta: {{recipe.name}}?</font></h1>
+        
+          <hr>
+          <br>
+
+          <form action="" method="post">
+            {% csrf_token %}
+            <a href="/backend/recipe_list" class="btn btn-primary btn-icon-split" style="width: 30%">
+              <span class="text"><font size="5">Volver atrás</font></span>                                              
+            </a>
+
+            &nbsp &nbsp
+        
+            <button  class="btn btn-danger btn-icon-split" type="submit" href="/backend/recipe_delete/{{recipe.id}}" style="width: 30%">
+              <span class="text"><font size="5">Eliminar</font></span>                        
+            </button>
+            
+            <br>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
