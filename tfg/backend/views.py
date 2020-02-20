@@ -37,9 +37,10 @@ def index(request):
     #company = Company.objects.all().count()
     campaign = Publicity_campaign.objects.all().count()
     users = User.objects.filter(is_staff='False').count()
+    users_admin = User.objects.filter(is_staff='True').count()
     products = Product.objects.count()
     recipes = Recipe.objects.count()
-    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes})
+    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin})
 
 
 #Loguear usuario
