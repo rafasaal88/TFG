@@ -28,8 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('backend/',include('backend.urls')),
     path('api/v1.0/',include('backend.api_urls')),
-    path('api/v1.0/token',jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),  
-    path('api/v1.0/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/v1.0/auth',jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),  
+    path('api/v1.0/auth/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'backend.views.mi_error_404'
