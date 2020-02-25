@@ -34,6 +34,12 @@ CORS_ORIGIN_WHITELIST = [
 'http://localhost:8080'
 ]
 
+REST_FRAMEWORK = {  
+   'DEFAULT_AUTHENTICATION_CLASSES': [  
+     'rest_framework_simplejwt.authentication.JWTAuthentication',  
+   ],  
+ } 
+
 ALLOWED_HOSTS = ['*']
 # Application definition
 
