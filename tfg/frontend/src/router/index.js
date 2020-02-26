@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 
 import ListProduct from '@/components/Product/ListProduct'
 import EditProduct from '@/components/Product/EditProduct'
+import Register from '@/components/Register'
+
 
 Vue.use(Router)
 
@@ -23,7 +25,13 @@ export default new Router({
       path: '/product_edit/:id',
       name: 'EditProduct',
       component: EditProduct
-    }
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+
   ],
   mode: 'history'
 })

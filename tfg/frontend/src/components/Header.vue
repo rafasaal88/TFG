@@ -11,16 +11,24 @@
 
             <b-nav-form @submit.prevent="login" v-if="token==null">
                 
-                <b-form-input id="username" size="sm" class="nr-sm-2" v-model="username" placeholder="username" name="username"></b-form-input>
-                <b-form-input id="password" size="sm" class="nr-sm-2" v-model="password" placeholder="password" type="password" name="password"></b-form-input>
+                <b-form-input id="username" size="sm" class="nr-sm-2" v-model="username" placeholder="usuario" name="username"></b-form-input>
+                <b-form-input id="password" size="sm" class="nr-sm-2" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
 
-                <b-button size="sm" class="my-2 my-sm-0" type="submit">Login</b-button>
+                <b-button size="sm" class="my-2 my-sm-0" type="submit">Iniciar sesión</b-button>
+                <b-button :to="{name:'Register'}" size="sm" class="my-2 ml-2" >Registrarse</b-button>
 
             
 
 
             </b-nav-form>
+<!--
+            <b-nav-form @submit.prevent="register" v-if="token==null">
 
+                <b-button :to="{name:'Register'}" size="sm" class="my-2 ml-2" type="submit">Registrarse</b-button>
+
+
+            </b-nav-form>
+-->
 
             <b-nav-form @submit.prevent="logout" v-if="token!=null">
 
@@ -66,15 +74,21 @@ export default {
                 this.token = resp.data.access;
                 console.log(this.token)
                 localStorage.setItem('user-token', resp.data.access)
+                location.reload();
             })
             .catch(err => {
                 localStorage.removeItem('user-token')
             })
+            
         },
 
         logout() {
             localStorage.removeItem('user-token');
             this.token = null;
+            location.reload();
+        },
+        register() {
+            console.log('Router')
         }
 
 
