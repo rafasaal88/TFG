@@ -16,7 +16,21 @@
 
                 <b-button size="sm" class="my-2 my-sm-0" type="submit">Login</b-button>
 
+            
+
+
             </b-nav-form>
+
+
+            <b-nav-form @submit.prevent="logout" v-if="token!=null">
+
+                <b-button size="sm" class="my-2 ml-2" type="submit">Cerrar sesión</b-button>
+
+
+            </b-nav-form>
+
+
+
 
         </b-navbar-var>
 
@@ -56,7 +70,14 @@ export default {
             .catch(err => {
                 localStorage.removeItem('user-token')
             })
+        },
+
+        logout() {
+            localStorage.removeItem('user-token');
+            this.token = null;
         }
+
+
     }
 
 
