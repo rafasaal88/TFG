@@ -1,48 +1,111 @@
 <template>
     <div class="">
 
-    <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand class="text-white" href="#">Frontend</b-navbar-brand>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-            
 
-        <b-navbar-var class="ml-auto">
+ <b-navbar toggleable="lg" type="dark" variant="info">
 
-            <b-nav-form @submit.prevent="login" v-if="token==null">
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+   
+    <b-collapse  id="nav-collapse" is-nav>
+        <br>
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+        
+
+<!--Mobile version-->
+    <div class="d-block d-sm-block d-md-none">
+
+        <b-nav-form @submit.prevent="login" v-if="token==null">
                 
-                <b-form-input id="username" size="sm" class="nr-sm-2" v-model="username" placeholder="usuario" name="username"></b-form-input>
-                <b-form-input id="password" size="sm" class="nr-sm-2" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
-
-                <b-button size="sm" class="my-2 my-sm-0" type="submit">Iniciar sesión</b-button>
-                <b-button :to="{name:'Register'}" size="sm" class="my-2 ml-2" >Registrarse</b-button>
-
+                
+            <b-form-input id="username" size="lm" class="nr-sm-2" style="width: 100%" v-model="username" placeholder="usuario" name="username"></b-form-input>
+            &nbsp;&nbsp;
+            <b-form-input id="password" size="lm" class="nr-sm-2" style="width: 100%" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
+            &nbsp;&nbsp;
             
 
 
-            </b-nav-form>
-<!--
-            <b-nav-form @submit.prevent="register" v-if="token==null">
+            <b-button size="lm" style="width: 100%" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
+            &nbsp;&nbsp;
+            <b-button :to="{name:'Register'}" size="lm" class="btn btn-dark" style="width: 100%" >Registrarse</b-button>
 
-                <b-button :to="{name:'Register'}" size="sm" class="my-2 ml-2" type="submit">Registrarse</b-button>
+        </b-nav-form>
+    </div> 
+        
+
+<!--Desktop version-->
+    <div class="d-none d-sm-none d-md-block">
+
+        <b-nav-form @submit.prevent="login" v-if="token==null">
+                
+                
+            <b-form-input id="username" size="lm" class="nr-sm-2" v-model="username" placeholder="usuario" name="username"></b-form-input>
+            &nbsp;&nbsp;
+            <b-form-input id="password" size="lm" class="nr-sm-2" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
+            &nbsp;&nbsp;
+            
 
 
-            </b-nav-form>
--->
+            <b-button size="lm" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
+            &nbsp;&nbsp;
+            <b-button :to="{name:'Register'}" size="lm" class="btn btn-dark" >Registrarse</b-button>
 
-            <b-nav-form @submit.prevent="logout" v-if="token!=null">
-
-                <b-button size="sm" class="my-2 ml-2" type="submit">Cerrar sesión</b-button>
-
-
-            </b-nav-form>
+        </b-nav-form>
+    </div> 
+        
 
 
 
 
-        </b-navbar-var>
 
-    </b-navbar>
+        <b-nav-item-dropdown right v-if="token!=null">
+          <!-- Using 'button-content' slot -->
+          <template v-slot:button-content>
+            <span class="mr-3 d-lg-inline" style="color:white"> Hola {{user}}</span>
+          </template>
+
+     
+    
+                     
+                
+        
+
+
+
+
+                 <b-dropdown-item v-on:click="logout">Cerrar sesión</b-dropdown-item>
+
+
+
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </template>
 
@@ -60,6 +123,7 @@ export default {
             username: '',
             password: '',
             token: localStorage.getItem('user-token') || null,
+            user: localStorage.getItem('user-name') || null,
         }
     },
     
@@ -72,18 +136,22 @@ export default {
             
             .then(resp => {
                 this.token = resp.data.access;
+                this.user = this.username;
                 console.log(this.token)
                 localStorage.setItem('user-token', resp.data.access)
+                localStorage.setItem('user-name', this.username)
                 location.reload();
             })
             .catch(err => {
                 localStorage.removeItem('user-token')
+                localStorage.removeItem('user-name')
             })
             
         },
 
         logout() {
             localStorage.removeItem('user-token');
+            localStorage.removeItem('user-name');
             this.token = null;
             location.reload();
         },

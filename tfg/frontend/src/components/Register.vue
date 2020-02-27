@@ -11,13 +11,19 @@
         </p>
 
         <p>
-            <label for="username">Usuario</label>
+            <label for="username">Contraseña</label>
             <input class="ml-2" type="password" name="password" id="password" v-model="password">
 
+                    </p>
+
+        <p>
+
+            <label for="username">Repite contraseña</label>
+            <input class="ml-2" type="password" name="password2" id="password2" v-model="password2">
 
         </p>
 
-            <input type="submit" value="submit">
+            <button type="submit" value="submit" >Registrarse</button>
 
     </form>
     </div>
@@ -37,12 +43,16 @@ export default {
         return {
             username:null,
             password:null,
+            password2:null,
             token: localStorage.getItem('user-token') || null,
         }
     },
 
     methods: {
         CreateUser() {
+            if (this.password == this.password2) {
+
+
             console.log(this.username)
             axios.post('http://127.0.0.1:8000/api/v1.0/user/', {
                 username: this.username,
@@ -52,7 +62,10 @@ export default {
             .then (res => console.lo(res))
             .catch(err => console.log(err));
             this.$router.push('/')
-
+            }
+            else {
+                alert('Las contraseñas deben ser iguales');
+            }
         }
     }
 
