@@ -1,31 +1,75 @@
 <template>
     <div class="">
 
-    <h2>Registro de usuario</h2>
 
-    <form id="registeruser" @submit.prevent="CreateUser" v-if="token==null">
-        <p>
-            <label for="username">Usuario</label>
-            <input class="ml-2" type="text" name="username" id="username" v-model="username">
-            
-        </p>
 
-        <p>
-            <label for="username">Contraseña</label>
-            <input class="ml-2" type="password" name="password" id="password" v-model="password">
+<div class="card-header" style="background-color:#f2f2f2;">
+        <center><h2>Registrar usuario</h2></center>
+    </div>
 
-                    </p>
+    <div class="card-body text-justify" style="background-color:white;">
+        <div class="container" >
 
-        <p>
+            <center>
 
-            <label for="username">Repite contraseña</label>
-            <input class="ml-2" type="password" name="password2" id="password2" v-model="password2">
+                <form id="registeruser" @submit.prevent="CreateUser" v-if="token==null">
+                                      
+                    <div class="form-group">
+                        <label for="name" class="col-lg-6 control-label text-left">Nombre de usuario</label>
+                        <div class="col-lg-6">
+                            <input type="text" name="name" id="name" class="form-control" autofocus maxlength="40" autofocus required v-model="username">
+                        </div>
+                    </div>
 
-        </p>
+                     <div class="form-group">
+                        <label for="name" class="col-lg-6 control-label text-left">Contraseña</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="password" id="password" class="form-control" autofocus maxlength="40" autofocus required v-model="password">
+                        </div>
+                    </div>
+                   
+                     <div class="form-group">
+                        <label for="name" class="col-lg-6 control-label text-left">Repita contraseña</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="password2" id="password2" class="form-control" autofocus maxlength="40" autofocus required v-model="password2">
+                        </div>
+                    </div>                   
 
-            <button type="submit" value="submit" >Registrarse</button>
 
-    </form>
+
+
+
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <hr>
+                            <button type="submit" class="btn btn-info btn-block">Registrarse</button>
+                        </div>
+                    </div> 
+                       
+                </form> 
+
+            </center>
+         
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </template>
 
