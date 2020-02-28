@@ -16,7 +16,7 @@ class Publicity_Campaign_Serializer(serializers.ModelSerializer):
 class User_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name')
         extra_kwargs = {'password':{'write_only':True, 'required':True}}
 
     def create(self, validated_data):
