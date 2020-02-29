@@ -14,7 +14,7 @@
       <b-navbar-nav class="ml-auto">
         
 
-<!--Mobile version-->
+    <!--Mobile version-->
     <div class="d-block d-sm-block d-md-none">
 
         <b-nav-form @submit.prevent="login" v-if="token==null">
@@ -35,7 +35,7 @@
     </div> 
         
 
-<!--Desktop version-->
+    <!--Desktop version-->
     <div class="d-none d-sm-none d-md-block">
 
         <b-nav-form @submit.prevent="login" v-if="token==null">
