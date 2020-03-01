@@ -8,9 +8,10 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class Publicity_Campaign_Serializer(serializers.ModelSerializer):
-    class Meta:
+    class Meta:        
         model = Publicity_campaign
-        fields = '__all__'
+        fields = ('id', 'name', 'date_start', 'date_end', 'description', 'image', 'product')
+
 
 
 class User_Serializer(serializers.ModelSerializer):
@@ -24,3 +25,15 @@ class User_Serializer(serializers.ModelSerializer):
         print(user)
         Token.objects.create(user=user)
         return user
+
+
+class Product_Serializer_New(serializers.ModelSerializer):
+    product = ProductSerializer(many=True, read_only=True) 
+    
+    class Meta:
+        model = Publicity_campaign
+        fields = ('id', 'name', 'product')
+
+
+
+

@@ -73,7 +73,7 @@ class Publicity_campaign(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='publicity_campaign_image', blank=True)
     user = models.CharField(max_length=40, blank=True)
-    product = models.ManyToManyField(Product, blank=True)
+    product = models.ManyToManyField(Product, blank=True, related_name='products')
 
 
 

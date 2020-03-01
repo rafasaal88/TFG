@@ -3,16 +3,20 @@
       
   <br>
   <!--Desktop version-->
-    <div class="d-none d-sm-none d-md-block">
+    <div class="d-none d-sm-none d-md-block" >
         <div class="col-lg-12 mx-auto">       
             <div class="card rounded shadow shadow-sm">
                 <div class="card-body">
-                    <div class="text-left">
+                    <div class="text-left" >          
 
-                        
-                        <div >
+                        <div v-if="product.length">
                             <center><h2>Bienvenido, estas son las campañas publicitarias que tenemos activas en este momento.</h2></center>
                         </div>
+
+                        <div v-else>
+                            <center><h2>Bienvenido, no hay ninguna campañas publicitaria activas en este momento.</h2></center>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -20,16 +24,20 @@
     </div>
 
 <!--Mobile version-->
-    <div class="d-block d-sm-block d-md-none">
+    <div class="d-block d-sm-block d-md-none" >
         <div class="col-lg-12 mx-auto">       
             <div class="card rounded shadow shadow-sm">
                 <div class="card-body">
                     <div class="text-left">
-
                         
-                        <div >
+                        <div v-if="product.length">
                             <center><h5>Campañas publicitarias activas</h5></center>
                         </div>
+                        
+                        <div v-else>
+                            <center><h5>No hay campañas publicitarias activas</h5></center>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -62,6 +70,10 @@
             <p>{{item.description}}</p>
         </div>
             
+        <div class="container portfolio">
+          <br>
+            <p>{{item.product}}</p>
+        </div>
 
       </div>
 
@@ -95,7 +107,7 @@ export default {
                 { key: 'product', label: 'Producto'},
                 { key: 'action', label: ''}, 
             ],
-            product: []
+            product: [],
         }
     },
     methods: {
