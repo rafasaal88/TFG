@@ -5,12 +5,7 @@ from rest_framework.authtoken.models import Token
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = '__all__'
-
-class Publicity_Campaign_Serializer(serializers.ModelSerializer):
-    class Meta:        
-        model = Publicity_campaign
-        fields = ('id', 'name', 'date_start', 'date_end', 'description', 'image', 'product')
+        fields = ('id', 'name', 'price', 'description', 'available', 'unit', 'image')
 
 
 
@@ -27,12 +22,12 @@ class User_Serializer(serializers.ModelSerializer):
         return user
 
 
-class Product_Serializer_New(serializers.ModelSerializer):
+class Publicity_Campaign_Serializer(serializers.ModelSerializer):
     product = ProductSerializer(many=True, read_only=True) 
     
     class Meta:
         model = Publicity_campaign
-        fields = ('id', 'name', 'product')
+        fields = ('id', 'name', 'date_start', 'date_end', 'description', 'image', 'product')
 
 
 
