@@ -9,14 +9,11 @@
                 <div class="card rounded shadow shadow-sm">
                     <div class="card-body">
                         <div class="text-left">
-
                             
                             <div >
                                 <center><h2>Registrar usuario</h2></center>
                             </div>
-
                             <hr>
-
                             
                                 <div class="container" >
 
@@ -66,8 +63,6 @@
                                                 </div>
                                             </div>
 
-
-
                                             <div class="form-group">
                                                 <div class="col-lg-6">
                                                     <hr>
@@ -80,8 +75,6 @@
                                     </center>
                                 
                                 </div>
-                            
-
 
                         </div>
                     </div>
@@ -102,12 +95,7 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-
-
 
     </div>
     

@@ -20,5 +20,24 @@ export default {
 </script>
 
 <style>
+    .containercut > .crop {
+      object-fit: cover;
+      object-position: 100% 0;
+    
+      width: 300px;
+      height: 300px;
+    }
 
+    .containercut > .crop2 {
+      object-fit: cover;
+      object-position: 50% 0;
+    
+      height: 300px;
+    }
+
+    a:link
+    {
+      text-decoration:none;
+      color: black;
+    }
 </style>

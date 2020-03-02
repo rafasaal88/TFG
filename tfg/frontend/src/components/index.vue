@@ -19,7 +19,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div>Quiere establecer una limitación salarial diferente a la actual que no se base en el salario mínimo interprofesional
         </div>
     </div>
 
@@ -49,35 +49,32 @@
 <div class="container-fluid">
   <div class="row">        
     <div class="col-lg-6" v-for="(item, index) in product" :key="item.id">
+       
+        <a v-bind:href="'Publicity_campaign/'+item.id" style="color:black">
+            <div class="card shadow mb-3" >
 
-      <div class="card shadow mb-3" >
+                <div class="card-body d-flex flex-row">      
+                <div>      
+                    <h4 class="card-title font-weight-bold mb-2">{{ item.name }}</h4>
+                </div>      
+                </div>
 
-        <div class="card-body d-flex flex-row">      
-          <div>      
-            <h4 class="card-title font-weight-bold mb-2">{{ item.name }}</h4>
-          </div>      
-        </div>
-
-        <div class="view overlay">
-          <img class="card-img-top rounded-0" :src="item.image" alt="Card image cap">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>          
-        
-        <div class="container portfolio">
-          <br>
-            <p>{{item.description}}</p>
-        </div>
+                <div class="view overlay">
+                <img class="card-img-top rounded-0" :src="item.image" alt="Card image cap">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+                </div>          
+                
+                <div class="container portfolio">
+                <br>
+                    <p>{{item.description}}</p>
+                </div>
+                    
             
-        <div class="container portfolio">
-          <br>
-            <p>{{item.product}}</p>
-        </div>
-
-      </div>
-
-
+            </div>
+        
+        </a>
 
       
     </div>

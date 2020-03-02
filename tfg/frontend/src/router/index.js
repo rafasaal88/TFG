@@ -6,6 +6,7 @@ import ListProduct from '@/components/Product/ListProduct'
 import EditProduct from '@/components/Product/EditProduct'
 import Register from '@/components/Register'
 import index from '@/components/index'
+import Publicity_campaign from '@/components/Publicity_campaign'
 
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(Router)
@@ -31,6 +32,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/publicity_campaign/:id',
+      name: 'publicity_campaign',
+      component: Publicity_campaign
     },
 
   ],
