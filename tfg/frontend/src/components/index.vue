@@ -19,7 +19,7 @@
 
                     </div>
                 </div>
-            </div>Quiere establecer una limitación salarial diferente a la actual que no se base en el salario mínimo interprofesional
+            </div>
         </div>
     </div>
 
