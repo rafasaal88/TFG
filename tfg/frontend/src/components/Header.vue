@@ -39,6 +39,8 @@
     <!--Desktop version-->
     <div class="d-none d-sm-none d-md-block">
 
+
+
         <b-nav-form @submit.prevent="login" v-if="token==null">
                 
                 
@@ -58,53 +60,30 @@
         
 
 
-
-
-
-        <b-nav-item-dropdown right v-if="token!=null">
+        <b-nav-item-dropdown left v-if="token!=null">
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
             <span class="mr-3 d-lg-inline" style="color:white"> Hola {{user}}</span>
           </template>
 
-     
-    
+        
                      
                 
-        
-
-
-
-
-                 <b-dropdown-item v-on:click="logout">Cerrar sesión</b-dropdown-item>
+                         <b-dropdown-item v-on:click="logout">Cerrar sesión</b-dropdown-item>
 
 
 
         </b-nav-item-dropdown>
+
+
+
+
+
+       
+        
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </div>
@@ -152,11 +131,11 @@ export default {
         },
 
         logout() {
+            this.$cookie.delete('user-token', {domain: 'localhost'});
             localStorage.removeItem('user-token');
             localStorage.removeItem('user-name');
             this.token = null;
             location.reload();
-            this.$cookie.delete('user-token', {domain: 'localhost'});
         },
         register() {
             console.log('Router')

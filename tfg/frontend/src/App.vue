@@ -40,4 +40,9 @@ export default {
       text-decoration:none;
       color: black;
     }
+    a:visited
+    {
+      text-decoration:none;
+      color: black;
+    }
 </style>
