@@ -139,9 +139,9 @@ export default {
                 this.token = resp.data.access;
                 this.user = this.username;
                 console.log(this.token)
-                localStorage.setItem('user-token', this.$cookie.get("token"))
+                localStorage.setItem('user-token', resp.data.access)
                 localStorage.setItem('user-name', this.username)
-                this.$cookie.set('token', resp.data.access);
+                this.$cookie.set('user-token', resp.data.access, {expires: 1, domain: 'localhost'});
                 location.reload();
             })
             .catch(err => {
@@ -156,6 +156,7 @@ export default {
             localStorage.removeItem('user-name');
             this.token = null;
             location.reload();
+            this.$cookie.delete('user-token', {domain: 'localhost'});
         },
         register() {
             console.log('Router')
