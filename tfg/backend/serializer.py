@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Publicity_campaign, User
+from .models import Product, Publicity_campaign, User, Recipe
 from rest_framework.authtoken.models import Token
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -30,5 +30,9 @@ class Publicity_Campaign_Serializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'date_start', 'date_end', 'description', 'image', 'product')
 
 
+class Recipe_Serializer(serializers.ModelSerializer):
+    product = ProductSerializer(many=True, read_only=True)
 
-
+    class Meta:
+        model = Recipe
+        fields = ('name', 'description', 'image', 'product', 'product')

@@ -87,7 +87,10 @@ class Recipe (models.Model):
     product = models.ManyToManyField(Product, blank=True)
     user = models.CharField(max_length=40, blank=True)
     date = models.DateTimeField(default=now, editable=True)
+    
+    def __str__(self):
 
+        return "{}".format(self.name)
 
 class Tag_nfc(models.Model):
     id = models.AutoField(primary_key=True)
