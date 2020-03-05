@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
 import ListProduct from '@/components/Product/ListProduct'
-import EditProduct from '@/components/Product/EditProduct'
+import Product from '@/components/Product'
 import Register from '@/components/Register'
 import index from '@/components/index'
 import Publicity_campaign from '@/components/Publicity_campaign'
@@ -24,9 +24,9 @@ export default new Router({
       component: ListProduct
     },
     {
-      path: '/product_edit/:id',
-      name: 'EditProduct',
-      component: EditProduct
+      path: '/product/:id',
+      name: 'Product',
+      component: Product
     },
     {
       path: '/register',

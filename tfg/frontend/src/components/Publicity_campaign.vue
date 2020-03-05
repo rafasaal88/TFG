@@ -25,7 +25,7 @@
                   
                   <div v-if="item.available">
 
-                    <a v-bind:href="'#'+item.id" >
+                    <a :href="'/Product/'+item.id" >
 
                       <div class="card" >
 
@@ -112,16 +112,6 @@ export default {
     data(){
         return {
             id: this.$route.params.id,
-            fields: [
-                { key: 'name', label: 'Nombre'},
-                { key: 'date_start', label: 'Fecha de inicio'}, 
-                { key: 'date_end', label: 'Fecha de finalización'},
-                { key: 'description', label: 'Descripción'}, 
-                { key: 'user', label: 'Usuario'},                 
-                { key: 'image', label: 'Imagen'}, 
-                { key: 'product', label: 'Producto'},
-                { key: 'action', label: ''}, 
-            ],
             product: [],
         }
     },
