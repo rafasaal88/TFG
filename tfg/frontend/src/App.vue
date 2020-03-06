@@ -35,6 +35,14 @@ export default {
       height: 300px;
     }
 
+    .containercut > .crop3 {
+      object-fit: cover;
+      object-position: 50% 0;
+    
+      height: 600px;
+    }
+
+
     a:link
     {
       text-decoration:none;

@@ -5,7 +5,7 @@
   <!--Desktop version-->
     <div class="d-none d-sm-none d-md-block" >
         <div class="col-lg-12 mx-auto">       
-            <div class="card rounded shadow shadow-sm">
+            <div class="card rounded">
                 <div class="card-body">
                     <div class="text-left" >          
 
@@ -26,7 +26,7 @@
 <!--Mobile version-->
     <div class="d-block d-sm-block d-md-none" >
         <div class="col-lg-12 mx-auto">       
-            <div class="card rounded shadow shadow-sm">
+            <div class="card rounded">
                 <div class="card-body">
                     <div class="text-left">
                         
@@ -51,7 +51,7 @@
     <div class="col-lg-6" v-for="(item, index) in product" :key="item.id">
        
         <a v-bind:href="'Publicity_campaign/'+item.id" style="color:black">
-            <div class="card shadow mb-3" >
+            <div class="card" >
 
                 <div class="card-body d-flex flex-row">      
                 <div>      
@@ -59,11 +59,11 @@
                 </div>      
                 </div>
 
-                <div class="view overlay">
-                <img class="card-img-top rounded-0" :src="item.image" alt="Card image cap">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
+                <div class="view overlay containercut">
+                    <img class="card-img-top rounded-0 crop3" :src="item.image" alt="Card image cap">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
                 </div>          
                 
                 <div class="container portfolio">
@@ -76,7 +76,7 @@
         
         </a>
 
-      
+      <br>
     </div>
   </div>
 </div>

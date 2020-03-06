@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">        
         <div class="col-lg-8 mx-auto">
-          <div class="card shadow mb-4" >
+          <div class="card" >
 
             <div class="card-body">      
               <div>      
@@ -16,6 +16,37 @@
             <div class="view overlay">
               <img class="card-img-top rounded-0" :src="product.image" alt="Card image cap">
             </div>              
+            
+            
+
+            <div class="d-none d-sm-none d-md-block" >
+                  <div class="col-lg-12 mx-auto">
+                     <br>
+
+                      <div class="card rounded">
+                        
+                          <div class="card-body">
+                              <div class="text-left" >          
+                                
+                                  <div>
+                                      <center><h2>¡¡Busca los siguientes productos en la tienda, toca la etiqueta NFC y consigue descuentos!!</h2></center>
+                                  </div>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
 
             <div class="container">
               <br> 

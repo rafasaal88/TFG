@@ -15,8 +15,8 @@
 
                 <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'litros'">{{product.name}}: {{product.price}} €/Litro</h4>
 
-                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4>          
-        
+                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4>             
+
               </div>      
             </div>
 
@@ -40,7 +40,7 @@
                   <div v-for="item_product in item.product" :key="item_product.id" >
                     <ul>
                       <span v-if="product.id == item_product"> 
-                        <li><a href="#">{{item.name}}</a></li>          
+                        <li><a :href="'/Recipe/'+item.id">{{item.name}}</a></li>          
                         {{changevalue()}}
                       </span>  
                     </ul>

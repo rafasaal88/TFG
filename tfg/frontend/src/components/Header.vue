@@ -3,12 +3,22 @@
 
 
 
- <b-navbar toggleable="lg" type="dark" variant="info shadow">
+ <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar-brand href="/">Inicio</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse" >
+
+    
+
       </b-navbar-toggle>
    
     <b-collapse  id="nav-collapse" is-nav>
+
+        <b-navbar-nav>
+            <b-nav-item href="#">Recetas</b-nav-item>
+            <b-nav-item href="Register" v-if="token==null">Registrarse</b-nav-item>
+        </b-navbar-nav>
+
         <br>
 
       <!-- Right aligned nav items -->
@@ -30,8 +40,6 @@
 
             <b-button size="lm" style="width: 100%" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
             &nbsp;&nbsp;
-            <b-button :to="{name:'Register'}" size="lm" class="btn btn-dark" style="width: 100%" >Registrarse</b-button>
-
         </b-nav-form>
     </div> 
         
@@ -53,7 +61,6 @@
 
             <b-button size="lm" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
             &nbsp;&nbsp;
-            <b-button :to="{name:'Register'}" size="lm" class="btn btn-dark" >Registrarse</b-button>
 
         </b-nav-form>
     </div> 
@@ -63,13 +70,13 @@
         <b-nav-item-dropdown left v-if="token!=null">
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
-            <span class="mr-3 d-lg-inline" style="color:white"> Hola {{user}}</span>
+            <span class="mr-3 d-lg-inline" style="color:white"><b-icon icon="person-fill"></b-icon> Hola {{user}}</span>
           </template>
 
-        
+                        <b-dropdown-item href="#">Perfil <b-icon icon="gear-fill"></b-icon></b-dropdown-item>
                      
                 
-                         <b-dropdown-item v-on:click="logout">Cerrar sesión</b-dropdown-item>
+                         <b-dropdown-item v-on:click="logout">Cerrar sesión <b-icon icon="power"></b-icon></b-dropdown-item>
 
 
 
