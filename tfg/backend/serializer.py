@@ -31,8 +31,9 @@ class Publicity_Campaign_Serializer(serializers.ModelSerializer):
 
 
 class Recipe_Serializer(serializers.ModelSerializer):
-    product = ProductSerializer(many=True, read_only=True)
+    product = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Recipe
-        fields = ('name', 'description', 'image', 'product', 'product')
+        fields = ('id','name', 'description', 'image', 'product', 'product')
+        depth = 1
