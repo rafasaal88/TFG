@@ -46,6 +46,18 @@
 
     <br>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container-fluid">
   <div class="row">        
     <div class="col-lg-6" v-for="(item, index) in publicity_campaign" :key="item.id">
