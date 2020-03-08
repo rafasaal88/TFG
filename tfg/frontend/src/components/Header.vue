@@ -16,7 +16,9 @@
 
         <b-navbar-nav>
             <b-nav-item href="#">Recetas</b-nav-item>
-            <b-nav-item href="Register" v-if="token==null">Registrarse</b-nav-item>
+            <b-nav-item href="/products_list">Productos</b-nav-item>
+            <b-nav-item href="#">Campañas</b-nav-item>            
+            <b-nav-item href="/register" v-if="token==null">Registrarse</b-nav-item>
         </b-navbar-nav>
 
         <br>
@@ -80,6 +82,15 @@
 
 
 
+                
+
+
+
+
+
+
+
+
         </b-nav-item-dropdown>
 
 
@@ -91,6 +102,22 @@
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     </div>

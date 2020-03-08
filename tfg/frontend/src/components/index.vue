@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="text-left" >          
 
-                        <div v-if="product.length">
+                        <div v-if="publicity_campaign.length">
                             <center><h2>Bienvenido, estas son las campañas publicitarias que tenemos activas en este momento.</h2></center>
                         </div>
 
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="text-left">
                         
-                        <div v-if="product.length">
+                        <div v-if="publicity_campaign.length">
                             <center><h5>Campañas publicitarias activas</h5></center>
                         </div>
                         
@@ -48,7 +48,7 @@
 
 <div class="container-fluid">
   <div class="row">        
-    <div class="col-lg-6" v-for="(item, index) in product" :key="item.id">
+    <div class="col-lg-6" v-for="(item, index) in publicity_campaign" :key="item.id">
        
         <a v-bind:href="'Publicity_campaign/'+item.id" style="color:black">
             <div class="card" >
@@ -94,17 +94,7 @@ import axios from 'axios';
 export default {
     data(){
         return {
-            fields: [
-                { key: 'name', label: 'Nombre'},
-                { key: 'date_start', label: 'Fecha de inicio'}, 
-                { key: 'date_end', label: 'Fecha de finalización'},
-                { key: 'description', label: 'Descripción'}, 
-                { key: 'user', label: 'Usuario'},                 
-                { key: 'image', label: 'Imagen'}, 
-                { key: 'product', label: 'Producto'},
-                { key: 'action', label: ''}, 
-            ],
-            product: [],
+            publicity_campaign: [],
         }
     },
     methods: {
@@ -113,7 +103,7 @@ export default {
             const path = 'http://127.0.0.1:8000/api/v1.0/publicity_campaign_list/'
 
             axios.get(path).then((response) => {
-                this.product = response.data
+                this.publicity_campaign = response.data
             })
             .catch((error) => {
                 console.log(error)

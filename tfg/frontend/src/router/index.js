@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 import index from '@/components/index'
 import Recipe from '@/components/Recipe'
-import ListProduct from '@/components/Product/ListProduct'
+import Product_list from '@/components/Product_list'
 import Product from '@/components/Product'
 import Register from '@/components/Register'
 import Publicity_campaign from '@/components/Publicity_campaign'
@@ -21,8 +21,8 @@ export default new Router({
     },   
     {
       path: '/products_list',
-      name: 'ListProduct',
-      component: ListProduct
+      name: 'Product_list',
+      component: Product_list
     },
     {
       path: '/product/:id',

@@ -9,12 +9,12 @@
 
             <div class="card-body">      
               <div>      
-                <h4 class="card-title font-weight-bold mb-2">{{ product.name}}</h4>
+                <h4 class="card-title font-weight-bold mb-2">{{ publicity_campaign.name}}</h4>
               </div>      
             </div>
 
             <div class="view overlay">
-              <img class="card-img-top rounded-0" :src="product.image" alt="Card image cap">
+              <img class="card-img-top rounded-0" :src="publicity_campaign.image" alt="Card image cap">
             </div>              
             
             
@@ -52,7 +52,7 @@
               <br> 
               <div class="row">                   
 
-                <div class="col-lg-4" v-for="(item, index) in product.product" :key="item.id" >
+                <div class="col-lg-4" v-for="(item, index) in publicity_campaign.product" :key="item.id" >
                   
                   <div v-if="item.available">
 
@@ -143,7 +143,7 @@ export default {
     data(){
         return {
             id: this.$route.params.id,
-            product: [],
+            publicity_campaign: [],
         }
     },
     
@@ -153,7 +153,7 @@ export default {
             const path = 'http://127.0.0.1:8000/api/v1.0/publicity_campaign_list/'+this.id+'/'
 
             axios.get(path).then((response) => {
-                this.product = response.data
+                this.publicity_campaign = response.data
             })
             .catch((error) => {
                 console.log(error)
