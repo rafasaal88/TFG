@@ -2,12 +2,14 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
+
 import index from '@/components/index'
 import Recipe from '@/components/Recipe'
 import Product_list from '@/components/Product_list'
 import Product from '@/components/Product'
 import Register from '@/components/Register'
 import Publicity_campaign from '@/components/Publicity_campaign'
+import Publicity_campaign_list from '@/components/Publicity_campaign_list'
 
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(Router)
@@ -44,7 +46,11 @@ export default new Router({
       name: 'recipe',
       component: Recipe
     },
+    {
+      path: '/publicity_campaign_list',
+      name: 'publicity_campaign_list',
+      component: Publicity_campaign_list
+    },
   ],
   mode: 'history'
 })
- 

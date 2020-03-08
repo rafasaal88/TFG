@@ -17,7 +17,7 @@
         <b-navbar-nav>
             <b-nav-item href="#">Recetas</b-nav-item>
             <b-nav-item href="/products_list">Productos</b-nav-item>
-            <b-nav-item href="#">Campañas</b-nav-item>            
+            <b-nav-item href="/publicity_campaign_list">Campañas</b-nav-item>            
             <b-nav-item href="/register" v-if="token==null">Registrarse</b-nav-item>
         </b-navbar-nav>
 
