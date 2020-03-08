@@ -3,122 +3,88 @@
 
 
 
- <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="/">Inicio</b-navbar-brand>
+        <b-navbar toggleable="lg" type="dark" variant="dark">
+            <b-navbar-brand href="/">Inicio</b-navbar-brand>
 
-    <b-navbar-toggle target="nav-collapse" >
+            <b-navbar-toggle target="nav-collapse" >
 
-    
-
-      </b-navbar-toggle>
-   
-    <b-collapse  id="nav-collapse" is-nav>
-
-        <b-navbar-nav>
-            <b-nav-item href="#">Recetas</b-nav-item>
-            <b-nav-item href="/products_list">Productos</b-nav-item>
-            <b-nav-item href="/publicity_campaign_list">Campañas</b-nav-item>            
-            <b-nav-item href="/register" v-if="token==null">Registrarse</b-nav-item>
-        </b-navbar-nav>
-
-        <br>
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
-        
-
-    <!--Mobile version-->
-    <div class="d-block d-sm-block d-md-none">
-
-        <b-nav-form @submit.prevent="login" v-if="token==null">
-                
-                
-            <b-form-input id="username" size="lm" class="nr-sm-2" style="width: 100%" v-model="username" placeholder="usuario" name="username"></b-form-input>
-            &nbsp;&nbsp;
-            <b-form-input id="password" size="lm" class="nr-sm-2" style="width: 100%" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
-            &nbsp;&nbsp;
             
 
-
-            <b-button size="lm" style="width: 100%" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
-            &nbsp;&nbsp;
-        </b-nav-form>
-    </div> 
+            </b-navbar-toggle>
         
+            <b-collapse  id="nav-collapse" is-nav>
 
-    <!--Desktop version-->
-    <div class="d-none d-sm-none d-md-block">
+                <b-navbar-nav>
+                    <b-nav-item href="/recipe_list">Recetas</b-nav-item>
+                    <b-nav-item href="/products_list">Productos</b-nav-item>
+                    <b-nav-item href="/publicity_campaign_list">Campañas</b-nav-item>            
+                    <b-nav-item href="/register" v-if="token==null">Registrarse</b-nav-item>
+                </b-navbar-nav>
 
+                <br>
 
-
-        <b-nav-form @submit.prevent="login" v-if="token==null">
-                
-                
-            <b-form-input id="username" size="lm" class="nr-sm-2" v-model="username" placeholder="usuario" name="username"></b-form-input>
-            &nbsp;&nbsp;
-            <b-form-input id="password" size="lm" class="nr-sm-2" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
-            &nbsp;&nbsp;
-            
-
-
-            <b-button size="lm" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
-            &nbsp;&nbsp;
-
-        </b-nav-form>
-    </div> 
-        
-
-
-        <b-nav-item-dropdown left v-if="token!=null">
-          <!-- Using 'button-content' slot -->
-          <template v-slot:button-content>
-            <span class="mr-3 d-lg-inline" style="color:white"><b-icon icon="person-fill"></b-icon> Hola {{user}}</span>
-          </template>
-
-                        <b-dropdown-item href="#">Perfil <b-icon icon="gear-fill"></b-icon></b-dropdown-item>
-                     
-                
-                         <b-dropdown-item v-on:click="logout">Cerrar sesión <b-icon icon="power"></b-icon></b-dropdown-item>
-
-
-
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
                 
 
+            <!--Mobile version-->
+            <div class="d-block d-sm-block d-md-none">
+
+                <b-nav-form @submit.prevent="login" v-if="token==null">
+                        
+                        
+                    <b-form-input id="username" size="lm" class="nr-sm-2" style="width: 100%" v-model="username" placeholder="usuario" name="username"></b-form-input>
+                    &nbsp;&nbsp;
+                    <b-form-input id="password" size="lm" class="nr-sm-2" style="width: 100%" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
+                    &nbsp;&nbsp;
+                    
+
+
+                    <b-button size="lm" style="width: 100%" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
+                    &nbsp;&nbsp;
+                </b-nav-form>
+            </div> 
+                
+
+            <!--Desktop version-->
+            <div class="d-none d-sm-none d-md-block">
 
 
 
+                <b-nav-form @submit.prevent="login" v-if="token==null">
+                        
+                        
+                    <b-form-input id="username" size="lm" class="nr-sm-2" v-model="username" placeholder="usuario" name="username"></b-form-input>
+                    &nbsp;&nbsp;
+                    <b-form-input id="password" size="lm" class="nr-sm-2" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
+                    &nbsp;&nbsp;
+                    
 
 
+                    <b-button size="lm" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
+                    &nbsp;&nbsp;
+
+                </b-nav-form>
+            </div> 
+                
 
 
-        </b-nav-item-dropdown>
+                <b-nav-item-dropdown left v-if="token!=null">
+                <!-- Using 'button-content' slot -->
+                <template v-slot:button-content>
+                    <span class="mr-3 d-lg-inline" style="color:white"><b-icon icon="person-fill"></b-icon> Hola {{user}}</span>
+                </template>
 
+                                <b-dropdown-item href="#">Perfil <b-icon icon="gear-fill"></b-icon></b-dropdown-item>
+                            
+                        
+                                <b-dropdown-item v-on:click="logout">Cerrar sesión <b-icon icon="power"></b-icon></b-dropdown-item>
 
+                </b-nav-item-dropdown>
 
-
-
-       
-        
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
 
     </div>
 </template>

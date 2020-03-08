@@ -8,26 +8,25 @@
                 <div class="card-body">
                     <div class="text-left" >          
 
-                        <div v-if="product.length">
-                            <center><h2>Productos disponibles</h2></center>
+                        <div v-if="recipe.length">
+                            <center><h2>Recetas disponibles</h2></center>
                         </div>
 
                         <div v-else>
-                            <center><h2>No hay productos disponibles</h2></center>
+                            <center><h2>No hay recetas disponibles</h2></center>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
-<br>
+    <br>
 
 <div class="container-fluid">
   <div class="row">        
-    <div class="col-lg-3" v-for="item in product" :key="item.id">
+    <div class="col-lg-3" v-for="item in recipe" :key="item.id">
        
-        <a :href="'/product/'+item.id" >
+        <a :href="'/recipe/'+item.id">
             <div class="card" >
 
                 <div class="card-body d-flex flex-row">      
@@ -45,7 +44,7 @@
                 
                 <div class="container portfolio">
                 <br>
-                    <p>{{item.description}}</p>
+                   
                 </div>
                     
             
@@ -78,16 +77,16 @@ import axios from 'axios';
 export default {
     data(){
         return {
-            product: []
+            recipe: [],
         }
     },
     methods: {
-        getProducts () 
+        getRecipe () 
         {
-            const path = 'http://localhost:8000/api/v1.0/product_list/'
+            const path = 'http://127.0.0.1:8000/api/v1.0/recipe_list/'
 
             axios.get(path).then((response) => {
-                this.product = response.data
+                this.recipe = response.data
             })
             .catch((error) => {
                 console.log(error)
@@ -97,7 +96,7 @@ export default {
 
     created(){        
 
-        this.getProducts()
+        this.getRecipe()
     }
 
 }

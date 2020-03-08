@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="view overlay containercut">
-                    <img class="card-img-top rounded-0 crop3" :src="item.image" alt="Card image cap">
+                    <img class="card-img-top rounded-0" :src="item.image" alt="Card image cap">
                     <a href="#!">
                         <div class="mask rgba-white-slight"></div>
                     </a>

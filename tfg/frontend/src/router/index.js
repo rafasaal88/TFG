@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 import index from '@/components/index'
 import Recipe from '@/components/Recipe'
+import Recipe_list from '@/components/Recipe_list'
 import Product_list from '@/components/Product_list'
 import Product from '@/components/Product'
 import Register from '@/components/Register'
@@ -50,6 +51,11 @@ export default new Router({
       path: '/publicity_campaign_list',
       name: 'publicity_campaign_list',
       component: Publicity_campaign_list
+    },
+    {
+      path: '/recipe_list',
+      name: 'recipe_list',
+      component: Recipe_list
     },
   ],
   mode: 'history'
