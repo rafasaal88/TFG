@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Publicity_campaign, UserProfile, Product, Recipe
+from .models import User, Publicity_campaign, UserProfile, Product, Recipe, Tag_nfc
 
 
 class Publicity_Campaign_Form(forms.ModelForm):
@@ -129,5 +129,21 @@ class Recipe_Form(forms.ModelForm):
             'image': forms.FileInput(attrs={'class': 'form-control'}),
             'product': forms.CheckboxSelectMultiple(),
         }
+
+
+class Tag_nfc_Form(forms.ModelForm):
+    class Meta:
+        model = Tag_nfc
+        fields = [
+            'product',
+            'publicity_campaign',
+        ]
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-control'}),
+            'publicity_campaign': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
+
 
 

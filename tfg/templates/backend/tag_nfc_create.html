@@ -1,0 +1,73 @@
+{% extends 'backend/base.html' %}
+
+{% block contenido %}
+
+{% load static %}
+
+
+
+<div class="card text-center">
+
+    <div class="card-header">
+        <center><h2>Añadir nuevo TAG NFC</h2></center>
+    </div>
+
+    <div class="card-body text-justify">
+        <div class="container">
+
+            <center>
+
+                <form id='formu' enctype='multipart/form-data' method="post" action=''>{% csrf_token %}
+                    {% csrf_token %}
+
+                    <center><h3>NOTA: El ID de entrada se mostrará en el listado tras añadir el TAG NFC</h3></center>
+
+                    
+                    <div class="form-group">
+                        <label for="name" class="col-lg-6 control-label text-left">Producto</label>
+                        <div class="col-lg-6">
+                            {{form.product}}
+                            
+                            <!--
+                            <input type="text" name="name" id="name" class="form-control" autofocus maxlength="40" autofocus required>
+-->
+
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label for="price" class="col-lg-6 control-label text-left">Campaña de publicidad</label>
+                        <div class="col-lg-6">
+                          {{form.publicity_campaign}}
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <hr>
+                            <button type="submit" class="btn btn-primary btn-block">Añadir</button>
+                        </div>
+                    </div> 
+                       
+
+
+                </form> 
+
+            </center>
+         
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}

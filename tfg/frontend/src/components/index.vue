@@ -60,7 +60,7 @@
 
 <div class="container-fluid">
   <div class="row">        
-    <div class="col-lg-6" v-for="(item, index) in publicity_campaign" :key="item.id">
+    <div class="col-lg-6" v-for="item in publicity_campaign" :key="item.id">
        
         <a v-bind:href="'Publicity_campaign/'+item.id" style="color:black">
             <div class="card" >

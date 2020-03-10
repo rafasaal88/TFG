@@ -75,7 +75,9 @@ class Publicity_campaign(models.Model):
     user = models.CharField(max_length=40, blank=True)
     product = models.ManyToManyField(Product, blank=True)
 
+    def __str__(self):
 
+        return "{}".format(self.name)
 
 #falta relacion N a N
 
@@ -92,22 +94,28 @@ class Recipe (models.Model):
 
         return "{}".format(self.name)
 
-class Tag_nfc(models.Model):
-    id = models.AutoField(primary_key=True)
-    date_start = models.DateField()
-    date_end = models.DateField()
-    identify = models.CharField(max_length=255)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
-
 class Shopping_bag(models.Model):
     id = models.AutoField(primary_key=True)
     quantity = models.IntegerField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
 
+class Point(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
+    publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
+
+
+class Tag_nfc(models.Model):
+    id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
+    publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
+ 
 class Register_activity(models.Model):
     id = models.AutoField(primary_key=True)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     tag_nfc = models.ForeignKey(Tag_nfc, on_delete=models.CASCADE, null=True, default=None)
+

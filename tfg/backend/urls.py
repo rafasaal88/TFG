@@ -10,6 +10,9 @@ from .views import product_create, product_list, product, product_disable, produ
 #recipte
 from .views import recipe_create, recipe_list, recipe, recipe_edit, recipe_delete
 
+#tag_nfc
+from .views import tag_nfc_create, tag_nfc_list
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include 
@@ -60,5 +63,11 @@ urlpatterns = [
     url(r'^recipe/(?P<id>\d+)/$',recipe, name = "recipe"),
     url(r'^recipe_edit/(?P<id>\d+)/$',recipe_edit, name = "recipe_edit"),
     url(r'^recipe_delete/(?P<id>\d+)/$',recipe_delete, name = "recipe_delete"),
+
+
+    #crud tag_nfc
+    url(r'^tag_nfc_create/',tag_nfc_create, name = "tag_nfc_create"),
+    url(r'^tag_nfc_list/',tag_nfc_list, name = "tag_nfc_list"),
+
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

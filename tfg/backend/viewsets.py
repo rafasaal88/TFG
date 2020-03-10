@@ -20,6 +20,7 @@ class Recipe_ViewSet(viewsets.ModelViewSet):
 class User_ViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = User_Serializer
+    http_method_names = ['get', 'post']
 
 class Publicity_Campaign_ViewSet(viewsets.ModelViewSet):
     queryset = Publicity_campaign.objects.filter(date_end__gte = today)

@@ -14,10 +14,10 @@ from django.utils import timezone
 from datetime import datetime
 
 
-from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Recipe_Form
+from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Recipe_Form, Tag_nfc_Form 
 
 
-from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe
+from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe, Tag_nfc
 
 
 #Mostrar error 404
@@ -449,4 +449,30 @@ def recipe_delete(request, id):
         recipe.delete()
         return redirect('recipe_list')
     return render(request, 'backend/recipe_delete.html', {'recipe':recipe})
+
+
+
+###############################################################################################
+########################## NFT_TAG METHODS ####################################################
+###############################################################################################
+
+
+#Crear tag
+@login_required(login_url='user_login')
+def tag_nfc_create(request):
+    if request.method == 'POST':
+        form = Tag_nfc_Form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('tag_nfc_list')
+    else:
+        form = Tag_nfc_Form()
+        return render(request, 'backend/tag_nfc_create.html', {'form':form})
+
+
+#Listar tags
+@login_required(login_url='user_login')
+def tag_nfc_list(request):
+    tag_nfc = Tag_nfc.objects.all().order_by('id').reverse()
+    return render(request, 'backend/tag_nfc_list.html', {'tag_nfc':tag_nfc})
 
