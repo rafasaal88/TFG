@@ -111,6 +111,8 @@ class Tag_nfc(models.Model):
     id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
     publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
+    available = models.BooleanField(null=True, default=True)
+
  
 class Register_activity(models.Model):
     id = models.AutoField(primary_key=True)

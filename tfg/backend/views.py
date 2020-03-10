@@ -340,7 +340,7 @@ def product_disable(request, id):
         return render(request, 'backend/product_disable.html', {'product':product})
 
 
-#Deshabilitar producto
+#Hhabilitar producto
 @login_required(login_url='user_login')
 def product_enable(request, id):
     product = Product.objects.get(id = id)
@@ -475,4 +475,29 @@ def tag_nfc_create(request):
 def tag_nfc_list(request):
     tag_nfc = Tag_nfc.objects.all().order_by('id').reverse()
     return render(request, 'backend/tag_nfc_list.html', {'tag_nfc':tag_nfc})
+
+
+#Deshabilitar tag
+@login_required(login_url='user_login')
+def tag_nfc_disable(request, id):
+    tag_nfc = Tag_nfc.objects.get(id = id)
+    if request.method == 'POST':
+        tag_nfc.available = 'False'
+        tag_nfc.save()
+        return redirect('tag_nfc_list')
+    else:
+        return render(request, 'backend/tag_nfc_disable.html', {'tag_nfc':tag_nfc})
+
+
+
+#Habilitar tag
+@login_required(login_url='user_login')
+def tag_nfc_enable(request, id):
+    tag_nfc = Tag_nfc.objects.get(id = id)
+    if request.method == 'POST':
+        tag_nfc.available = 'True'
+        tag_nfc.save()
+        return redirect('tag_nfc_list')
+    else:
+        return render(request, 'backend/tag_nfc_enable.html', {'tag_nfc':tag_nfc})
 
