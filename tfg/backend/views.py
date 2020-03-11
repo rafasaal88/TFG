@@ -40,7 +40,8 @@ def index(request):
     users_admin = User.objects.filter(is_staff='True').count()
     products = Product.objects.count()
     recipes = Recipe.objects.count()
-    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin})
+    tags = Tag_nfc.objects.count()
+    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags})
 
 
 #Loguear usuario
@@ -461,7 +462,7 @@ def recipe_delete(request, id):
 @login_required(login_url='user_login')
 def tag_nfc_create(request):
     if request.method == 'POST':
-        form = Tag_nfc_Form(request.POST, request.FILES)
+        form = Tag_nfc_Form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('tag_nfc_list')
@@ -501,3 +502,16 @@ def tag_nfc_enable(request, id):
     else:
         return render(request, 'backend/tag_nfc_enable.html', {'tag_nfc':tag_nfc})
 
+
+#Editar tag
+@login_required(login_url='user_login')
+def tag_nfc_edit(request, id):
+    tag_nfc = Tag_nfc.objects.get(id = id)
+    if request.method == 'GET':
+        form = Tag_nfc_Form(instance = tag_nfc)
+    else:
+        form = Tag_nfc_Form(request.POST, instance = tag_nfc)
+        if form.is_valid():
+            form.save()
+        return redirect ('tag_nfc_list')
+    return render(request, 'backend/tag_nfc_edit.html', {'form':form, 'tag_nfc':tag_nfc})

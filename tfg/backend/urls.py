@@ -11,7 +11,7 @@ from .views import product_create, product_list, product, product_disable, produ
 from .views import recipe_create, recipe_list, recipe, recipe_edit, recipe_delete
 
 #tag_nfc
-from .views import tag_nfc_create, tag_nfc_list, tag_nfc_disable, tag_nfc_enable
+from .views import tag_nfc_create, tag_nfc_list, tag_nfc_disable, tag_nfc_enable, tag_nfc_edit
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -70,5 +70,6 @@ urlpatterns = [
     url(r'^tag_nfc_list/',tag_nfc_list, name = "tag_nfc_list"),
     url(r'^tag_nfc_disable/(?P<id>\d+)/$',tag_nfc_disable, name = "tag_nfc_disable"),
     url(r'^tag_nfc_enable/(?P<id>\d+)/$',tag_nfc_enable, name = "tag_nfc_enable"),
+    url(r'^tag_nfc_edit/(?P<id>\d+)/$',tag_nfc_edit, name = "tag_nfc_edit"),
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
