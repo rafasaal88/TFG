@@ -33,6 +33,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, default=None)
     image = models.ImageField(upload_to='profile_image', blank=True, default=profile_default)
 
+
 class Product (models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(blank=True)
@@ -100,17 +101,21 @@ class Shopping_bag(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
 
+
 class Point(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
     publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
+    description = models.CharField(max_length=40, null=True)
+
 
 
 class Tag_nfc(models.Model):
     id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
     publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
+    description = models.CharField(max_length=40, null=True)
     available = models.BooleanField(null=True, default=True)
 
  

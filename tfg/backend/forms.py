@@ -137,10 +137,12 @@ class Tag_nfc_Form(forms.ModelForm):
         fields = [
             'product',
             'publicity_campaign',
+            'description',
         ]
         widgets = {
             'product': forms.Select(attrs={'class': 'form-control'}),
             'publicity_campaign': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 

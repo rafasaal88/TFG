@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Publicity_campaign, User, Recipe
+from .models import Product, Publicity_campaign, User, Recipe, Tag_nfc, Point
 from rest_framework.authtoken.models import Token
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -37,3 +37,14 @@ class Recipe_Serializer(serializers.ModelSerializer):
         model = Recipe
         fields = ('id','name', 'description', 'image', 'product', 'product')
         depth = 1
+
+
+class Tag_nfc_Seralizer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag_nfc
+        fields = ('__all__')
+
+class Point_Seralizer(serializers.ModelSerializer):
+    class Meta:
+        model = Point
+        fields = ('__all__')

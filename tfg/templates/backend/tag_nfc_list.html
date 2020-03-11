@@ -26,6 +26,7 @@
                     <th>Identificador</th>
                     <th>Producto</th>
                     <th>Campaña de publicidad</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -35,7 +36,8 @@
                     <tr>             
                       <td>{{item.id}}</td>
                       <td>{{item.product.name}}</td> 
-                      <td>{{item.publicity_campaign.name}}</td>                                   
+                      <td>{{item.publicity_campaign.name}}</td>    
+                      <td>{{item.description}}</td>                               
                       <td>
 
                         <a href="/backend/tag_nfc_edit/{{item.id}}" class="btn btn-warning btn-icon-split">
@@ -106,6 +108,7 @@
                     <th>Producto</th>
                     <th>Campaña</th>
                     <th>Acciones</th>
+                    <th>Descripción</th>
                   </tr>
                 </thead>
 
@@ -114,7 +117,8 @@
                     <tr>             
                       <td>{{item.id}}</td>
                       <td>{{item.product.name}}</td> 
-                      <td>{{item.publicity_campaign.name}}</td>                   
+                      <td>{{item.publicity_campaign.name}}</td>  
+                      <td>{{item.description}}</td>                                                
                       <td>               
   
                         <a href="/backend/tag_nfc_edit/{{item.id}}" class="btn btn-warning btn-icon-split">
