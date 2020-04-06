@@ -39,12 +39,17 @@ class Recipe_Serializer(serializers.ModelSerializer):
         depth = 1
 
 
-class Tag_nfc_Seralizer(serializers.ModelSerializer):
+class Tag_nfc_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Tag_nfc
         fields = ('__all__')
 
-class Point_Seralizer(serializers.ModelSerializer):
+class Point_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Point
         fields = ('__all__')
+
+    def perform_create(self, serializer):
+            """Save the post data when creating a new bucketlist."""
+            serializer.save(owner=self.request.user) # Add owner=self.request.user
+

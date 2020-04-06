@@ -72,4 +72,8 @@ urlpatterns = [
     url(r'^tag_nfc_enable/(?P<id>\d+)/$',tag_nfc_enable, name = "tag_nfc_enable"),
     url(r'^tag_nfc_edit/(?P<id>\d+)/$',tag_nfc_edit, name = "tag_nfc_edit"),
 
+
+
+
+
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

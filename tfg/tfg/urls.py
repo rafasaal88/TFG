@@ -23,8 +23,9 @@ from django.conf import settings
 from rest_framework_simplejwt import views as jwt_views  
 
 
+
+
 urlpatterns = [
-    path('', debug.default_urlconf),
     path('admin/', admin.site.urls),
     path('backend/',include('backend.urls')),
     path('api/v1.0/',include('backend.api_urls')),

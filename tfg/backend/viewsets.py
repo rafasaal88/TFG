@@ -1,6 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import Product, Publicity_campaign, User, Product, Recipe, Tag_nfc, Point
-from .serializer import ProductSerializer, Publicity_Campaign_Serializer, User_Serializer, Recipe_Serializer, Tag_nfc_Seralizer, Point_Seralizer
+from .serializer import ProductSerializer, Publicity_Campaign_Serializer, User_Serializer, Recipe_Serializer, Tag_nfc_Serializer, Point_Serializer
 from django.utils import timezone
 from django.utils.timezone import datetime #important if using timezones
 
@@ -29,12 +29,12 @@ class Publicity_Campaign_ViewSet(viewsets.ModelViewSet):
 
 class Tag_nfc_ViewSet(viewsets.ModelViewSet):
     queryset = Tag_nfc.objects.filter(available = True)
-    serializer_class = Tag_nfc_Seralizer
+    serializer_class = Tag_nfc_Serializer
     http_method_names = ['get']
 
-class Point_Seralizer_ViewSet(viewsets.ModelViewSet):
+class Point_ViewSet(viewsets.ModelViewSet):
     queryset = Point.objects.all()
-    serializer_class = Point_Seralizer
-
+    serializer_class = Point_Serializer
+    permissions_classes = (permissions.IsAuthenticated)
 
 
