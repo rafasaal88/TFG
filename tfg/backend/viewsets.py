@@ -4,6 +4,9 @@ from .serializer import ProductSerializer, Publicity_Campaign_Serializer, User_S
 from django.utils import timezone
 from django.utils.timezone import datetime #important if using timezones
 
+from rest_framework.permissions import IsAuthenticated
+from .permissions import UserPermission
+
 today = datetime.today()
 
 
@@ -21,6 +24,7 @@ class User_ViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = User_Serializer
     http_method_names = ['get', 'post']
+    permissions_classes = (IsAuthenticated, )
 
 class Publicity_Campaign_ViewSet(viewsets.ModelViewSet):
     queryset = Publicity_campaign.objects.filter(date_end__gte = today)
@@ -34,7 +38,9 @@ class Tag_nfc_ViewSet(viewsets.ModelViewSet):
 
 class Point_ViewSet(viewsets.ModelViewSet):
     queryset = Point.objects.all()
+    permission_classes = (UserPermission,)
     serializer_class = Point_Serializer
-    permissions_classes = (permissions.IsAuthenticated)
+    
+
 
 

@@ -1,6 +1,7 @@
-from rest_framework import serializers
+from rest_framework import serializers, permissions
 from .models import Product, Publicity_campaign, User, Recipe, Tag_nfc, Point
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,8 +49,4 @@ class Point_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Point
         fields = ('__all__')
-
-    def perform_create(self, serializer):
-            """Save the post data when creating a new bucketlist."""
-            serializer.save(owner=self.request.user) # Add owner=self.request.user
 
