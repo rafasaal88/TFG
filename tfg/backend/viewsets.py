@@ -38,7 +38,7 @@ class Tag_nfc_ViewSet(viewsets.ModelViewSet):
 
 class Point_ViewSet(viewsets.ModelViewSet):
     queryset = Point.objects.all()
-    permission_classes = (UserPermission,)
+    #permission_classes = (UserPermission,)
     serializer_class = Point_Serializer
     
 

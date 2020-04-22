@@ -11,6 +11,7 @@ import Product from '@/components/Product'
 import Register from '@/components/Register'
 import Publicity_campaign from '@/components/Publicity_campaign'
 import Publicity_campaign_list from '@/components/Publicity_campaign_list'
+import Tag_NFC from '@/components/Tag_NFC'
 
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(Router)
@@ -56,6 +57,11 @@ export default new Router({
       path: '/recipe_list',
       name: 'recipe_list',
       component: Recipe_list
+    },
+    {
+      path: '/tag/:id',
+      name: 'tag',
+      component: Tag_NFC
     },
   ],
   mode: 'history'

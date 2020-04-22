@@ -51,14 +51,12 @@
 
 
 
-                <b-nav-form @submit.prevent="login" v-if="token==null">
-                        
+                <b-nav-form @submit.prevent="login" v-if="token==null">                        
                         
                     <b-form-input id="username" size="lm" class="nr-sm-2" v-model="username" placeholder="usuario" name="username"></b-form-input>
                     &nbsp;&nbsp;
                     <b-form-input id="password" size="lm" class="nr-sm-2" v-model="password" placeholder="contraseña" type="password" name="password"></b-form-input>
-                    &nbsp;&nbsp;
-                    
+                    &nbsp;&nbsp;                    
 
 
                     <b-button size="lm" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
