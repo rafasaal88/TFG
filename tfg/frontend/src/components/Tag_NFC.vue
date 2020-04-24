@@ -18,48 +18,104 @@
 
 <br>
 
+    
 
 
 
-    <div class="" v-if="token!=null">       
 
-        <b-nav-form v-if="check_insert">
+    <div class="container" v-if="product.available">
+      <div class="row">        
+        <div class="col-lg-8">
+          <div class="card shadow mb-3" >
 
-            <div class="col-lg-12 mx-auto">       
-                <div class="card rounded shadow shadow-sm">
-                    <div class="card-body">
-                        <div class="text-center">
-                                <h1><font style="color:black;">Promoción registrada con éxito</font></h1>
+            <div class="card-body d-flex flex-row">      
+              <div>            
+
+                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'kg'">{{product.name}}: {{product.price}} €/Kg</h4>
+
+                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'litros'">{{product.name}}: {{product.price}} €/Litro</h4>
+
+                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4> 
+                
+                <h5 class="card-title font-weight-bold mb-2">Promoción disponible: {{tag.description}}</h5>             
+            
+                    
+              </div>      
+            </div>
+
+            <div class="view overlay">
+              <img class="card-img-top rounded-0" :src="product.image" alt="Card image cap">
+            </div>          
+            
+            <div class="container">
+              <br>   
+                <p>{{product.description}}</p>
+            
+                <hr>
+                    
+                <div class="" v-if="token!=null">       
+
+                    <b-nav-form v-if="check_insert">
+
+                        <div class="col-lg-12 mx-auto">       
+                            <h4><font style="color:black;">Promoción registrada con éxito</font></h4>
+                        </div>    
+            
+                    </b-nav-form>
+
+                    <b-nav-form v-if="exists">
+
+                        <div class="col-lg-12 mx-auto">       
+                            <h4><font style="color:black;">Esta promoción ya la tienes registrada</font></h4>                                  
+                        </div>            
+            
+                    </b-nav-form>
+
+                    
+
+                    <div class="form-group">
+                        <div class="col-lg-12" v-if="!exists">
+                            <button class="btn btn btn-secondary btn-block btn-lg" v-if="!check_insert" v-on:click="checkPoint()" >Obtener promoción</button>
                         </div>
-                    </div>
+                    </div> 
+
                 </div>
-            </div>            
-  
-        </b-nav-form>
+            <br>
 
-        <b-nav-form v-if="exists">
-
-            <div class="col-lg-12 mx-auto">       
-                <div class="card rounded shadow shadow-sm">
-                    <div class="card-body">
-                        <div class="text-center">
-                                <h1><font style="color:black;">Esta promoción ya la tienes registrada</font></h1>
-                        </div>
-                    </div>
-                </div>
-            </div>            
-  
-        </b-nav-form>
+            </div>
 
 
-        <b-nav-form @submit.prevent="checkPoint" v-if="!exists">
 
-            <b-button size="lm" class="btn btn-dark" v-if="!check_insert" type="submit">Obtener promoción</b-button>
-            &nbsp;&nbsp;
 
-        </b-nav-form>
-
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,17 +143,20 @@ export default {
             id_user: '',
             exists : false,
             check_insert: false,
+            product: [],
+
         }
     },
     methods: {
 
 
-        getRecipe () 
+        getTag () 
         {
             const path = 'http://127.0.0.1:8000/api/v1.0/tag_nfc/'+this.id+'/'
 
             axios.get(path).then((response) => {
                 this.tag = response.data
+                this.getProduct();
             })
             .catch((error) => {
                 console.log(error)
@@ -166,7 +225,18 @@ export default {
             
         },
 
+        getProduct () 
+        {
+            const path = 'http://127.0.0.1:8000/api/v1.0/product_list/'+this.tag.product+'/'
 
+            axios.get(path).then((response) => {
+                this.product = response.data
+            })
+            .catch((error) => {
+                this.available = false;
+                console.log(error)
+            })
+        },
 
 
 
@@ -176,10 +246,10 @@ export default {
     },
 
     created(){        
-        this.getRecipe();   
+        this.getTag();   
         this.getID();  
-       
-    },
+        
+        },
 
 
   

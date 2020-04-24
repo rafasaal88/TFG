@@ -87,7 +87,7 @@ export default {
         }
     },
     methods: {
-        getPublicity_Campaign () 
+        getProduct_List () 
         {
             const path = 'http://127.0.0.1:8000/api/v1.0/product_list/'+this.id+'/'
 
@@ -124,7 +124,7 @@ export default {
 
     created(){        
 
-        this.getPublicity_Campaign();
+        this.getProduct_List();
         this.getRecipe();      
     },
 
