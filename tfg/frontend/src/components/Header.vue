@@ -68,13 +68,16 @@
 
 
                 <b-nav-item-dropdown left v-if="token!=null">
+
                 <!-- Using 'button-content' slot -->
+
                 <template v-slot:button-content>
                     <span class="mr-3 d-lg-inline" style="color:white"><b-icon icon="person-fill"></b-icon> Hola {{user}}</span>
                 </template>
 
                     <b-dropdown-item href="#">Perfil <b-icon icon="gear-fill"></b-icon></b-dropdown-item>
-                
+                    <b-dropdown-item href="/point">Mis promociones <b-icon icon="award"></b-icon></b-dropdown-item>
+
             
                     <b-dropdown-item @click="$bvModal.show('bv-modal-example')">Cerrar sesión <b-icon icon="power"></b-icon></b-dropdown-item>
 
@@ -85,31 +88,23 @@
         </b-navbar>
 
 
-<div>
+        <div>
 
-  <b-modal id="bv-modal-example" hide-footer>
-    <template v-slot:modal-title>
-      AVISO
-    </template>
-    <div class="d-block text-center">
-      <h3>¿Está seguro que desea cerrar sesión?</h3>
-    </div>
-    <div>
-        <center>
-    <b-button class="btn btn-dark btn-lg" @click="$bvModal.hide('bv-modal-example')">Cancelar</b-button>
-    <b-button class="btn btn-info btn-lg" v-on:click="logout">Aceptar</b-button>
-        </center>
-    </div>
-  </b-modal>
-</div>
-
-
-
-
-
-
-
-
+        <b-modal id="bv-modal-example" hide-footer>
+            <template v-slot:modal-title>
+            AVISO
+            </template>
+            <div class="d-block text-center">
+            <h3>¿Está seguro que desea cerrar sesión?</h3>
+            </div>
+            <div>
+                <center>
+            <b-button class="btn btn-dark btn-lg" @click="$bvModal.hide('bv-modal-example')">Cancelar</b-button>
+            <b-button class="btn btn-info btn-lg" v-on:click="logout">Aceptar</b-button>
+                </center>
+            </div>
+        </b-modal>
+        </div>
 
 
 
