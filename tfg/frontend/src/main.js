@@ -10,12 +10,13 @@ import VueCookie from 'vue-cookie'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+import moment from 'moment'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(VueCookie)
+Vue.prototype.moment = moment
 
 /* eslint-disable no-new */
 new Vue({
