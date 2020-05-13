@@ -27,7 +27,8 @@ class User_ViewSet(viewsets.ModelViewSet):
     permissions_classes = (IsAuthenticated, )
 
 class Publicity_Campaign_ViewSet(viewsets.ModelViewSet):
-    queryset = Publicity_campaign.objects.filter(date_end__gte = today)
+    #queryset = Publicity_campaign.objects.filter(date_end__gte = today)
+    queryset = Publicity_campaign.objects.all()
     serializer_class = Publicity_Campaign_Serializer
     http_method_names = ['get']
 
