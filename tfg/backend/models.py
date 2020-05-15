@@ -108,6 +108,9 @@ class Point(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
     publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
     description = models.CharField(max_length=40, null=True)
+    date = models.DateField(default=now, editable=True)
+    time = models.TimeField(default=now, editable=True)
+
 
 
 

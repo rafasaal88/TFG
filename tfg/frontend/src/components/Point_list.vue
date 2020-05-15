@@ -3,34 +3,58 @@
    
 <br>
 
-    <div class="col-lg-12 mx-auto">
-    <table class="table" >
-    <thead class="thead-dark">
-        <tr>
-        <th scope="col">Producto</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Campaña publicitaria</th>
-        </tr>
-    </thead>
-    <tbody>
+
+    <div class="" v-if="token==null">       
+        <br>
+
+        <div class="col-lg-12 mx-auto">       
+            <div class="card rounded shadow shadow-sm">
+                <div class="card-body">
+                    <div class="text-center">
+                            <h1><font style="color:black;">Debe iniciar sesión para poder acceder a esta sección</font></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-        <tr v-for="item in points" :key="item.id">
-        
 
 
-            <td v-for="item2 in product" :key="item2.id" v-if="item.product == item2.id">{{item2.name}}</td>
-            
-        
-        <td>{{item.description}}</td>
-
-        <td v-for="item3 in publicity_campaign" :key="item3.id" v-if="item.publicity_campaign == item3.id">{{item3.name}}</td>
-        
-        </tr>
 
 
-    </tbody>
-    </table>
+    <div class="col-lg-12 mx-auto" v-if="token!=null">
+        <table class="table" >
+
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Promoción</th>
+                <th scope="col">Campaña publicitaria</th>
+                <th scope="col">Fecha y hora</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr v-for="item in points" :key="item.id">
+                
+                    <td v-for="item2 in product" :key="item2.id" v-if="item.product == item2.id">{{item2.name}}</td>                
+                
+                    <td>{{item.description}}</td>
+
+                    <td v-for="item3 in publicity_campaign" :key="item3.id" v-if="item.publicity_campaign == item3.id">{{item3.name}}</td>
+                
+                    <td>El {{formatDate(item.date)}} a las {{formatTime(item.time)}}</td>  
+
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
     </div>
 
 
@@ -44,7 +68,14 @@
 
 <script>
 
+
+import moment from 'moment'
 import axios from 'axios';
+
+
+
+
+
 
 export default {
     data(){
@@ -54,9 +85,29 @@ export default {
             id_user: '',
             product: [],
             publicity_campaign: [],
+            token: localStorage.getItem('user-token') || null,
+            
         }
+
+        
     },
+
+    
     methods: {
+        formatDate(date){
+            if (date) {
+                return moment(String(date)).format('DD/MM/YYYY')
+            }
+        },
+
+        formatTime(time){
+            if (time) {
+                time = moment.utc(time, "HH:mm:ss").format("HH:mm:ss");
+                return time
+            }
+        },
+
+
         getPoints () 
         {
             const path = 'http://127.0.0.1:8000/api/v1.0/point/'

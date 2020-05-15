@@ -1,7 +1,6 @@
 <template>
   <div class="">
 
-
     <div class="" v-if="token==null">       
         <br>
 
@@ -9,14 +8,14 @@
             <div class="card rounded shadow shadow-sm">
                 <div class="card-body">
                     <div class="text-center">
-                            <h1><font style="color:black;">Debe loguearse para poder registrar la promoción del producto!!</font></h1>
+                            <h1><font style="color:black;">Debe iniciar sesión para poder registrar la promoción del producto!!</font></h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<br>
+    <br>
 
     
 
