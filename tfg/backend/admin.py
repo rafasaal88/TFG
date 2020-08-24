@@ -14,4 +14,3 @@ admin.site.register(Shopping_bag)
 admin.site.register(Register_activity)
 admin.site.register(Point)
 
-# Register your models here.

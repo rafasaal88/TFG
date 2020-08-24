@@ -90,6 +90,15 @@
         </div>
       </div>
     </div>
+{{api_ip}}
+<br>
+latitud: {{latitud}}
+<br>
+longitud: {{longitud}}
+
+                            <button class="btn btn btn-secondary btn-block btn-lg" v-on:click="getPosition()" >Localización</button>
+
+
 
 
 </div>
@@ -115,11 +124,100 @@ export default {
             exists : false,
             check_insert: false,
             product: [],
-
+            api_ip: [],
+            latitud: '',
+            longitud: '',
         }
     },
     methods: {
 
+        getIp(){
+            const path = 'https://freegeoip.app/json/'
+
+
+            axios.get(path).then((response) => {
+                this.api_ip = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
+
+
+        getPosition(){
+            var content = document.getElementById("geolocation-test");
+
+            this.gettingLocation = true;
+            // get position
+            navigator.geolocation.getCurrentPosition(pos => {
+            this.gettingLocation = false;
+
+            this.longitud = pos.coords.longitude;
+            this.latitud = pos.coords.latitude;
+
+
+            }, err => {
+            this.gettingLocation = false;
+            this.errorStr = err.message;
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(function(objPosition)
+                {
+                    var lon = objPosition.coords.longitude;
+                    var lat = objPosition.coords.latitude;
+                        
+                    self.longitud = objPosition.coords.longitude;
+
+                    
+
+
+
+                }, 
+                
+                function(objPositionError)
+                {
+                    switch (objPositionError.code)
+                    {
+                        case objPositionError.PERMISSION_DENIED:
+                            content.innerHTML = "No se ha permitido el acceso a la posición del usuario.";
+                        break;
+                        case objPositionError.POSITION_UNAVAILABLE:
+                            content.innerHTML = "No se ha podido acceder a la información de su posición.";
+                        break;
+                        case objPositionError.TIMEOUT:
+                            content.innerHTML = "El servicio ha tardado demasiado tiempo en responder.";
+                        break;
+                        default:
+                            content.innerHTML = "Error desconocido.";
+                    }
+                }, 
+                {
+                    maximumAge: 75000,
+                    timeout: 15000
+                });
+            }
+            else
+            {
+                content.innerHTML = "Su navegador no soporta la API de geolocalización.";
+            }
+        },
 
         getTag () 
         {
@@ -219,7 +317,8 @@ export default {
     created(){        
         this.getTag();   
         this.getID();  
-        
+        this.getIp();
+        this.getPosition();
         },
 
 

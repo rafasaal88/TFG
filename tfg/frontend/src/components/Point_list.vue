@@ -94,6 +94,9 @@ export default {
 
     
     methods: {
+
+
+
         formatDate(date){
             if (date) {
                 return moment(String(date)).format('DD/MM/YYYY')

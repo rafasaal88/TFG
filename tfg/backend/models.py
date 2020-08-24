@@ -6,18 +6,7 @@ from django.contrib.auth.models import User, AbstractUser
 from django.utils import timezone
 from django.utils.timezone import now
 
-# Create your models here.
 
-"""
-class Company(models.Model):
-    id = models.AutoField(primary_key=True)
-    nif = models.CharField(max_length=10)
-    name = models.CharField(max_length=40)
-    address = models.CharField(max_length=70)
-    phone_number = models.CharField(max_length=12)
-    mail = models.EmailField(max_length=40)
-    web_adress = models.CharField(max_length=50)
-"""
 
 profile_default = 'profile_image/profile_default.png'
 
@@ -128,4 +117,5 @@ class Register_activity(models.Model):
     time = models.TimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     tag_nfc = models.ForeignKey(Tag_nfc, on_delete=models.CASCADE, null=True, default=None)
+
 

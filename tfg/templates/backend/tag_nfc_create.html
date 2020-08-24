@@ -5,15 +5,71 @@
 {% load static %}
 
 
-
 <div class="card text-center">
+
+
+ 
 
     <div class="card-header">
         <center><h2>Añadir nuevo TAG NFC</h2></center>
+        <h1>Haga click para seleccionar la geoposición de la etiqueta NFC</h1>  
+        <div id="map" class="map map-home" style="margin:12px 0 12px 0;height:500px;align-content: center;"></div>
+        
+        <script>
+            var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib, });
+            var map = L.map('map', {scrollWheelZoom: false}).setView([37.88461, -4.77936], 15).addLayer(osm);
+    
+
+            var popup = L.popup();
+            var marker = L.marker([37.88461, -4.77936]).addTo(map);
+
+            function onMapClick(e) {
+            popup
+            .setLatLng(e.latlng) // Sets the geographical point where the popup will open.
+            .openOn(map); // Adds the popup to the map and closes the previous one.
+            var lat = e.latlng.lat.toString();
+            var lng = e.latlng.lng.toString();
+            $('#lat').val(lat);
+            $('#lng').val(lng);
+            
+            if (marker != undefined) {
+              map.removeLayer(marker);
+            };
+
+            marker = L.marker([lat, lng]).addTo(map);
+            marker.bindPopup("Geoposición de la etiqueta NFC").openPopup();
+ 
+
+            }
+
+            map.on('click', onMapClick);
+
+
+            function onDelete(e) {
+            };
+
+
+
+
+
+
+
+            
+
+
+            
+        </script>
     </div>
 
     <div class="card-body text-justify">
         <div class="container">
+
+            Latitud<input type="text" id="lat"></input>
+            Longitud<input type="text" id="lng"></input>
+
+
 
             <center>
 

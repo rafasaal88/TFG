@@ -144,8 +144,3 @@ class Tag_nfc_Form(forms.ModelForm):
             'publicity_campaign': forms.Select(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
         }
-
-
-
-
-

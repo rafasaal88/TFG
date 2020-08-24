@@ -468,7 +468,7 @@ def tag_nfc_create(request):
             return redirect('tag_nfc_list')
     else:
         form = Tag_nfc_Form()
-        return render(request, 'backend/tag_nfc_create.html', {'form':form})
+        return render(request, 'backend/tag_nfc_create.html', {'form':form,})
 
 
 #Listar tags
