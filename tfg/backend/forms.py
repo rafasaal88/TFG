@@ -138,9 +138,13 @@ class Tag_nfc_Form(forms.ModelForm):
             'product',
             'publicity_campaign',
             'description',
+            'latitude',
+            'longitude',
         ]
         widgets = {
             'product': forms.Select(attrs={'class': 'form-control'}),
             'publicity_campaign': forms.Select(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'latitude': forms.TextInput(attrs={'class': 'form-control'}),
+            'longitude': forms.TextInput(attrs={'class': 'form-control'}),
         }

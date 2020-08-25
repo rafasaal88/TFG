@@ -109,6 +109,8 @@ class Tag_nfc(models.Model):
     publicity_campaign = models.ForeignKey(Publicity_campaign, on_delete=models.CASCADE, null=True, default=None)
     description = models.CharField(max_length=40, null=True)
     available = models.BooleanField(null=True, default=True)
+    latitude = models.CharField(max_length=40, null=True)
+    longitude = models.CharField(max_length=40, null=True)
 
  
 class Register_activity(models.Model):
