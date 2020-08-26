@@ -99,8 +99,15 @@ class Point(models.Model):
     description = models.CharField(max_length=40, null=True)
     date = models.DateField(default=now, editable=True)
     time = models.TimeField(default=now, editable=True)
-
-
+    latitude = models.CharField(max_length=40, null=True)
+    longitude = models.CharField(max_length=40, null=True)   
+    
+    """
+    ip_address = models.CharField(max_length=40, null=True)   
+    country_name = models.CharField(max_length=40, null=True)   
+    region_name = models.CharField(max_length=40, null=True)   
+    city = models.CharField(max_length=40, null=True)   
+"""
 
 
 class Tag_nfc(models.Model):
@@ -111,6 +118,8 @@ class Tag_nfc(models.Model):
     available = models.BooleanField(null=True, default=True)
     latitude = models.CharField(max_length=40, null=True)
     longitude = models.CharField(max_length=40, null=True)
+    user = models.CharField(max_length=40, blank=True)
+    date = models.DateTimeField(default=now, editable=True)
 
  
 class Register_activity(models.Model):

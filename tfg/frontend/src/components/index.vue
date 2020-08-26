@@ -115,14 +115,31 @@ export default {
             var date = new Date();
             date = moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
 
-            const path = 'http://127.0.0.1:8000/api/v1.0/publicity_campaign_list/'
-
-            axios.get(path).then((response) => {
+            
+/*
+            axios.get("http://localhost:8000/api/v1.0/publicity_campaign_list/").then((response) => {
                 this.publicity_campaign = response.data.filter(item => item.date_end >= date)
             })
             .catch((error) => {
                 console.log(error)
             })
+*/
+
+            const axiosInstance = axios.create();
+
+            axiosInstance
+            .get("http://localhost:8000/api/v1.0/publicity_campaign_list/")
+            .then(response => {
+                this.publicity_campaign = response.data.filter(item => item.date_end >= date)
+            })
+            .catch(e => console.log(e));
+
+
+
+
+
+
+
         },
     },
 

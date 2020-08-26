@@ -31,7 +31,14 @@ THIRD_PARTY_APPS = ['rest_framework'] # this list shall contain many more of tho
 CORS_ORIRIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [ 
-'http://localhost:8080'
+'http://localhost:8080',
+'http://192.168.1.6'
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.1.6:8080",
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
 ]
 
 REST_FRAMEWORK = {  

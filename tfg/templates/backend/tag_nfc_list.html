@@ -40,6 +40,13 @@
                       <td>{{item.description}}</td>                               
                       <td>
 
+                        <a href="/backend/tag_nfc/{{item.id}}" class="btn btn-primary btn-icon-split">
+                          <span class="icon">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                          </span>
+                          <span class="text">Ver</span>
+                        </a>
+
                         <a href="/backend/tag_nfc_edit/{{item.id}}" class="btn btn-warning btn-icon-split">
                           <span class="icon">
                             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
@@ -120,7 +127,10 @@
                       <td>{{item.publicity_campaign.name}}</td>  
                       <td>{{item.description}}</td>                                                
                       <td>               
-  
+                        <a href="/backend/tag_nfc/{{item.id}}" class="btn btn-primary btn-icon-split">
+                          <span class="text"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        </a>     
+
                         <a href="/backend/tag_nfc_edit/{{item.id}}" class="btn btn-warning btn-icon-split">
                           <span class="text"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
                         </a>

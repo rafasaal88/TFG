@@ -1,0 +1,89 @@
+{% extends 'backend/base.html' %}
+
+{% block contenido %}
+
+{% load static %}
+
+<div class="container">
+  <div class="row">        
+    <div class="col-lg-10">
+      <div class="card shadow mb-3" >
+
+
+
+
+
+
+        <div class="card-body d-flex flex-row">      
+          <div>      
+            {% if tag_nfc.available == False %}
+            <h4>TAG NFC DESHABILITADO</h4>
+            {% endif %}
+
+            <h4 class="card-title font-weight-bold mb-2">Producto en promoción: {{tag_nfc.product.name}}</h4>
+            <p class="card-text"><i class="far fa-clock pr-2"></i>Última actualización realizada por: {{tag_nfc.user}} el {{tag_nfc.date}}<br>
+            <p class="card-text"><i class="fa fa-shopping-cart pr-2"></i>Campaña publicitaria a la que pertenece: {{tag_nfc.publicity_campaign.name}}<br>
+
+              {% if tag_nfc.product.unit == 'kg' %}
+
+              <i class="fas fa-money-bill pr-2" aria-hidden="true"></i>Precio: {{tag_nfc.product.price}} €/Kg<br>
+
+              {% endif %}
+
+              {% if tag_nfc.product.unit == 'litros' %}
+
+              <i class="fas fa-money-bill pr-2" aria-hidden="true"></i>Precio: {{tag_nfc.product.price}} €/Litro<br>
+
+              {% endif %}
+
+              {% if tag_nfc.product.unit == 'unidad' %}
+
+              <i class="fas fa-money-bill pr-2" aria-hidden="true"></i>Precio: {{tag_nfc.product.price}} €/Unidad<br>
+
+              {% endif %}
+
+              </p>   
+              <p class="card-text"><i class="fa fa-map-marker pr-2"></i>Geoposición de la etiqueta NFC<br>
+         
+          </div>      
+        </div>
+
+        <div class="view overlay">
+
+          <div id="map" class="map map-home" style="height:500px; width: auto;"></div>
+
+        
+
+        </div>          
+        
+        <div class="container portfolio">
+          <br>
+          <h4 class="card-title font-weight-bold mb-2">Descripción:</h4>           
+            <p>{{tag_nfc.description|linebreaks}}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  osm = L.tileLayer(osmUrl, {maxZoom: 18 });
+  var map = L.map('map', {scrollWheelZoom: false}).setView(['{{tag_nfc.latitude}}','{{tag_nfc.longitude}}'], 15).addLayer(osm);
+
+
+  var popup = L.popup();
+  var marker = L.marker(['{{tag_nfc.latitude}}','{{tag_nfc.longitude}}']).addTo(map);
+
+
+
+
+
+
+  
+</script>
+
+{% endblock %}

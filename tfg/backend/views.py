@@ -464,11 +464,19 @@ def tag_nfc_create(request):
     if request.method == 'POST':
         form = Tag_nfc_Form(request.POST)
         if form.is_valid():
+            form.instance.user = request.user.username
             form.save()
             return redirect('tag_nfc_list')
     else:
         form = Tag_nfc_Form()
         return render(request, 'backend/tag_nfc_create.html', {'form':form,})
+
+#Ver tag
+@login_required(login_url='user_login')
+def tag_nfc(request, id):
+    tag_nfc = Tag_nfc.objects.get(id = id)
+    return render(request, 'backend/tag_nfc.html', {'tag_nfc':tag_nfc})
+
 
 
 #Listar tags
@@ -512,6 +520,8 @@ def tag_nfc_edit(request, id):
     else:
         form = Tag_nfc_Form(request.POST, instance = tag_nfc)
         if form.is_valid():
+            form.instance.user = request.user.username
+            form.instance.date = datetime.now()
             form.save()
         return redirect ('tag_nfc_list')
     return render(request, 'backend/tag_nfc_edit.html', {'form':form, 'tag_nfc':tag_nfc})
