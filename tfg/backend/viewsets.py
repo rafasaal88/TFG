@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions
-from .models import Product, Publicity_campaign, User, Product, Recipe, Tag_nfc, Point
-from .serializer import ProductSerializer, Publicity_Campaign_Serializer, User_Serializer, Recipe_Serializer, Tag_nfc_Serializer, Point_Serializer
+from .models import *
+from .serializer import *
 from django.utils import timezone
 from django.utils.timezone import datetime #important if using timezones
 
@@ -42,6 +42,8 @@ class Point_ViewSet(viewsets.ModelViewSet):
     #permission_classes = (UserPermission,)
     serializer_class = Point_Serializer
     
-
+class Register_activity_ViewSet(viewsets.ModelViewSet):
+    queryset = Register_activity.objects.all().order_by('id').reverse()
+    serializer_class = Register_activity_Serializer
 
 

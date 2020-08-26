@@ -2,7 +2,6 @@
     <div class="">
 
 
-
         <b-navbar toggleable="lg" type="dark" variant="dark">
             <b-navbar-brand href="/">Inicio</b-navbar-brand>
 
@@ -127,6 +126,9 @@ export default {
             password: '',
             token: localStorage.getItem('user-token') || null,
             user: localStorage.getItem('user-name') || null,
+            api_ip: [],
+            id_user: '',
+            activity: '',
         }
     },
     
@@ -144,7 +146,9 @@ export default {
                 localStorage.setItem('user-token', resp.data.access)
                 localStorage.setItem('user-name', this.username)
                 this.$cookie.set('user-token', resp.data.access, {expires: 1, domain: 'localhost'});
-                location.reload();
+                this.activity = "Inicio de sesión";
+                this.getID();
+                this.create_register_activity();
             })
             .catch(err => {
                 localStorage.removeItem('user-token')
@@ -154,19 +158,81 @@ export default {
         },
 
         logout() {
+            this.activity = "Cierre de sesión";
+            this.create_register_activity();
             this.$cookie.delete('user-token', {domain: 'localhost'});
             localStorage.removeItem('user-token');
             localStorage.removeItem('user-name');
             this.token = null;
-            location.reload();
         },
+
         register() {
             console.log('Router')
-        }
+        },
+
+
+
+        getIp(){
+            const path = 'https://freegeoip.app/json/'
+
+
+            axios.get(path).then((response) => {
+                this.api_ip = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
+
+        getID()
+        {
+           const path = 'http://127.0.0.1:8000/api/v1.0/user/'
+
+            axios.get(path).then((response) => {
+                var userFound = response.data.find( item => item.username == this.user );
+                this.id_user = userFound.id;
+
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+           
+        },
+
+        create_register_activity() {
+
+        setTimeout(() => {
+                axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                ip_address: this.api_ip.ip,
+                country_name: this.api_ip.country_name,
+                region_name: this.api_ip.region_name,
+                city: this.api_ip.city,
+                activity: this.activity,
+                user: this.id_user,
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        location.reload();
+
+        }, 1000);
+
+
+
+        },  
+
+
+
+
+    },
+
+    created(){        
+        this.getIp();   
+        this.getID();
 
 
     }
-
 
 }
 </script>

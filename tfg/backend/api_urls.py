@@ -14,7 +14,7 @@ from backend import views
 from django.contrib import admin
 from django.urls import path, include
 
-from .viewsets import Product_ViewSet, Publicity_Campaign_ViewSet, User_ViewSet, Recipe_ViewSet, Tag_nfc_ViewSet, Point_ViewSet
+from .viewsets import *
 
 router = routers.DefaultRouter()
 
@@ -24,6 +24,7 @@ router.register('publicity_campaign_list', Publicity_Campaign_ViewSet)
 router.register('user', User_ViewSet)
 router.register('tag_nfc', Tag_nfc_ViewSet)
 router.register('point', Point_ViewSet)
+router.register('register_activity', Register_activity_ViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

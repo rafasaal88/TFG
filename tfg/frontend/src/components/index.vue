@@ -1,6 +1,8 @@
 <template>
   <div class="">
   <br>
+
+
   <!--Desktop version-->
     <div class="d-none d-sm-none d-md-block" >
         <div class="col-lg-12 mx-auto">       
@@ -92,6 +94,7 @@
 </div>
 
 
+
           
       
   </div>
@@ -106,8 +109,15 @@ export default {
     data(){
         return {
             publicity_campaign: [],
+            id_user: '',
+            user: localStorage.getItem('user-name') || null,
+            api_ip: [],
+
+
+
         }
     },
+
     methods: {
         getPublicity_Campaign () 
         {
@@ -115,7 +125,6 @@ export default {
             var date = new Date();
             date = moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
 
-            
 /*
             axios.get("http://localhost:8000/api/v1.0/publicity_campaign_list/").then((response) => {
                 this.publicity_campaign = response.data.filter(item => item.date_end >= date)
@@ -141,13 +150,61 @@ export default {
 
 
         },
+
+        getID()
+        {
+           const path = 'http://127.0.0.1:8000/api/v1.0/user/'
+
+            axios.get(path).then((response) => {
+                var userFound = response.data.find( item => item.username == this.user );
+                this.id_user = userFound.id;
+
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+           
+        },
+        
+        getIp(){
+            const path = 'https://freegeoip.app/json/'
+
+
+            axios.get(path).then((response) => {
+                this.api_ip = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
+
+        create_register_activity() {
+
+        setTimeout(() => {
+                axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                ip_address: this.api_ip.ip,
+                country_name: this.api_ip.country_name,
+                region_name: this.api_ip.region_name,
+                city: this.api_ip.city,
+                activity: "Visita página INDEX",
+                user: this.id_user,
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        }, 1000);
+        },
     },
 
 
 
     created(){        
-     
+        this.getIp()
         this.getPublicity_Campaign()
+        this.getID()
+        this.create_register_activity()
     }
 
 }

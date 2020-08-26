@@ -127,6 +127,10 @@ class Register_activity(models.Model):
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
-    tag_nfc = models.ForeignKey(Tag_nfc, on_delete=models.CASCADE, null=True, default=None)
+    ip_address = models.CharField(max_length=40, null=True)   
+    country_name = models.CharField(max_length=40, null=True)   
+    region_name = models.CharField(max_length=40, null=True)   
+    city = models.CharField(max_length=40, null=True)
+    activity = models.CharField(max_length=40, null=True)
 
 

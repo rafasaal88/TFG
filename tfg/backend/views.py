@@ -17,7 +17,7 @@ from datetime import datetime
 from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Recipe_Form, Tag_nfc_Form 
 
 
-from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe, Tag_nfc
+from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe, Tag_nfc, Register_activity
 
 
 #Mostrar error 404
@@ -482,7 +482,7 @@ def tag_nfc(request, id):
 #Listar tags
 @login_required(login_url='user_login')
 def tag_nfc_list(request):
-    tag_nfc = Tag_nfc.objects.all().order_by('id').reverse()
+    tag_nfc = Tag_nfc.objects.all() 
     return render(request, 'backend/tag_nfc_list.html', {'tag_nfc':tag_nfc})
 
 
@@ -525,3 +525,12 @@ def tag_nfc_edit(request, id):
             form.save()
         return redirect ('tag_nfc_list')
     return render(request, 'backend/tag_nfc_edit.html', {'form':form, 'tag_nfc':tag_nfc})
+
+
+
+
+#Ver tag
+@login_required(login_url='user_login')
+def register_activity_list(request):
+    register_activity = Register_activity.objects.all().order_by('id').reverse()
+    return render(request, 'backend/register_activity_list.html', {'register_activity':register_activity})

@@ -1,5 +1,5 @@
 from rest_framework import serializers, permissions
-from .models import Product, Publicity_campaign, User, Recipe, Tag_nfc, Point
+from .models import *
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
 
@@ -50,3 +50,7 @@ class Point_Serializer(serializers.ModelSerializer):
         model = Point
         fields = ('__all__')
 
+class Register_activity_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Register_activity
+        fields = ('__all__')

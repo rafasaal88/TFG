@@ -92,11 +92,7 @@
     </div>
 
 
-                            
-
-{{tag.latitude}}
-{{tag.longitude}}
-
+                       
 </div>
 
 
