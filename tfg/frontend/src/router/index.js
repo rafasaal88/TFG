@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
-
+import prueba from '@/components/prueba'
 import index from '@/components/index'
 import Recipe from '@/components/Recipe'
 import Recipe_list from '@/components/Recipe_list'

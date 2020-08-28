@@ -1,96 +1,140 @@
 <template>
   <div class="">
 
-    <div class="" v-if="token==null">       
-        <br>
+    <div v-if="tag.available==false">
 
-        <div class="col-lg-12 mx-auto">       
-            <div class="card rounded shadow shadow-sm">
-                <div class="card-body">
-                    <div class="text-center">
-                            <h1><font style="color:black;">Debe iniciar sesión para poder registrar la promoción del producto!!</font></h1>
+        <div class="" >       
+            <br>
+
+            <div class="col-lg-12 mx-auto">       
+                <div class="card rounded shadow shadow-sm">
+                    <div class="card-body">
+                        <div class="text-center">
+                                <h4><font style="color:black;">Tag NFC desactivado</font></h4>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
     </div>
 
-    <br>
+        <div v-if="product.available==false">
 
-    
+            <div class="" >       
+                <br>
 
-
-
-
-    <div class="container" v-if="product.available">
-      <div class="row">        
-        <div class="col-lg-8">
-          <div class="card shadow mb-3" >
-
-            <div class="card-body d-flex flex-row">      
-              <div>            
-
-                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'kg'">{{product.name}}: {{product.price}} €/Kg</h4>
-
-                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'litros'">{{product.name}}: {{product.price}} €/Litro</h4>
-
-                <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4> 
-                
-                <h5 class="card-title font-weight-bold mb-2">Promoción disponible: {{tag.description}}</h5>             
-            
-                    
-              </div>      
+                <div class="col-lg-12 mx-auto">       
+                    <div class="card rounded shadow shadow-sm">
+                        <div class="card-body">
+                            <div class="text-center">
+                                    <h4><font style="color:black;">Producto no disponible</font></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="view overlay">
-              <img class="card-img-top rounded-0" :src="product.image" alt="Card image cap">
-            </div>          
-            
-            <div class="container">
-              <br>   
-                <p>{{product.description}}</p>
-            
-                <hr>
-                    
-                <div class="" v-if="token!=null">       
+        </div>
 
-                    <b-nav-form v-if="check_insert">
+    <div v-else>  
 
-                        <div class="col-lg-12 mx-auto">       
-                            <h4><font style="color:black;">Promoción registrada con éxito</font></h4>
-                        </div>    
-            
-                    </b-nav-form>
 
-                    <b-nav-form v-if="exists">
 
-                        <div class="col-lg-12 mx-auto">       
-                            <h4><font style="color:black;">Esta promoción ya la tienes registrada</font></h4>                                  
-                        </div>            
-            
-                    </b-nav-form>
 
-                    
 
-                    <div class="form-group">
-                        <div class="col-lg-12" v-if="!exists">
-                            <button class="btn btn btn-secondary btn-block btn-lg" v-if="!check_insert" v-on:click="checkPoint()" >Obtener promoción</button>
-                        </div>
-                    </div> 
-
-                </div>
+        <div class="" v-if="token==null && product.available">       
             <br>
 
+            <div class="col-lg-12 mx-auto">       
+                <div class="card rounded shadow shadow-sm">
+                    <div class="card-body">
+                        <div class="text-center">
+                                <h4><font style="color:black;">Debe iniciar sesión para poder registrar la promoción del producto!!</font></h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-
-          </div>
         </div>
-      </div>
-    </div>
+        <br>
 
+      
+
+
+
+
+        <div class="container" v-if="product.available">
+        <div class="row">        
+            <div class="col-lg-8">
+            <div class="card shadow mb-3" >
+
+                <div class="card-body d-flex flex-row">      
+                <div>            
+
+                    <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'kg'">{{product.name}}: {{product.price}} €/Kg</h4>
+
+                    <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'litros'">{{product.name}}: {{product.price}} €/Litro</h4>
+
+                    <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4> 
+                    
+                    <h5 class="card-title font-weight-bold mb-2">Promoción disponible: {{tag.description}}</h5>             
+                
+                        
+                </div>      
+                </div>
+
+                <div class="view overlay">
+                <img class="card-img-top rounded-0" :src="product.image" alt="Card image cap">
+                </div>          
+                
+                <div class="container">
+                <br>   
+                    <p>{{product.description}}</p>
+                
+                    <hr>
+                        
+                    <div class="" v-if="token!=null">       
+
+                        <b-nav-form v-if="check_insert">
+
+                            <div class="col-lg-12 mx-auto">       
+                                <h4><font style="color:black;">Promoción registrada con éxito</font></h4>
+                            </div>    
+                
+                        </b-nav-form>
+
+                        <b-nav-form v-if="exists">
+
+                            <div class="col-lg-12 mx-auto">       
+                                <h4><font style="color:black;">Esta promoción ya la tienes registrada</font></h4>                                  
+                            </div>            
+                
+                        </b-nav-form>
+
+                        
+
+                        <div class="form-group">
+                            <div class="col-lg-12" v-if="!exists">
+                                <button class="btn btn btn-secondary btn-block btn-lg" v-if="!check_insert" v-on:click="checkPoint()" >Obtener promoción</button>
+                            </div>
+                        </div> 
+
+                    </div>
+                <br>
+
+                </div>
+
+
+
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
                        
 </div>

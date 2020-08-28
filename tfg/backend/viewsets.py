@@ -11,7 +11,7 @@ today = datetime.today()
 
 
 class Product_ViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.filter(available = True)
+    queryset = Product.objects.all()
     serializer_class = ProductSerializer
     http_method_names = ['get']
 
@@ -33,12 +33,12 @@ class Publicity_Campaign_ViewSet(viewsets.ModelViewSet):
     http_method_names = ['get']
 
 class Tag_nfc_ViewSet(viewsets.ModelViewSet):
-    queryset = Tag_nfc.objects.filter(available = True)
+    queryset = Tag_nfc.objects.all()
     serializer_class = Tag_nfc_Serializer
     http_method_names = ['get']
 
 class Point_ViewSet(viewsets.ModelViewSet):
-    queryset = Point.objects.all()
+    queryset = Point.objects.all().order_by('id').reverse()
     #permission_classes = (UserPermission,)
     serializer_class = Point_Serializer
     

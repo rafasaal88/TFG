@@ -11,6 +11,7 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from 'moment'
+import axios from 'axios';
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
@@ -25,3 +26,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+

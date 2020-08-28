@@ -101,13 +101,7 @@ class Point(models.Model):
     time = models.TimeField(default=now, editable=True)
     latitude = models.CharField(max_length=40, null=True)
     longitude = models.CharField(max_length=40, null=True)   
-    
-    """
-    ip_address = models.CharField(max_length=40, null=True)   
-    country_name = models.CharField(max_length=40, null=True)   
-    region_name = models.CharField(max_length=40, null=True)   
-    city = models.CharField(max_length=40, null=True)   
-"""
+   
 
 
 class Tag_nfc(models.Model):
@@ -132,5 +126,15 @@ class Register_activity(models.Model):
     region_name = models.CharField(max_length=40, null=True)   
     city = models.CharField(max_length=40, null=True)
     activity = models.CharField(max_length=40, null=True)
-
-
+    activity_name = models.CharField(max_length=40, null=True)
+    """visita producto"""    
+    product_name = models.TextField(blank=True, null=True)
+    product_price = models.FloatField(max_length=10, null=True)
+    """visita campaña"""
+    publicity_campaign_name = models.CharField(max_length=40, null=True)
+    publicity_campaign_date_start = models.DateField(max_length=10, null=True)
+    publicity_campaign_date_end = models.DateField(max_length=10, null=True)
+    publicity_campaign_description = models.TextField(null=True)
+    """recetas"""
+    recipe_name = models.CharField(max_length=40, null=True)
+ 

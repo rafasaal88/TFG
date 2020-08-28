@@ -114,6 +114,13 @@
 <script>
 
 import axios from 'axios';
+import Vue from 'vue'
+
+export var globalStore = new Vue({
+  data: {
+    globalvar: 'global hello world'
+  }
+})
 
 export default {
     name: "Header",
@@ -129,6 +136,7 @@ export default {
             api_ip: [],
             id_user: '',
             activity: '',
+            activity_name: '',
         }
     },
     
@@ -146,7 +154,8 @@ export default {
                 localStorage.setItem('user-token', resp.data.access)
                 localStorage.setItem('user-name', this.username)
                 this.$cookie.set('user-token', resp.data.access, {expires: 1, domain: 'localhost'});
-                this.activity = "Inicio de sesión";
+                this.activity = "Sesión";
+                this.activity_name = "Inicio";
                 this.getID();
                 this.create_register_activity();
             })
@@ -158,7 +167,8 @@ export default {
         },
 
         logout() {
-            this.activity = "Cierre de sesión";
+            this.activity = "Sesión";
+            this.activity_name = "Cierre";
             this.create_register_activity();
             this.$cookie.delete('user-token', {domain: 'localhost'});
             localStorage.removeItem('user-token');
@@ -201,7 +211,8 @@ export default {
         },
 
         create_register_activity() {
-
+        this.getIp();   
+        this.getID();
         setTimeout(() => {
                 axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
                 ip_address: this.api_ip.ip,
@@ -210,6 +221,7 @@ export default {
                 city: this.api_ip.city,
                 activity: this.activity,
                 user: this.id_user,
+                activity_name: this.activity_name,
             })
             .catch(err => {
                 console.log(err)
@@ -228,8 +240,7 @@ export default {
     },
 
     created(){        
-        this.getIp();   
-        this.getID();
+
 
 
     }

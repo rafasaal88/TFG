@@ -78,6 +78,9 @@ export default {
     data(){
         return {
             recipe: [],
+            id_user: '',
+            user: localStorage.getItem('user-name') || null,
+            api_ip: [],
         }
     },
     methods: {
@@ -91,12 +94,60 @@ export default {
             .catch((error) => {
                 console.log(error)
             })
-        }
+        },
+        getID()
+        {
+           const path = 'http://127.0.0.1:8000/api/v1.0/user/'
+
+            axios.get(path).then((response) => {
+                var userFound = response.data.find( item => item.username == this.user );
+                this.id_user = userFound.id;
+
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+           
+        },
+        
+        getIp(){
+            const path = 'https://freegeoip.app/json/'
+
+
+            axios.get(path).then((response) => {
+                this.api_ip = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
+
+        create_register_activity() {
+        setTimeout(() => {
+                axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                ip_address: this.api_ip.ip,
+                country_name: this.api_ip.country_name,
+                region_name: this.api_ip.region_name,
+                city: this.api_ip.city,
+                activity: "Visita sección",
+                activity_name: "Lista de recetas",
+                user: this.id_user,
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        }, 1000);
+        },
     },
 
     created(){        
 
         this.getRecipe()
+        this.getIp()
+        this.getID()
+        this.create_register_activity()
     }
 
 }

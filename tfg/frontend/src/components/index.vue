@@ -92,9 +92,6 @@
     </div>
   </div>
 </div>
-
-
-
           
       
   </div>
@@ -106,17 +103,18 @@ import axios from 'axios';
 import moment from 'moment';
 
 export default {
+
     data(){
         return {
             publicity_campaign: [],
             id_user: '',
             user: localStorage.getItem('user-name') || null,
             api_ip: [],
-
-
-
         }
     },
+
+
+
 
     methods: {
         getPublicity_Campaign () 
@@ -125,30 +123,15 @@ export default {
             var date = new Date();
             date = moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
 
-/*
-            axios.get("http://localhost:8000/api/v1.0/publicity_campaign_list/").then((response) => {
-                this.publicity_campaign = response.data.filter(item => item.date_end >= date)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-*/
 
             const axiosInstance = axios.create();
 
             axiosInstance
-            .get("http://localhost:8000/api/v1.0/publicity_campaign_list/")
+            .get("http://127.0.0.1:8000/api/v1.0/publicity_campaign_list/")
             .then(response => {
                 this.publicity_campaign = response.data.filter(item => item.date_end >= date)
             })
             .catch(e => console.log(e));
-
-
-
-
-
-
-
         },
 
         getID()
@@ -180,21 +163,21 @@ export default {
         },
 
         create_register_activity() {
-
         setTimeout(() => {
                 axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
                 ip_address: this.api_ip.ip,
                 country_name: this.api_ip.country_name,
                 region_name: this.api_ip.region_name,
                 city: this.api_ip.city,
-                activity: "Visita página INDEX",
+                activity: "Visita sección",
+                activity_name: "INDEX",
                 user: this.id_user,
             })
             .catch(err => {
                 console.log(err)
             })
 
-        }, 1000);
+        }, 2000);
         },
     },
 
