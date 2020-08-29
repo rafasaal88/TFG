@@ -137,4 +137,10 @@ class Register_activity(models.Model):
     publicity_campaign_description = models.TextField(null=True)
     """recetas"""
     recipe_name = models.CharField(max_length=40, null=True)
- 
+    """TAG_NFC"""
+    tag_id = models.CharField(max_length=40, null=True)
+    tag_nfc_product = models.CharField(max_length=40, null=True)
+    tag_nfc_description = models.CharField(max_length=40, null=True)
+    tag_nfc_status = models.CharField(max_length=40, null=True)
+    tag_nfc_latitude = models.CharField(max_length=40, null=True)
+    tag_nfc_longitude = models.CharField(max_length=40, null=True)

@@ -22,7 +22,7 @@
 
     </div>
 
-        <div v-if="product.available==false">
+        <div v-if="product.available==false && tag.available==true">
 
             <div class="" >       
                 <br>
@@ -40,7 +40,7 @@
 
         </div>
 
-    <div v-else>  
+    <div v-if="tag.available==true">  
 
 
 
@@ -66,7 +66,7 @@
 
 
 
-        <div class="container" v-if="product.available">
+        <div class="container" v-if="product.available==true">
         <div class="row">        
             <div class="col-lg-8">
             <div class="card shadow mb-3" >
@@ -136,7 +136,6 @@
         </div>
     </div>
 
-                       
 </div>
 
 
@@ -163,10 +162,15 @@ export default {
            // api_ip: [],
             latitud: '',
             longitud: '',
+            api_ip: [],
+            activity: "Visita sección",
+            activity_name: "TAG NFC",
+
         }
+        
     },
     methods: {
-        /*
+
         getIp(){
             const path = 'https://freegeoip.app/json/'
 
@@ -177,8 +181,7 @@ export default {
             .catch((error) => {
                 console.log(error)
             })
-        },*/
-
+        },
 
 
 
@@ -244,10 +247,12 @@ export default {
                     console.log ("No hemos encontrado nada");
                     this.create_point();
                     this.check_insert = true;
+                    this.create_register_activity_point_accept();
                 }
                 else
                 {
                     this.exists = true;
+                    this.create_register_activity_point_denied(); 
                 }
                 
 
@@ -257,7 +262,80 @@ export default {
             })
 
             
+            
         },
+        create_register_activity_point_accept() {
+        
+            
+        
+
+        setTimeout(() => {
+
+                axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                    ip_address: this.api_ip.ip,
+                    country_name: this.api_ip.country_name,
+                    region_name: this.api_ip.region_name,
+                    city: this.api_ip.city,
+                    activity: this.activity,
+                    activity_name: this.activity_name,
+                    user: this.id_user,
+                    activity: "Registro",
+                    activity_name: "Promocion",
+                    tag_id: this.tag.id,
+                    tag_nfc_status: "Correcto",
+                    tag_nfc_description: this.tag.description,
+                    tag_nfc_latitude: this.tag.latitude,
+                    tag_nfc_longitude: this.tag.longitude,
+                    tag_nfc_product: this.product.name,
+                    
+                        })
+                    .catch(err => {
+                    console.log(err)
+                    })
+                           
+    
+
+
+        }, 4000);
+        },
+
+        create_register_activity_point_denied() {
+        
+            
+        
+
+        setTimeout(() => {
+
+                axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                    ip_address: this.api_ip.ip,
+                    country_name: this.api_ip.country_name,
+                    region_name: this.api_ip.region_name,
+                    city: this.api_ip.city,
+                    activity: this.activity,
+                    activity_name: this.activity_name,
+                    user: this.id_user,
+                    activity: "Registro",
+                    activity_name: "Promocion",
+                    tag_id: this.tag.id,
+                    tag_nfc_status: "Denegado. Promoción ya registrada",
+                    tag_nfc_description: this.tag.description,
+                    tag_nfc_latitude: this.tag.latitude,
+                    tag_nfc_longitude: this.tag.longitude,
+                    tag_nfc_product: this.product.name,
+                    
+                        })
+                    .catch(err => {
+                    console.log(err)
+                    })
+                           
+    
+
+
+        }, 4000);
+        },
+
+
+
 
         getProduct () 
         {
@@ -270,20 +348,124 @@ export default {
                 this.available = false;
                 console.log(error)
             })
+
+
+            
+
+
         },
 
+        create_register_activity() {
+        
+        
+
+        setTimeout(() => {
+                if (this.tag.available == true & this.product.available == true)
+                {
+                    axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                    ip_address: this.api_ip.ip,
+                    country_name: this.api_ip.country_name,
+                    region_name: this.api_ip.region_name,
+                    city: this.api_ip.city,
+                    activity: this.activity,
+                    activity_name: this.activity_name,
+                    user: this.id_user,
+                    tag_id: this.tag.id,
+                    tag_nfc_status: "correcto",
+                    tag_nfc_description: this.tag.description,
+                    tag_nfc_latitude: this.tag.latitude,
+                    tag_nfc_longitude: this.tag.longitude,
+                    tag_nfc_product: this.product.name,
+                    
+                        })
+                    .catch(err => {
+                    console.log(err)
+                    })
+                }
+                
+                
+    
+
+                if (this.tag.available == false & this.product.available == true)
+                {
+                    axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                    ip_address: this.api_ip.ip,
+                    country_name: this.api_ip.country_name,
+                    region_name: this.api_ip.region_name,
+                    city: this.api_ip.city,
+                    activity: this.activity,
+                    activity_name: this.activity_name,
+                    user: this.id_user,
+                    tag_id: this.tag.id,
+                    tag_nfc_status: "tag desactivado",
+                    tag_nfc_description: this.tag.description,
+                    tag_nfc_latitude: this.tag.latitude,
+                    tag_nfc_longitude: this.tag.longitude,
+                    tag_nfc_product: this.product.name,
+                    
+                        })
+                    .catch(err => {
+                    console.log(err)
+                    })
+                }
+
+                if (this.tag.available == true & this.product.available == false)
+                {
+                    axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                    ip_address: this.api_ip.ip,
+                    country_name: this.api_ip.country_name,
+                    region_name: this.api_ip.region_name,
+                    city: this.api_ip.city,
+                    activity: this.activity,
+                    activity_name: this.activity_name,
+                    user: this.id_user,
+                    tag_id: this.tag.id,
+                    tag_nfc_status: "producto desactivado",
+                    tag_nfc_description: this.tag.description,
+                    tag_nfc_latitude: this.tag.latitude,
+                    tag_nfc_longitude: this.tag.longitude,
+                    tag_nfc_product: this.product.name,
+                    
+                        })
+                    .catch(err => {
+                    console.log(err)
+                    })
+                }
+
+                if (this.tag.available == false & this.product.available == false)
+                {
+                    axios.post('http://127.0.0.1:8000/api/v1.0/register_activity/', {
+                    ip_address: this.api_ip.ip,
+                    country_name: this.api_ip.country_name,
+                    region_name: this.api_ip.region_name,
+                    city: this.api_ip.city,
+                    activity: this.activity,
+                    activity_name: this.activity_name,
+                    user: this.id_user,
+                    tag_id: this.tag.id,
+                    tag_nfc_status: "producto y tag desactivado",
+                    tag_nfc_description: this.tag.description,
+                    tag_nfc_latitude: this.tag.latitude,
+                    tag_nfc_longitude: this.tag.longitude,
+                    tag_nfc_product: this.product.name,
+                    
+                        })
+                    .catch(err => {
+                    console.log(err)
+                    })
+                }
 
 
-
-
+        }, 4000);
+        },
 
     },
 
     created(){        
         this.getTag();   
         this.getID();  
-       // this.getIp();
-
+        this.getIp();
+        this.create_register_activity();
         },
 
 

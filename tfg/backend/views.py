@@ -17,7 +17,7 @@ from datetime import datetime
 from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, User_Profile_Form, User_Profile_Create, Product_Form, Product_Form_Edit, Recipe_Form, Tag_nfc_Form 
 
 
-from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe, Tag_nfc, Register_activity
+from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe, Tag_nfc, Register_activity, Point
 
 
 #Mostrar error 404
@@ -41,7 +41,9 @@ def index(request):
     products = Product.objects.count()
     recipes = Recipe.objects.count()
     tags = Tag_nfc.objects.count()
-    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags})
+    point = Point.objects.count()
+    tags_touch = Register_activity.objects.filter(activity_name='TAG NFC').count()
+    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
 
 
 #Loguear usuario
