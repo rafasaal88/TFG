@@ -528,6 +528,9 @@ def tag_nfc_edit(request, id):
         return redirect ('tag_nfc_list')
     return render(request, 'backend/tag_nfc_edit.html', {'form':form, 'tag_nfc':tag_nfc})
 
+from django.shortcuts import render
+from django.template import RequestContext
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 
 
@@ -535,4 +538,13 @@ def tag_nfc_edit(request, id):
 @login_required(login_url='user_login')
 def register_activity_list(request):
     register_activity = Register_activity.objects.all().order_by('id').reverse()
+    paginator = Paginator(register_activity, 10)
+	
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages)
     return render(request, 'backend/register_activity_list.html', {'register_activity':register_activity})

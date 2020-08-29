@@ -2,11 +2,9 @@
 
 {% block contenido %}
 
-<!--Table desktop-->
 
 
 
-<div class="d-none d-sm-none d-md-block">  
   <div class="container-fluid">  
     <div class="card shadow mb-4">
 
@@ -78,75 +76,56 @@
           </table>
 
         </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-<!--Table mobile-->
-
-<div class="d-block d-sm-block d-md-none">  
-  <div class="container-fluid">  
-    <div class="card shadow mb-4">
       
-      <div class="card-header py-3">
+
+      <div class="card-header text-right py-3">
         
-        <h6 class="m-0 font-weight-bold text-primary">Campañas de publicidad</h6>
-      
-      </div>
-      
-      <div class="card-body">        
-        <div class="table-responsive">
-          
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            
-            <thead>
-              <tr>
-                <th colspan="2">Nombre</th>                
-              </tr>
-            </thead>
-            
-            <tbody>
-                {% for campaign in campaign %}
-              <tr>             
-                <td>{{campaign.name}}</td>
 
-                <td>
+        {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
+    
+        <div class="col s12 m5">
+          <div class="card-panel blue lighten-5">
+         
+            {% if register_activity.has_previous %}
+  
+            <a href="?page={{ register_activity.previous_page_number }}" class="btn btn-primary btn-icon-split">
+              <span class="icon">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+              </span>
+            </a>
+  
+  
+    
+            {% endif %}        
+         
+            {% if register_activity.has_next %}
+  
+          <a href="?page={{ register_activity.next_page_number }}" class="btn btn-primary btn-icon-split">
+            <span class="icon">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </span>
+          </a>
+       
+          {% endif %}
+          <span align="right">Página {{ register_activity.number }} de {{ register_activity.paginator.num_pages }}
 
-                  <a href="/backend/publicity_campaign/{{campaign.id}}" class="btn btn-primary btn-icon-split">
-                    <span class="text"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                  </a>
 
-                  <a href="/backend/publicity_campaign_complete/{{campaign.id}}" class="btn btn-success btn-icon-split">
-                    <span class="text"><i class="fas fa-book-open" aria-hidden="true"></i></span>
-                  </a>
-
-
-                  <a href="/backend/publicity_campaign_edit/{{campaign.id}}" class="btn btn-warning btn-icon-split">
-                    <span class="text"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
-                  </a>   
-
-                  <a href="/backend/publicity_campaign_delete/{{campaign.id}}" class="btn btn-danger btn-icon-split">
-                    <span class="text"><i class="fas fa-trash"></i></span>
-                  </a>
-
-                </td>
-                
-              </tr>
-              
-              {% endfor %}              
-             </tbody>
-
-          </table>
-
+            </span>
+          </div>
         </div>
+    
+      </div>
+  {% endif %}
+        
+
+
+
+
       </div>
 
     </div>
   </div>
-</div>
+
 
 
 {% endblock %}
