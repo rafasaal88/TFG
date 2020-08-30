@@ -18,7 +18,7 @@ from .forms import Publicity_Campaign_Form, User_Form_Email, User_Form_Name, Use
 
 
 from .models import Publicity_campaign, UserProfile, Product, Product_history, Recipe, Tag_nfc, Register_activity, Point
-
+from django.db.models import Count
 
 #Mostrar error 404
 def mi_error_404(request, exception):
@@ -48,9 +48,10 @@ def index(request):
     datetime1 = datetime.now()
     campaign_enable = Publicity_campaign.objects.filter(date_end__lte = datetime1).count()
     campaign_disable = Publicity_campaign.objects.filter(date_end__gt = datetime1).count()
+    datos = Register_activity.objects.values('date').order_by('date').annotate(count=Count('date')) #IMPORTANTE, HAY QUE ELIMINAR PARA QUE SALGAN LOS 5 ÚLTIMOS DÍAS
+    nfc_date = Register_activity.objects.values('date').filter(activity_name='TAG NFC').order_by('activity_name').annotate(count=Count('date'))
 
-
-    return render(request, 'backend/index.html',{'users':users, 'campaign_disable':campaign_disable, 'campaign_enable':campaign_enable, 'promotion_accept':promotion_accept, 'promotion_denied':promotion_denied, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
+    return render(request, 'backend/index.html',{'users':users, 'nfc_date':nfc_date, 'datos':datos, 'campaign_disable':campaign_disable, 'campaign_enable':campaign_enable, 'promotion_accept':promotion_accept, 'promotion_denied':promotion_denied, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
 
 
 #Loguear usuario

@@ -5,8 +5,20 @@
 <div class="container-fluid">
 
   <div class="row">
+
+    <div class="col-xl-6 col-md-6 mb-4 h-50">  
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Etiquetas NFC tocadas por los usuarios</h6>
+        </div>
+        <div class="card-body">
+          <canvas id="myChart4" height="105"></canvas>
+        </div>
+      </div>
+    </div>
+
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card border-left-primary shadow py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -21,46 +33,10 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-success shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="/backend/users_list">Usuarios registrados</a>                        
-              </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">{{users}}</div>
-            </div>
-            <div class="col-auto">
-              <i class="fa fa-user fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <br>
 
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="/backend/product_list">Productos</a>
-              </div>                 
-              <div class="h5 mb-0 font-weight-bold text-gray-800">{{products}}</div>
-            </div>
-            <div class="col-auto">
-              <i class="fa fa-gift fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
+      <div class="card border-left-info shadow py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -75,10 +51,66 @@
           </div>
         </div>
       </div>
+
+      <br>
+
+      <div class="card border-left-info shadow py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="/backend/tag_nfc_list">TAGs NFC</a>
+              </div>                 
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{tags}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fa fa-tags fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
     
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
+      <div class="card border-left-success shadow py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="/backend/users_list">Usuarios registrados</a>                        
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{users}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fa fa-user fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <br>
+      
+      <div class="card border-left-info shadow py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="/backend/product_list">Productos</a>
+              </div>                 
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{products}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fa fa-gift fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="card border-left-info shadow py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -94,106 +126,55 @@
         </div>
       </div>
     </div>
-
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="/backend/tag_nfc_list">TAGs NFC</a>
-              </div>                 
-              <div class="h5 mb-0 font-weight-bold text-gray-800">{{tags}}</div>
-            </div>
-            <div class="col-auto">
-              <i class="fa fa-tags fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<!---->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Promociones registradas</div>
-              </div>                 
-              <div class="h5 mb-0 font-weight-bold text-gray-800">{{point}}</div>
-            </div>
-            <div class="col-auto">
-              <i class="fa fa-gift fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">TAGs NFC Tocados</div>
-              </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">{{tags_touch}}</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-tags fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  </div>  
-
+  </div>
 </div>
-
+ 
 
 
 <div class="container-fluid">  
   <div class="row">
 
-    <div class="col-lg-4">
-      <div class="card shadow mb-4 border-bottom-warning">
+    <div class="col-lg-3">
+      <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Campañas</h6>{{campaign_enables}}
+          <h6 class="m-0 font-weight-bold text-primary">Campañas
+          </h6>{{campaign_enables}}
         </div>
         <div class="card-body">
           
-          <canvas id="myChart2" height="150"></canvas>
+          <canvas id="myChart2" height="250"></canvas>
         </div>
       </div>    
     </div>
     
-    <div class="col-lg-4">
-      <div class="card shadow mb-4 border-bottom-success">
+    <div class="col-lg-3">
+      <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Promociones registradas</h6> 
         </div>
         <div class="card-body">
-          <canvas id="myChart" height="150"></canvas>
+          <canvas id="myChart" height="250"></canvas>
         </div>
       </div>
     </div>
     
-    <div class="col-lg-4">  
-      <div class="card shadow mb-4 border-bottom-danger">
+    <div class="col-lg-6">  
+      <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Futuro dato</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Movimientos de usuarios registrados en el Fronted</h6>
         </div>
         <div class="card-body">
-          <p>ESTO ES TEXTO PARA MOSTRAR INFORMACION EN EL FUTURO!</p>
+          <canvas id="myChart3" height="130"></canvas>
         </div>
       </div>
     </div>
 
+
   </div>          
 </div>
+
+
+
 
 
 
@@ -207,8 +188,8 @@
               label: 'Actividad',
               data: ["{{promotion_accept}}", "{{promotion_denied}}"],
               backgroundColor: [
-                  'rgba(155, 199, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
+                  'rgba(155, 199, 132, 0.7)',
+                  'rgba(54, 162, 235, 0.7)',
               ],
               
               borderWidth: 1
@@ -226,9 +207,9 @@
               label: 'Actividad',
               data: ["{{campaign}}","{{campaign_enable}}","{{campaign_disable}}"],
               backgroundColor: [
-                  'rgba(155, 199, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 135, 1)',
+                  'rgba(155, 99, 132, 0.7)',
+                  'rgba(54, 62, 135, 0.7)',
+                  'rgba(54, 162, 135, 0.7)',
               ],
               
               borderWidth: 1
@@ -237,6 +218,66 @@
       
   });
 
+
+  var ctx3 = document.getElementById('myChart3').getContext('2d');
+
+  var myChart3 = new Chart(ctx3, {
+      type: 'line',
+      data: {
+          labels: [
+      {% for item in datos %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
+          datasets: [{
+              label: 'Movimientos',
+              data: [
+                  {% for item in datos %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
+              backgroundColor: [
+                  'rgba(47, 145, 242, 0.7)',
+
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+      
+  });
+
+
+ 
+  var ctx4 = document.getElementById('myChart4').getContext('2d');
+
+  var myChart4 = new Chart(ctx4, {
+      type: 'line',
+      data: {
+          labels: [
+      {% for item in nfc_date %}
+        "{{item.date}}",
+      {% endfor %} 
+                ],
+          datasets: [{
+              label: 'Movimientos',
+              data: [
+                  {% for item in datos %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
+              backgroundColor: [
+                  'rgba(63, 191, 127, 0.7)',
+
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+      
+  });
+
+ 
   
   </script>
 {% endblock %}
