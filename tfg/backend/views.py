@@ -43,7 +43,14 @@ def index(request):
     tags = Tag_nfc.objects.count()
     point = Point.objects.count()
     tags_touch = Register_activity.objects.filter(activity_name='TAG NFC').count()
-    return render(request, 'backend/index.html',{'users':users, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
+    promotion_accept = Register_activity.objects.filter(activity_name='Promocion', tag_nfc_status='Correcto').count()
+    promotion_denied = Register_activity.objects.filter(activity_name='Promocion', tag_nfc_status='Denegado. Promoción ya registrada').count()
+    datetime1 = datetime.now()
+    campaign_enable = Publicity_campaign.objects.filter(date_end__lte = datetime1).count()
+    campaign_disable = Publicity_campaign.objects.filter(date_end__gt = datetime1).count()
+
+
+    return render(request, 'backend/index.html',{'users':users, 'campaign_disable':campaign_disable, 'campaign_enable':campaign_enable, 'promotion_accept':promotion_accept, 'promotion_denied':promotion_denied, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
 
 
 #Loguear usuario
@@ -538,8 +545,22 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 @login_required(login_url='user_login')
 def register_activity_list(request):
     register_activity = Register_activity.objects.all().order_by('id').reverse()
-    paginator = Paginator(register_activity, 10)
-	
+    paginator = Paginator(register_activity, 6)
+    num_index = Register_activity.objects.filter(activity_name='INDEX').count()
+    num_inicio = Register_activity.objects.filter(activity_name='Inicio').count()
+    num_cierre = Register_activity.objects.filter(activity_name='Cierre').count()
+    num_list_camp = Register_activity.objects.filter(activity_name='Lista de campañas').count()
+    num_list_product = Register_activity.objects.filter(activity_name='Lista de productos').count()
+    num_list_recipe = Register_activity.objects.filter(activity_name='Lista de recetas').count()
+    register = Register_activity.objects.filter(activity_name='Registro').count()
+    num_camp = Register_activity.objects.filter(activity_name='Campaña de publicidad').count()
+    puntos = Register_activity.objects.filter(activity_name='Lista de puntos').count()
+    product = Register_activity.objects.filter(activity_name='Producto').count()
+    recipe = Register_activity.objects.filter(activity_name='Receta').count()
+    tag = Register_activity.objects.filter(activity_name='TAG NFC').count()
+    promotion = Register_activity.objects.filter(activity_name='Promocion').count()
+
+
     try: page = int(request.GET.get("page", '1'))
     except ValueError: page = 1
 
@@ -547,4 +568,4 @@ def register_activity_list(request):
         register_activity = paginator.page(page)
     except (InvalidPage, EmptyPage):
         register_activity = paginator.page(paginator.num_pages)
-    return render(request, 'backend/register_activity_list.html', {'register_activity':register_activity})
+    return render(request, 'backend/register_activity_list.html', {'register_activity':register_activity, 'promotion':promotion, 'tag':tag, 'recipe':recipe, 'product':product, 'puntos':puntos, 'num_camp':num_camp, 'register':register,'num_list_recipe':num_list_recipe,'num_list_product':num_list_product, 'num_list_camp':num_list_camp, 'num_index':num_index, 'num_inicio':num_inicio, 'num_cierre':num_cierre})

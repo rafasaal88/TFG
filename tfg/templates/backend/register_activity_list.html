@@ -10,11 +10,37 @@
 
       <div class="card-header py-3">
         
-        <h6 class="m-0 font-weight-bold text-primary">Estadísticas</h6>    
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas  
       
+          <right>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+             Gráfico acumulativo
+            </a>
+          </right>
+        </h6> 
+
+        
+
+      
+
+
+
       </div>
- 
+      
+      <div class="collapse" id="collapseExample">
+        <div class="card-body">
+
+          <canvas id="myChart" width="400" height="100"></canvas>
+
+
+        </div>
+      </div>
+      
+
       <div class="card-body">        
+
+        
+
         <div class="table-responsive">
           
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -70,60 +96,130 @@
 
               </tr>
               
-              {% endfor %}              
+              {% endfor %}          
+              
+              
+
+              
              </tbody>
 
+             
           </table>
+          <div class="card-header py-3">
 
+            <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">  
+          
+              {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
+        
+              <div class="col s12 m5">
+                <div class="card-panel blue lighten-5">
+               
+                         
+               
+                  
+                
+                <span align="right">Página {{ register_activity.number }} de {{ register_activity.paginator.num_pages }}
+      
+      
+                  </span>
+                  
+                </div>
+                
+              </div>
+              {% endif %}
+    
+    
+    
+    
+              <right>
+                
+    
+                {% if register_activity.has_previous %}
+        
+                <a href="?page={{ register_activity.previous_page_number }}" class="btn btn-primary btn-icon-split">
+                  <span class="icon">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+      
+      
+        
+                {% endif %} 
+    
+                {% if register_activity.has_next %}
+        
+                <a href="?page={{ register_activity.next_page_number }}" class="btn btn-primary btn-icon-split">
+                  <span class="icon">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </span>
+                </a>
+             
+                {% endif %}
+                </right>
+              </h6> 
+            </div>
         </div>
       
 
-      <div class="card-header text-right py-3">
+
+
         
 
-        {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
-    
-        <div class="col s12 m5">
-          <div class="card-panel blue lighten-5">
-         
-            {% if register_activity.has_previous %}
-  
-            <a href="?page={{ register_activity.previous_page_number }}" class="btn btn-primary btn-icon-split">
-              <span class="icon">
-                <i class="fa fa-chevron-left" aria-hidden="true"></i>
-              </span>
-            </a>
-  
-  
-    
-            {% endif %}        
-         
-            {% if register_activity.has_next %}
-  
-          <a href="?page={{ register_activity.next_page_number }}" class="btn btn-primary btn-icon-split">
-            <span class="icon">
-              <i class="fa fa-chevron-right" aria-hidden="true"></i>
-            </span>
-          </a>
-       
-          {% endif %}
-          <span align="right">Página {{ register_activity.number }} de {{ register_activity.paginator.num_pages }}
-
-
-            </span>
-          </div>
-        </div>
-    
-      </div>
-  {% endif %}
+      
         
 
 
+      
+
+  <script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      
+      data: {
+          labels: ["Inicio de sesión", "Cierre de sesión", "Página de registro", "Página Index", "lista de campañas", "Visita campaña", "Lista de productos", "Producto" ,"Lista de recetas", "Visita receta", "Lista de puntos", "Visita TAG NFC", "Registra promoción"],
+          datasets: [{
+              label: 'Actividad',
+              data: ["{{num_inicio}}", "{{num_cierre}}", "{{register}}", "{{num_index}}", "{{num_list_camp}}", "{{num_camp}}", "{{num_list_product}}", "{{product}}" ,"{{num_list_recipe}}", "{{recipe}}", "{{puntos}}", "{{tag}}", "{{promotion}}"],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(60, 35, 255, 1)',
+                  'rgba(150, 2, 105, 1)',
+                  'rgba(253, 102, 255, 1)',
+                  'rgba(153, 202, 255, 1)',
+                  'rgba(153, 102, 5, 1)',
+                  'rgba(153, 102, 95, 1)',
+                  'rgba(0, 159, 64, 1)',
+                  'rgba(255, 0, 64, 1)'
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+  </script>
 
 
       </div>
 
     </div>
+
+
+    
+
   </div>
 
 

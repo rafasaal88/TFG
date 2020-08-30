@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-
+<!---->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-info shadow h-100 py-2">
         <div class="card-body">
@@ -148,36 +148,40 @@
         </div>
       </div>
     </div>
+    
   </div>  
 
 </div>
 
+
+
 <div class="container-fluid">  
   <div class="row">
 
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <div class="card shadow mb-4 border-bottom-warning">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Futuro dato</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Campañas</h6>{{campaign_enables}}
         </div>
         <div class="card-body">
-          <p>ESTO ES TEXTO PARA MOSTRAR INFORMACION EN EL FUTURO!</p>          
+          
+          <canvas id="myChart2" height="150"></canvas>
         </div>
       </div>    
     </div>
     
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <div class="card shadow mb-4 border-bottom-success">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Futuro dato</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Promociones registradas</h6> 
         </div>
         <div class="card-body">
-          <p>ESTO ES TEXTO PARA MOSTRAR INFORMACION EN EL FUTURO!</p>
+          <canvas id="myChart" height="150"></canvas>
         </div>
       </div>
     </div>
     
-    <div class="col-lg-12">  
+    <div class="col-lg-4">  
       <div class="card shadow mb-4 border-bottom-danger">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Futuro dato</h6>
@@ -190,4 +194,49 @@
 
   </div>          
 </div>
+
+
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: ["Registradas con exito: {{promotion_accept}}", "Denegadas. Ya estaban registradas.: {{promotion_denied}}"],
+          datasets: [{
+              label: 'Actividad',
+              data: ["{{promotion_accept}}", "{{promotion_denied}}"],
+              backgroundColor: [
+                  'rgba(155, 199, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+      
+  });
+
+  var ctx2 = document.getElementById('myChart2').getContext('2d');
+  var myChart2 = new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+          labels: ["Totales: {{campaign}}","Activas: {{campaign_enable}}","Inactivas: {{campaign_disable}}"],
+          datasets: [{
+              label: 'Actividad',
+              data: ["{{campaign}}","{{campaign_enable}}","{{campaign_disable}}"],
+              backgroundColor: [
+                  'rgba(155, 199, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 135, 1)',
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+      
+  });
+
+  
+  </script>
 {% endblock %}
