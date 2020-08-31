@@ -189,18 +189,24 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Charts -->
+
       <li class="nav-item">
-        <a class="nav-link" href="/backend/register_activity_list">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages5" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Estadísticas</span></a>
+        </a>
+        <div id="collapsePages5" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Acciones disponibles:</h6>
+            <a class="collapse-item" href="/backend/register_activity_list"><i class="fas fa-fw fa-chart-area" aria-hidden="true"></i>&nbsp; &nbsp;Completas</a>
+            <a class="collapse-item" href="/backend/register_activity_sesions"><i class="fa fa-user " aria-hidden="true"></i>&nbsp; &nbsp;Sesiones</a>
+            </div>
+        </div>
       </li>
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tablas</span></a>
-      </li>
+
+
+     
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

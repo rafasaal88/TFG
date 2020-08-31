@@ -570,3 +570,26 @@ def register_activity_list(request):
     except (InvalidPage, EmptyPage):
         register_activity = paginator.page(paginator.num_pages)
     return render(request, 'backend/register_activity_list.html', {'register_activity':register_activity, 'promotion':promotion, 'tag':tag, 'recipe':recipe, 'product':product, 'puntos':puntos, 'num_camp':num_camp, 'register':register,'num_list_recipe':num_list_recipe,'num_list_product':num_list_product, 'num_list_camp':num_list_camp, 'num_index':num_index, 'num_inicio':num_inicio, 'num_cierre':num_cierre})
+
+
+from django.db.models import Q
+
+@login_required(login_url='user_login')
+def register_activity_sesions(request):    
+    register_activity = Register_activity.objects.filter(Q(activity = "Sesión") |Q(activity = "Visita sección", activity_name="Registro") ).order_by('id').reverse()
+    paginator = Paginator(register_activity, 6)
+    register_activity_data = Register_activity.objects.values('activity_name','date').filter(Q(activity = "Sesión") |Q(activity = "Visita sección", activity_name="Registro")).order_by('date').annotate(count=Count('date'))
+    register_activity_inicio = Register_activity.objects.values('activity_name','date').filter(activity = "Sesión", activity_name="Inicio").order_by('date').annotate(count=Count('date'))
+    register_activity_cierre = Register_activity.objects.values('activity_name','date').filter(activity = "Sesión", activity_name="Cierre").order_by('date').annotate(count=Count('date'))
+    register_activity_register = Register_activity.objects.values('activity_name','date').filter(Q(activity = "Visita sección", activity_name="Registro")).order_by('date').annotate(count=Count('date'))
+    register_activity_register_count = Register_activity.objects.filter(activity = "Visita sección", activity_name="Registro", user__isnull=True).count()
+    register_activity_register_count_register = Register_activity.objects.filter(activity = "Visita sección", activity_name="Registro", user__isnull=False).count()
+
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages) 
+    return render(request, 'backend/register_activity_sesions.html', {'register_activity_register_count_register':register_activity_register_count_register, 'register_activity_register_count':register_activity_register_count, 'register_activity_register':register_activity_register, 'register_activity_cierre':register_activity_cierre, 'register_activity_inicio':register_activity_inicio, 'register_activity':register_activity, 'register_activity_data':register_activity_data})

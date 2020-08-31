@@ -1,17 +1,5 @@
 from django.conf.urls import url
-from .views import index, user_login, user_logout, users_list, user_profile_admin, user_profile, user_edit_email, user_profile_edit, user_edit_name, user_edit_picture, user_create, user_disable, user_enable
-
-#publicity_campaign
-from .views import publicity_campaign_create, publicity_campaign_list, publicity_campaign_edit, publicity_campaign_delete, publicity_campaign, publicity_campaign_complete
-
-#product
-from .views import product_create, product_list, product, product_disable, product_edit, product_enable, product_list_history, product_history
-
-#recipte
-from .views import recipe_create, recipe_list, recipe, recipe_edit, recipe_delete
-
-#tag_nfc
-from .views import tag_nfc_create, tag_nfc_list, tag_nfc_disable, tag_nfc_enable, tag_nfc_edit, tag_nfc, register_activity_list
+from .views import *
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -73,8 +61,9 @@ urlpatterns = [
     url(r'^tag_nfc_edit/(?P<id>\d+)/$',tag_nfc_edit, name = "tag_nfc_edit"),
     url(r'^tag_nfc/(?P<id>\d+)/$',tag_nfc, name = "tag_nfc"),
 
-
+    #staditics
     url(r'^register_activity_list/',register_activity_list, name = "register_activity_list"),
+    url(r'^register_activity_sesions/',register_activity_sesions, name = "register_activity_sesions"),
 
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

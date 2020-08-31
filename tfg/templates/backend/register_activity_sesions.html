@@ -3,26 +3,11 @@
 {% block contenido %}
 
 
+
+
 <div class="container-fluid ">  
   <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas por secciones</h6> 
-      
-        <div class="card-header py-3">
-
-        
-        <center> 
-          
-          <a type="button" class="btn btn-secondary" href="/backend/register_activity_campaign" style="width: 15%; height: 50px;"><h3>Campañas</h3></a>&nbsp &nbsp
-          <button type="button" class="btn btn-success" style="width: 15%; height: 50px;"><h3>Productos</h3></button>&nbsp &nbsp
-          <button type="button" class="btn btn-warning" style="width: 15%; height: 50px;"><h3>Recetas</h3></button>&nbsp &nbsp
-          <button type="button" class="btn btn-info" style="width: 15%; height: 50px;"><h3>Etiquetas NFC (Visitas)</h3></button>&nbsp &nbsp
-          <button type="button" class="btn btn-primary" style="width: 15%; height: 50px;"><h3>Promociones</h3></button>&nbsp &nbsp
-
-        </center>
-
-      </div>
-    </div>
+    
   </div>
 </div>
 
@@ -35,14 +20,12 @@
       
           <right>
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-             Gráfico acumulativo
+             Gráficos acumulativo
             </a>
           </right>
         </h6> 
 
-        
-
-      
+            
 
 
 
@@ -51,8 +34,26 @@
       <div class="collapse" id="collapseExample">
         <div class="card-body">
 
-          <canvas id="myChart" width="400" height="100"></canvas>
-
+          <div class="card-header py-3">
+            <div class=row>
+              <div div class="col-lg-6">
+               <canvas id="myChart"></canvas>
+              </div>
+        
+              <div div class="col-lg-6">
+                <canvas id="myChart2"></canvas>
+              </div>
+         
+              <div div class="col-lg-6">
+                <canvas id="myChart3"></canvas>
+              </div>
+      
+              <div div class="col-lg-6">
+                <canvas id="myChart4"></canvas>
+              </div>
+            </div>
+         
+          </div>
 
         </div>
       </div>
@@ -77,7 +78,6 @@
                 <th>País</th>
                 <th>Comunidad</th>
                 <th>Ciudad</th>
-                <th>Acciones</th>
 
 
               </tr>
@@ -106,14 +106,7 @@
                 <td>{{item.country_name}}</td>
                 <td>{{item.region_name}}</td>
                 <td>{{item.city}}</td>
-                <td>
-                  <a href="#" class="btn btn-primary btn-icon-split">
-                    <span class="icon">
-                      <i class="fa fa-eye" aria-hidden="true"></i>
-                    </span>
-                    <span class="text">Ver en detalle</span>
-                  </a>
-                </td>
+
 
               </tr>
               
@@ -182,8 +175,7 @@
         </div>
       
 
-
-
+      
         
 
       
@@ -193,43 +185,119 @@
       
 
   <script>
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+  type: 'line',
       data: {
-          labels: ["Inicio de sesión", "Cierre de sesión", "Página de registro", "Página Index", "lista de campañas", "Visita campaña", "Lista de productos", "Producto" ,"Lista de recetas", "Visita receta", "Lista de puntos", "Visita TAG NFC", "Registra promoción"],
+          labels: [
+      {% for item in register_activity_inicio %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
           datasets: [{
-              label: 'Actividad',
-              data: ["{{num_inicio}}", "{{num_cierre}}", "{{register}}", "{{num_index}}", "{{num_list_camp}}", "{{num_camp}}", "{{num_list_product}}", "{{product}}" ,"{{num_list_recipe}}", "{{recipe}}", "{{puntos}}", "{{tag}}", "{{promotion}}"],
+              label: 'Inicio de sesión',
+              data: [
+                  {% for item in register_activity_inicio %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(60, 35, 255, 1)',
-                  'rgba(150, 2, 105, 1)',
-                  'rgba(253, 102, 255, 1)',
-                  'rgba(153, 202, 255, 1)',
-                  'rgba(153, 102, 5, 1)',
-                  'rgba(153, 102, 95, 1)',
-                  'rgba(0, 159, 64, 1)',
-                  'rgba(255, 0, 64, 1)'
+                  'rgba(47, 145, 242, 0.7)',
+
               ],
               
               borderWidth: 1
           }]
       },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
+   
+});
+
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+var myChart2 = new Chart(ctx2, {
+  type: 'line',
+      data: {
+          labels: [
+      {% for item in register_activity_cierre %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
+          datasets: [{
+              label: 'Cierre de sesión',
+              data: [
+                  {% for item in register_activity_cierre %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
+              backgroundColor: [
+                  'rgba(47, 145, 242, 0.7)',
+
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+   
+});
+
+
+
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+
+var myChart3 = new Chart(ctx3, {
+  type: 'line',
+      data: {
+          labels: [
+      {% for item in register_activity_register %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
+          datasets: [{
+              label: 'Visita página registro',
+              data: [
+                  {% for item in register_activity_register %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
+              backgroundColor: [
+                  'rgba(47, 145, 242, 0.7)',
+
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+   
+});
+
+
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+  var myChart2 = new Chart(ctx4, {
+      title:{
+      text: "Visitas página registro"
+      },
+      type: 'pie',
+      data: {
+        
+          labels: ["Usuarios no registrados","Usuarios registrados"],
+          datasets: [{
+              label: 'Visitas página registro',
+              data: ["{{register_activity_register_count}}","{{register_activity_register_count_register}}"],
+              backgroundColor: [
+                  'rgba(155, 99, 132, 0.7)',
+                  'rgba(54, 62, 135, 0.7)',
+                  'rgba(54, 162, 135, 0.7)',
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+      
   });
   </script>
 
