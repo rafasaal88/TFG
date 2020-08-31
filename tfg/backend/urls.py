@@ -67,6 +67,7 @@ urlpatterns = [
     url(r'^register_activity_campaign/(?P<id>\d+)/$',register_activity_campaign, name = "register_activity_campaign"),
     url(r'^register_activity_product/(?P<id>\d+)/$',register_activity_product, name = "register_activity_product"),
     url(r'^register_activity_recipe/(?P<id>\d+)/$',register_activity_recipe, name = "register_activity_recipe"),
+    url(r'^register_activity_nfc/',register_activity_nfc, name = "register_activity_nfc"),
 
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -667,3 +667,25 @@ def register_activity_recipe(request, id):
     except (InvalidPage, EmptyPage):
         register_activity = paginator.page(paginator.num_pages) 
     return render(request, 'backend/register_activity_recipe.html', {'id':id, 'register_activity_listrecipe_count':register_activity_listrecipe_count, 'register_activity':register_activity, 'register_activity_recipe_count':register_activity_recipe_count })
+
+
+@login_required(login_url='user_login')
+def register_activity_nfc(request):
+    register_activity = Register_activity.objects.filter(activity="Visita sección", activity_name="TAG NFC").order_by('id').reverse()
+
+    register_activity_no_register = Register_activity.objects.filter(activity="Visita sección", activity_name="TAG NFC", user__isnull=True).count()
+    register_activity_register = Register_activity.objects.filter(activity="Visita sección", activity_name="TAG NFC", user__isnull=False).count()
+
+    register_activity_nfc_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="TAG NFC")).order_by('date').annotate(count=Count('date'))
+
+       
+    paginator = Paginator(register_activity, 6)
+
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages) 
+    return render(request, 'backend/register_activity_nfc.html', {'register_activity_nfc_count':register_activity_nfc_count, 'register_activity':register_activity, 'register_activity_register':register_activity_register, 'register_activity_no_register':register_activity_no_register })

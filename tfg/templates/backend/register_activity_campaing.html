@@ -9,15 +9,15 @@
       <div class="card-header py-3">
         
         {% ifequal id "0" %}
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas completas de campañas del sistema
         {% endifequal %}
 
         {% ifequal id "1" %}
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Lista de campañas
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas de lista de campañas
         {% endifequal %}
 
         {% ifequal id "2" %}
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Campañas
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas de campañas
         {% endifequal %}
 
           <right>
@@ -126,8 +126,8 @@
                 <td>{{item.activity}}</td>
                 <td>{{item.activity_name}}</td>
                 {% endifequal%}
-                <td>{{item.date}}</td>
-                <td>{{item.time}}</td>
+                <td>{{item.date|date:"SHORT_DATE_FORMAT"}}</td>
+                <td>{{item.time|time:"H:i:s"}}</td>
                 <td>{{item.ip_address}}</td>
                 <td>{{item.country_name}}</td>
                 <td>{{item.region_name}}</td>

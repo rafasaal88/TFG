@@ -3,55 +3,53 @@
 {% block contenido %}
 
 
-<div class="container-fluid ">  
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas por secciones</h6> 
-      
-        <div class="card-header py-3">
-
-        
-        <center> 
-          
-          <button type="button" class="btn btn-info" style="width: 15%; height: 50px;"><h3>Etiquetas NFC (Visitas)</h3></button>&nbsp &nbsp
-          <button type="button" class="btn btn-primary" style="width: 15%; height: 50px;"><h3>Promociones</h3></button>&nbsp &nbsp
-
-        </center>
-
-      </div>
-    </div>
-  </div>
-</div>
-
   <div class="container-fluid">  
     <div class="card shadow mb-4">
 
       <div class="card-header py-3">
         
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas del sistema 
-      
+        
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas
+        
+
+
           <right>
+         
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-             Gráfico acumulativo
+             Gráficos acumulativos
             </a>
           </right>
         </h6> 
 
-        
-
-      
-
-
+            
 
       </div>
       
       <div class="collapse" id="collapseExample">
+
         <div class="card-body">
 
-          <canvas id="myChart" width="400" height="100"></canvas>
+          <div class="card-header py-3">
+            <div class=row>
 
+              
+              <div div class="col-lg-4" >
+               <canvas id="myChart" height="200"></canvas>
+              </div>
+              
+
+
+
+              <div div class="col-lg-4">
+                <canvas id="myChart2" height="200"></canvas>
+              </div>         
+
+            </div>
+         
+          </div>
 
         </div>
+
       </div>
       
 
@@ -65,16 +63,25 @@
             
             <thead>
               <tr>
-                <th>Usuario</th>                
-                <th>Actividad</th>
-                <th>Nombre</th>
+                <th>Usuario</th>   
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>IP</th>
                 <th>País</th>
                 <th>Comunidad</th>
                 <th>Ciudad</th>
-                <th>Acciones</th>
+                <th>Producto</th>
+                <th>Descripción de la promoción</th>
+                <th>Estado del TAG</th>
+                <th>Geoposición (Longitud y Latitud)</th>
+                <th>Ver</th>
+
+
+
+
+        
+
+
 
 
               </tr>
@@ -84,6 +91,7 @@
               {% for item in register_activity %}
 
               <tr>
+
                 <td>
                   {% if item.user == None %}
                   Anónimo
@@ -95,22 +103,20 @@
                   {% endif %}
 
                 </td>
-                <td>{{item.activity}}</td>
-                <td>{{item.activity_name}}</td>
+
                 <td>{{item.date|date:"SHORT_DATE_FORMAT"}}</td>
                 <td>{{item.time|time:"H:i:s"}}</td>
                 <td>{{item.ip_address}}</td>
                 <td>{{item.country_name}}</td>
                 <td>{{item.region_name}}</td>
                 <td>{{item.city}}</td>
-                <td>
-                  <a href="#" class="btn btn-primary btn-icon-split">
-                    <span class="icon">
-                      <i class="fa fa-eye" aria-hidden="true"></i>
-                    </span>
-                    <span class="text">Ver en detalle</span>
-                  </a>
-                </td>
+                <td>{{item.tag_nfc_product}}</td>
+                <td>{{item.tag_nfc_description}}</td>
+                <td>{{item.tag_nfc_status}}</td>
+                <td>{{item.tag_nfc_latitude}}, {{item.tag_nfc_longitude}}</td>
+                <td>ICON</td>
+
+
 
               </tr>
               
@@ -123,11 +129,12 @@
 
              
           </table>
+          {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
+
           <div class="card-header py-3">
 
             <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">  
           
-              {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
         
               <div class="col s12 m5">
                 <div class="card-panel blue lighten-5">
@@ -144,7 +151,6 @@
                 </div>
                 
               </div>
-              {% endif %}
     
     
     
@@ -176,58 +182,70 @@
                 </right>
               </h6> 
             </div>
+
+            {% endif %}
+
         </div>
-      
 
 
-
-        
-
-      
-        
-
-
+      {{register_activity_nfc_count}}
       
 
   <script>
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+  type: 'pie',
       data: {
-          labels: ["Inicio de sesión", "Cierre de sesión", "Página de registro", "Página Index", "lista de campañas", "Visita campaña", "Lista de productos", "Producto" ,"Lista de recetas", "Visita receta", "Lista de puntos", "Visita TAG NFC", "Registra promoción"],
+          labels: ["Usuarios registrados", "Usuarios no registrados"],
           datasets: [{
-              label: 'Actividad',
-              data: ["{{num_inicio}}", "{{num_cierre}}", "{{register}}", "{{num_index}}", "{{num_list_camp}}", "{{num_camp}}", "{{num_list_product}}", "{{product}}" ,"{{num_list_recipe}}", "{{recipe}}", "{{puntos}}", "{{tag}}", "{{promotion}}"],
+              label: 'Etiquetas tocadas',
+              data: ["{{register_activity_register}}","{{register_activity_no_register}}"                 
+                  ],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(60, 35, 255, 1)',
-                  'rgba(150, 2, 105, 1)',
-                  'rgba(253, 102, 255, 1)',
-                  'rgba(153, 202, 255, 1)',
-                  'rgba(153, 102, 5, 1)',
-                  'rgba(153, 102, 95, 1)',
-                  'rgba(0, 159, 64, 1)',
-                  'rgba(255, 0, 64, 1)'
+                  'rgba(47, 45, 242, 0.7)',
+                  'rgba(7, 4, 42, 0.7)',
+              ],
+              
+             
+          }]
+      },
+   
+});
+
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+var myChart2 = new Chart(ctx2, {
+  type: 'bar',
+      data: {
+          labels: [
+      {% for item in register_activity_nfc_count %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
+          datasets: [{
+              label: 'Etiquetas tocadas por día',
+              data: [
+                  {% for item in register_activity_nfc_count %}
+                  "{{item.count}}",
+                  {% endfor %}0
+                  ],
+              backgroundColor: [
+                  'rgba(47, 145, 242, 0.7)',
+
               ],
               
               borderWidth: 1
           }]
       },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
-  });
+   
+});
+
+
+
   </script>
 
 

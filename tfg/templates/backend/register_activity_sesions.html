@@ -16,7 +16,7 @@
 
       <div class="card-header py-3">
         
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas  
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas de sesiones en el sistema 
       
           <right>
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -100,8 +100,8 @@
                 </td>
                 <td>{{item.activity}}</td>
                 <td>{{item.activity_name}}</td>
-                <td>{{item.date}}</td>
-                <td>{{item.time}}</td>
+                <td>{{item.date|date:"SHORT_DATE_FORMAT"}}</td>
+                <td>{{item.time|time:"H:i:s"}}</td>
                 <td>{{item.ip_address}}</td>
                 <td>{{item.country_name}}</td>
                 <td>{{item.region_name}}</td>
@@ -202,7 +202,7 @@ var myChart = new Chart(ctx, {
               data: [
                   {% for item in register_activity_inicio %}
                   "{{item.count}}",
-                  {% endfor %}
+                  {% endfor %}0
                   ],
               backgroundColor: [
                   'rgba(47, 145, 242, 0.7)',
@@ -231,7 +231,7 @@ var myChart2 = new Chart(ctx2, {
               data: [
                   {% for item in register_activity_cierre %}
                   "{{item.count}}",
-                  {% endfor %}
+                  {% endfor %}0
                   ],
               backgroundColor: [
                   'rgba(47, 145, 242, 0.7)',
@@ -261,7 +261,7 @@ var myChart3 = new Chart(ctx3, {
               data: [
                   {% for item in register_activity_register %}
                   "{{item.count}}",
-                  {% endfor %}
+                  {% endfor %}0
                   ],
               backgroundColor: [
                   'rgba(47, 145, 242, 0.7)',
