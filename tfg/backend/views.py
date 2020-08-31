@@ -593,3 +593,77 @@ def register_activity_sesions(request):
     except (InvalidPage, EmptyPage):
         register_activity = paginator.page(paginator.num_pages) 
     return render(request, 'backend/register_activity_sesions.html', {'register_activity_register_count_register':register_activity_register_count_register, 'register_activity_register_count':register_activity_register_count, 'register_activity_register':register_activity_register, 'register_activity_cierre':register_activity_cierre, 'register_activity_inicio':register_activity_inicio, 'register_activity':register_activity, 'register_activity_data':register_activity_data})
+
+
+@login_required(login_url='user_login')
+def register_activity_campaign(request, id):
+    if id == "0":    
+        register_activity = Register_activity.objects.filter(Q(activity = "Visita sección", activity_name= "Lista de campañas") | Q(activity = "Visita sección", activity_name= "Campaña de publicidad")).order_by('id').reverse()
+    if id == "1":    
+        register_activity = Register_activity.objects.filter(activity = "Visita sección", activity_name= "Lista de campañas").order_by('id').reverse()
+    if id == "2":    
+        register_activity = Register_activity.objects.filter(activity = "Visita sección", activity_name= "Campaña de publicidad").order_by('id').reverse()
+    
+    register_activity_listcampaign_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="Lista de campañas")).order_by('date').annotate(count=Count('date'))
+    register_activity_campaign_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="Campaña de publicidad")).order_by('date').annotate(count=Count('date'))
+
+       
+    paginator = Paginator(register_activity, 6)
+
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages) 
+    return render(request, 'backend/register_activity_campaing.html', {'id':id, 'register_activity_listcampaign_count':register_activity_listcampaign_count, 'register_activity':register_activity, 'register_activity_campaign_count':register_activity_campaign_count })
+
+@login_required(login_url='user_login')
+def register_activity_product(request, id):
+    if id == "0":    
+        register_activity = Register_activity.objects.filter(Q(activity = "Visita sección", activity_name= "Lista de productos") | Q(activity = "Visita sección", activity_name= "Producto")).order_by('id').reverse()
+    if id == "1":    
+        register_activity = Register_activity.objects.filter(activity = "Visita sección", activity_name= "Lista de productos").order_by('id').reverse()
+    if id == "2":    
+        register_activity = Register_activity.objects.filter(activity = "Visita sección", activity_name= "Producto").order_by('id').reverse()
+    
+    register_activity_listproduct_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="Lista de productos")).order_by('date').annotate(count=Count('date'))
+    register_activity_product_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="Producto")).order_by('date').annotate(count=Count('date'))
+
+       
+    paginator = Paginator(register_activity, 6)
+
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages) 
+    return render(request, 'backend/register_activity_product.html', {'id':id, 'register_activity_listproduct_count':register_activity_listproduct_count, 'register_activity':register_activity, 'register_activity_product_count':register_activity_product_count })
+
+
+@login_required(login_url='user_login')
+def register_activity_recipe(request, id):
+    if id == "0":    
+        register_activity = Register_activity.objects.filter(Q(activity = "Visita sección", activity_name= "Lista de recetas") | Q(activity = "Visita sección", activity_name= "Receta")).order_by('id').reverse()
+    if id == "1":    
+        register_activity = Register_activity.objects.filter(activity = "Visita sección", activity_name= "Lista de recetas").order_by('id').reverse()
+    if id == "2":    
+        register_activity = Register_activity.objects.filter(activity = "Visita sección", activity_name= "Receta").order_by('id').reverse()
+    
+    register_activity_listrecipe_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="Lista de recetas")).order_by('date').annotate(count=Count('date'))
+    register_activity_recipe_count = Register_activity.objects.values('date').filter(Q(activity = "Visita sección", activity_name="Receta")).order_by('date').annotate(count=Count('date'))
+
+       
+    paginator = Paginator(register_activity, 6)
+
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages) 
+    return render(request, 'backend/register_activity_recipe.html', {'id':id, 'register_activity_listrecipe_count':register_activity_listrecipe_count, 'register_activity':register_activity, 'register_activity_recipe_count':register_activity_recipe_count })

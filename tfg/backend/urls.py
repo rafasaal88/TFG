@@ -64,6 +64,9 @@ urlpatterns = [
     #staditics
     url(r'^register_activity_list/',register_activity_list, name = "register_activity_list"),
     url(r'^register_activity_sesions/',register_activity_sesions, name = "register_activity_sesions"),
+    url(r'^register_activity_campaign/(?P<id>\d+)/$',register_activity_campaign, name = "register_activity_campaign"),
+    url(r'^register_activity_product/(?P<id>\d+)/$',register_activity_product, name = "register_activity_product"),
+    url(r'^register_activity_recipe/(?P<id>\d+)/$',register_activity_recipe, name = "register_activity_recipe"),
 
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

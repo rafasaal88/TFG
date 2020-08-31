@@ -3,55 +3,73 @@
 {% block contenido %}
 
 
-<div class="container-fluid ">  
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas por secciones</h6> 
-      
-        <div class="card-header py-3">
-
-        
-        <center> 
-          
-          <button type="button" class="btn btn-info" style="width: 15%; height: 50px;"><h3>Etiquetas NFC (Visitas)</h3></button>&nbsp &nbsp
-          <button type="button" class="btn btn-primary" style="width: 15%; height: 50px;"><h3>Promociones</h3></button>&nbsp &nbsp
-
-        </center>
-
-      </div>
-    </div>
-  </div>
-</div>
-
   <div class="container-fluid">  
     <div class="card shadow mb-4">
 
       <div class="card-header py-3">
         
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas  
-      
+        {% ifequal id "0" %}
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas
+        {% endifequal %}
+
+        {% ifequal id "1" %}
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Lista de productos
+        {% endifequal %}
+
+        {% ifequal id "2" %}
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Productos
+        {% endifequal %}
+
           <right>
+            <a class="btn btn-primary" href="/backend/register_activity_product/1" role="button" aria-expanded="false" >
+             Ver solamente lista de productos
+            </a>
+          
+            <a class="btn btn-primary" href="/backend/register_activity_product/2" role="button" aria-expanded="false" >
+             Ver solamente productos
+            </a>
+          
+            <a class="btn btn-primary" href="/backend/register_activity_product/0" role="button" aria-expanded="false" >
+             Ver todo
+            </a>
+          
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-             Gráfico acumulativo
+             Gráficos acumulativos
             </a>
           </right>
         </h6> 
 
-        
-
-      
+            
 
 
 
       </div>
       
       <div class="collapse" id="collapseExample">
+
         <div class="card-body">
 
-          <canvas id="myChart" width="400" height="100"></canvas>
+          <div class="card-header py-3">
+            <div class=row>
 
+              
+              <div div class="col-lg-6">
+               <canvas id="myChart"></canvas>
+              </div>
+              
+
+
+
+              <div div class="col-lg-6">
+                <canvas id="myChart2"></canvas>
+              </div>         
+
+            </div>
+         
+          </div>
 
         </div>
+
       </div>
       
 
@@ -65,16 +83,23 @@
             
             <thead>
               <tr>
-                <th>Usuario</th>                
+                {% ifequal id "2" %}
+                <th>Nombre del producto</th>
+                <th>Precio</th>
+                {% endifequal %}
+                <th>Usuario</th>   
+                {% ifequal id "0" %}             
                 <th>Actividad</th>
                 <th>Nombre</th>
+                {% endifequal%}
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>IP</th>
                 <th>País</th>
                 <th>Comunidad</th>
                 <th>Ciudad</th>
-                <th>Acciones</th>
+
+
 
 
               </tr>
@@ -84,6 +109,10 @@
               {% for item in register_activity %}
 
               <tr>
+                {% ifequal id "2" %}
+                <td>{{item.product_name}}</td>
+                <td>{{item.product_price}} €</td>
+                {% endifequal %}
                 <td>
                   {% if item.user == None %}
                   Anónimo
@@ -95,22 +124,19 @@
                   {% endif %}
 
                 </td>
+
+                {% ifequal id "0" %}             
                 <td>{{item.activity}}</td>
                 <td>{{item.activity_name}}</td>
+                {% endifequal%}
                 <td>{{item.date}}</td>
                 <td>{{item.time}}</td>
                 <td>{{item.ip_address}}</td>
                 <td>{{item.country_name}}</td>
                 <td>{{item.region_name}}</td>
                 <td>{{item.city}}</td>
-                <td>
-                  <a href="#" class="btn btn-primary btn-icon-split">
-                    <span class="icon">
-                      <i class="fa fa-eye" aria-hidden="true"></i>
-                    </span>
-                    <span class="text">Ver en detalle</span>
-                  </a>
-                </td>
+
+
 
               </tr>
               
@@ -123,11 +149,12 @@
 
              
           </table>
+          {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
+
           <div class="card-header py-3">
 
             <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">  
           
-              {% if register_activity.object_list and register_activity.paginator.num_pages > 1 %}
         
               <div class="col s12 m5">
                 <div class="card-panel blue lighten-5">
@@ -144,7 +171,6 @@
                 </div>
                 
               </div>
-              {% endif %}
     
     
     
@@ -176,58 +202,76 @@
                 </right>
               </h6> 
             </div>
+
+            {% endif %}
+
         </div>
-      
-
-
-
-        
-
-      
-        
 
 
       
 
   <script>
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+  type: 'line',
       data: {
-          labels: ["Inicio de sesión", "Cierre de sesión", "Página de registro", "Página Index", "lista de campañas", "Visita campaña", "Lista de productos", "Producto" ,"Lista de recetas", "Visita receta", "Lista de puntos", "Visita TAG NFC", "Registra promoción"],
+          labels: [
+      {% for item in register_activity_product_count %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
           datasets: [{
-              label: 'Actividad',
-              data: ["{{num_inicio}}", "{{num_cierre}}", "{{register}}", "{{num_index}}", "{{num_list_camp}}", "{{num_camp}}", "{{num_list_product}}", "{{product}}" ,"{{num_list_recipe}}", "{{recipe}}", "{{puntos}}", "{{tag}}", "{{promotion}}"],
+              label: 'Productos visitados',
+              data: [
+                  {% for item in register_activity_product_count %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(60, 35, 255, 1)',
-                  'rgba(150, 2, 105, 1)',
-                  'rgba(253, 102, 255, 1)',
-                  'rgba(153, 202, 255, 1)',
-                  'rgba(153, 102, 5, 1)',
-                  'rgba(153, 102, 95, 1)',
-                  'rgba(0, 159, 64, 1)',
-                  'rgba(255, 0, 64, 1)'
+                  'rgba(47, 45, 242, 0.7)',
+
               ],
               
               borderWidth: 1
           }]
       },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
-  });
+   
+});
+
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+var myChart2 = new Chart(ctx2, {
+  type: 'line',
+      data: {
+          labels: [
+      {% for item in register_activity_listproduct_count %}
+        "{{item.date}}",
+      {% endfor %}
+                ],
+          datasets: [{
+              label: 'Lista de productos',
+              data: [
+                  {% for item in register_activity_listproduct_count %}
+                  "{{item.count}}",
+                  {% endfor %}
+                  ],
+              backgroundColor: [
+                  'rgba(47, 145, 242, 0.7)',
+
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+   
+});
+
+
+
   </script>
 
 
