@@ -9,7 +9,7 @@
       <div class="card-header py-3">
         
         
-        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas completas de las etiquetas NFC
+        <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">Estadísticas
         
 
 
@@ -33,15 +33,20 @@
             <div class=row>
 
               
-              <div div class="col-lg-4" >
-               <canvas id="myChart" height="200"></canvas>
+              <div div class="col-lg-2" >
+               <canvas id="myChart" height="400"></canvas>
               </div>
               
 
 
 
-              <div div class="col-lg-8">
-                <canvas id="myChart2" height="100"></canvas>
+              <div div class="col-lg-5">
+                <canvas id="myChart2" height="150"></canvas>
+              </div>         
+
+
+              <div div class="col-lg-5">
+                <canvas id="myChart3" height="150"></canvas>
               </div>         
 
             </div>
@@ -71,9 +76,11 @@
                 <th>Comunidad</th>
                 <th>Ciudad</th>
                 <th>Producto</th>
-                <th>Descripción de la promoción</th>
-                <th>Estado del TAG</th>
+                <th>Promoción registrada</th>
+                <th>Registro de la promoción</th>
+                <th>TAG de la promoción</th>
                 <th COLSPAN="2">Geoposición (Longitud y Latitud)</th>
+
 
 
 
@@ -112,6 +119,7 @@
                 <td>{{item.tag_nfc_product}}</td>
                 <td>{{item.tag_nfc_description}}</td>
                 <td>{{item.tag_nfc_status}}</td>
+                <td>{{item.tag_id}}</td>
                 <td>{{item.tag_nfc_latitude}}, {{item.tag_nfc_longitude}}</td>
                 <td>
 
@@ -194,7 +202,6 @@
 
 
         
-        
       
 
   <script>
@@ -205,16 +212,16 @@
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'doughnut',
       data: {
-          labels: ["Usuarios registrados", "Usuarios no registrados"],
+          labels: ["Registradas con éxito", "No registradas."],
           datasets: [{
-              label: 'Etiquetas tocadas',
-              data: ["{{register_activity_register}}","{{register_activity_no_register}}"                 
+              label: 'Promociones',
+              data: ["{{register_activity_promo}}","{{register_activity_no_promo}}"                 
                   ],
               backgroundColor: [
                   'rgba(47, 45, 242, 0.7)',
-                  'rgba(7, 4, 42, 0.7)',
+                  'rgba(70, 4, 42, 0.7)',
               ],
               
              
@@ -227,34 +234,22 @@ var myChart = new Chart(ctx, {
 var ctx2 = document.getElementById('myChart2').getContext('2d');
 
 var myChart2 = new Chart(ctx2, {
-  type: 'bar',
+  type: 'line',
       data: {
           labels: [
-      {% for item in register_activity_nfc_count reversed%}
+      {% for item in register_activity_promo_count reversed%}
         "{{item.date}}",
       {% endfor %}
                 ],
           datasets: [{
-              label: 'Etiquetas tocadas por día',
+              label: 'Promociones registradas por día',
               data: [
-                  {% for item in register_activity_nfc_count reversed%}
+                  {% for item in register_activity_promo_count reversed%}
                   "{{item.count}}",
                   {% endfor %}0,
                   ],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(60, 35, 255, 1)',
-                  'rgba(150, 2, 105, 1)',
-                  'rgba(253, 102, 255, 1)',
-                  'rgba(153, 202, 255, 1)',
-                  'rgba(153, 102, 5, 1)',
-                  'rgba(153, 102, 95, 1)',
-                  'rgba(0, 159, 64, 1)',
-                  'rgba(255, 0, 64, 1)'
+                  'rgba(255, 199, 132, 0.7)',
 
               ],
               
@@ -264,6 +259,33 @@ var myChart2 = new Chart(ctx2, {
    
 });
 
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+
+var myChart3 = new Chart(ctx3, {
+  type: 'line',
+      data: {
+          labels: [
+      {% for item in register_activity_no_promo_count reversed%}
+        "{{item.date}}",
+      {% endfor %}
+                ],
+          datasets: [{
+              label: 'Promociones no registradas.',
+              data: [
+                  {% for item in register_activity_no_promo_count reversed%}
+                  "{{item.count}}",
+                  {% endfor %}0,
+                  ],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.7)',
+
+              ],
+              
+              borderWidth: 1
+          }]
+      },
+   
+});
 
 
   </script>

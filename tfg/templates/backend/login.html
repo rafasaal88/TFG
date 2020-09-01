@@ -26,6 +26,7 @@
 
 <body class="bg-gradient-primary">
 
+
 <div class="container">
   <div class="row">
     <div class="col-lg-12 min-vh-100 d-flex flex-column justify-content-center">
@@ -35,6 +36,13 @@
             <div class="card-body">
                 <form class="user" method="POST">
                     {% csrf_token %}
+
+                    {% if error %}
+                    <div class="alert alert-danger text-center">
+                      <strong>Error!</strong> Usuario o contraseña incorrectos.
+                    </div>
+                    {% endif %}
+                  
 
                     <div class="text-center">
                       <br><h1 class="h4 text-gray-900 mb-4">Bienvenido al backend del sistema</h1>
@@ -64,6 +72,13 @@
   </div>
 </div>
 
+
+{{error}}
+
+
+
 </body>
+
+
 
 </html>

@@ -46,13 +46,12 @@ def index(request):
     promotion_accept = Register_activity.objects.filter(activity_name='Promocion', tag_nfc_status='Correcto').count()
     promotion_denied = Register_activity.objects.filter(activity_name='Promocion', tag_nfc_status='Denegado. Promoción ya registrada').count()
     datetime1 = datetime.now()
-    campaign_enable = Publicity_campaign.objects.filter(date_end__lte = datetime1).count()
-    campaign_disable = Publicity_campaign.objects.filter(date_end__gt = datetime1).count()
+    campaign_enable = Publicity_campaign.objects.filter(date_end__gte = datetime1).count()
+    campaign_disable = Publicity_campaign.objects.filter(date_end__lt = datetime1).count()
     datos = Register_activity.objects.values('date').order_by('date').annotate(count=Count('date')) #IMPORTANTE, HAY QUE ELIMINAR PARA QUE SALGAN LOS 5 ÚLTIMOS DÍAS
     nfc_date = Register_activity.objects.values('date').filter(activity_name='TAG NFC').order_by('activity_name').annotate(count=Count('date'))
 
     return render(request, 'backend/index.html',{'users':users, 'nfc_date':nfc_date, 'datos':datos, 'campaign_disable':campaign_disable, 'campaign_enable':campaign_enable, 'promotion_accept':promotion_accept, 'promotion_denied':promotion_denied, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
-
 
 #Loguear usuario
 def user_login(request):
@@ -75,16 +74,20 @@ def user_login(request):
 
             # Verificamos las credenciales del usuario
             user = authenticate(request, username=username, password=password)
-
             # Si existe un usuario con ese nombre y contraseña
             if user is not None:
                 # Hacemos el login manualmente
                 login(request, user)
                 # Y le redireccionamos a la portada
                 if request.user.is_active:
+                    print ("HOLA")
                     return redirect('index')
-                else:
-                    return render(request, 'backend/user_not_active.html') #esto no funciona aun
+                
+            
+        else:
+            print ("adios")
+            error = True
+            return render(request, 'backend/login.html', {'form': form, 'error':error})
 
     # Si llegamos al final renderizamos el formulario
     return render(request, 'backend/login.html', {'form': form})
@@ -695,7 +698,28 @@ def register_activity_nfc(request):
 
 @login_required(login_url='user_login')
 def register_activity_map(request, id):
-    register_activity = Register_activity.objects.get(id=id)
-
-    
+    register_activity = Register_activity.objects.get(id=id)    
     return render(request, 'backend/register_activity_map.html', {'register_activity':register_activity})
+
+
+@login_required(login_url='user_login')
+def register_activity_promotion(request):
+    register_activity = Register_activity.objects.filter(activity="Registro", activity_name="Promocion").order_by('id').reverse()
+
+    register_activity_promo = Register_activity.objects.filter(activity="Registro", activity_name="Promocion", tag_nfc_status="Correcto").count()
+    register_activity_no_promo = Register_activity.objects.filter(activity="Registro", activity_name="Promocion", tag_nfc_status="Denegado. Promoción ya registrada").count()
+
+    register_activity_promo_count = Register_activity.objects.values('date').filter(activity="Registro", activity_name="Promocion", tag_nfc_status="Correcto").order_by('-date').annotate(count=Count('date'))
+    register_activity_no_promo_count = Register_activity.objects.values('date').filter(activity="Registro", activity_name="Promocion", tag_nfc_status="Denegado. Promoción ya registrada").order_by('-date').annotate(count=Count('date'))
+   
+    paginator = Paginator(register_activity, 6)
+
+    try: page = int(request.GET.get("page", '1'))
+    except ValueError: page = 1
+
+    try:
+        register_activity = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        register_activity = paginator.page(paginator.num_pages) 
+    return render(request, 'backend/register_activity_promotion.html', {'register_activity_no_promo_count':register_activity_no_promo_count,'register_activity_promo_count':register_activity_promo_count,'register_activity':register_activity, 'register_activity_promo':register_activity_promo, 'register_activity_no_promo':register_activity_no_promo })
+
