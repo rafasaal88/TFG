@@ -104,11 +104,20 @@
             </div>
         </b-modal>
         </div>
+       
+        
+       
+        <div v-if="alerta">
+        <br>
+            <b-alert show dismissible variant="danger">
+                <b>Usuario o contraseña incorrectos</b>
+            </b-alert>
 
+        </div>
 
-
-
+  
     </div>
+
 </template>
 
 <script>
@@ -137,6 +146,7 @@ export default {
             id_user: '',
             activity: '',
             activity_name: '',
+            alerta: false,
         }
     },
     
@@ -162,9 +172,16 @@ export default {
             .catch(err => {
                 localStorage.removeItem('user-token')
                 localStorage.removeItem('user-name')
-            })
+                console.log("hola")
+                this.alerta = true
+               
+                
+    })
             
         },
+      
+      
+
 
         logout() {
             this.activity = "Sesión";
@@ -246,6 +263,7 @@ export default {
     }
 
 }
+
 </script>
 
 <style>
