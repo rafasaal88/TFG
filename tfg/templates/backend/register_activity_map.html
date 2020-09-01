@@ -1,0 +1,53 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Mapa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+
+  <script src="{% static 'js/leaflet.js' %}"></script>
+
+<body>
+
+
+  <div id="map" style="height:580px; width: auto;"></div>
+
+
+<div class="card-body">        
+
+        
+
+        
+
+
+
+
+</div>
+
+</body>
+
+<script>
+
+  var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  osm = L.tileLayer(osmUrl, {maxZoom: 18 });
+  var map = L.map('map', {scrollWheelZoom: false}).setView(['{{register_activity.tag_nfc_latitude}}','{{register_activity.tag_nfc_longitude}}'], 15).addLayer(osm);
+
+
+  var popup = L.popup();
+  var marker = L.marker(['{{register_activity.tag_nfc_latitude}}','{{register_activity.tag_nfc_longitude}}']).addTo(map);
+
+</script>
+
+
+

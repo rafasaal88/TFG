@@ -40,8 +40,8 @@
 
 
 
-              <div div class="col-lg-4">
-                <canvas id="myChart2" height="200"></canvas>
+              <div div class="col-lg-8">
+                <canvas id="myChart2" height="100"></canvas>
               </div>         
 
             </div>
@@ -114,7 +114,13 @@
                 <td>{{item.tag_nfc_description}}</td>
                 <td>{{item.tag_nfc_status}}</td>
                 <td>{{item.tag_nfc_latitude}}, {{item.tag_nfc_longitude}}</td>
-                <td>ICON</td>
+                <td>
+
+                  <a target="popup" onclick="window.open(this.href, this.target, 'location=no,width=800,height=600, resizable=yes,scrollbars=yes, top=250, left=500)', ); return false;" 
+                  href="/backend/register_activity_map/{{item.id}}" class="btn btn-primary btn-icon-split" style="width: 150px;">
+                    <span class="text">Ver en mapa</span>
+                  </a>
+                </td>
 
 
 
@@ -188,10 +194,13 @@
         </div>
 
 
-      {{register_activity_nfc_count}}
+        
+        
       
 
   <script>
+
+
 
 
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -222,19 +231,31 @@ var myChart2 = new Chart(ctx2, {
   type: 'bar',
       data: {
           labels: [
-      {% for item in register_activity_nfc_count %}
+      {% for item in register_activity_nfc_count reversed%}
         "{{item.date}}",
       {% endfor %}
                 ],
           datasets: [{
               label: 'Etiquetas tocadas por día',
               data: [
-                  {% for item in register_activity_nfc_count %}
+                  {% for item in register_activity_nfc_count reversed%}
                   "{{item.count}}",
-                  {% endfor %}0
+                  {% endfor %}0,
                   ],
               backgroundColor: [
-                  'rgba(47, 145, 242, 0.7)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(60, 35, 255, 1)',
+                  'rgba(150, 2, 105, 1)',
+                  'rgba(253, 102, 255, 1)',
+                  'rgba(153, 202, 255, 1)',
+                  'rgba(153, 102, 5, 1)',
+                  'rgba(153, 102, 95, 1)',
+                  'rgba(0, 159, 64, 1)',
+                  'rgba(255, 0, 64, 1)'
 
               ],
               
