@@ -48,8 +48,8 @@ def index(request):
     datetime1 = datetime.now()
     campaign_enable = Publicity_campaign.objects.filter(date_end__gte = datetime1).count()
     campaign_disable = Publicity_campaign.objects.filter(date_end__lt = datetime1).count()
-    datos = Register_activity.objects.values('date').order_by('date').annotate(count=Count('date')) #IMPORTANTE, HAY QUE ELIMINAR PARA QUE SALGAN LOS 5 ÚLTIMOS DÍAS
-    nfc_date = Register_activity.objects.values('date').filter(activity_name='TAG NFC').order_by('activity_name').annotate(count=Count('date'))
+    datos = Register_activity.objects.values('date').order_by('date').annotate(count=Count('date'))[:10] #IMPORTANTE, HAY QUE ELIMINAR PARA QUE SALGAN LOS 5 ÚLTIMOS DÍAS
+    nfc_date = Register_activity.objects.values('date').filter(activity_name='TAG NFC').order_by('activity_name').annotate(count=Count('date'))[:10]
 
     return render(request, 'backend/index.html',{'users':users, 'nfc_date':nfc_date, 'datos':datos, 'campaign_disable':campaign_disable, 'campaign_enable':campaign_enable, 'promotion_accept':promotion_accept, 'promotion_denied':promotion_denied, 'campaign':campaign, 'products':products, 'recipes': recipes, 'users_admin':users_admin, 'tags':tags, 'tags_touch':tags_touch, 'point': point})
 

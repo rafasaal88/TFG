@@ -69,18 +69,18 @@
         <div class="container" v-if="product.available==true">
         <div class="row">        
             <div class="col-lg-8">
-            <div class="card shadow mb-3" >
+            <div class="card" >
 
                 <div class="card-body d-flex flex-row">      
                 <div>            
 
-                    <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'kg'">{{product.name}}: {{product.price}} €/Kg</h4>
+                    <h4 class="card-title font-weight-bold mb-1" v-if="product.unit == 'kg'">{{product.name}}: {{product.price}} €/Kg</h4>
 
-                    <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'litros'">{{product.name}}: {{product.price}} €/Litro</h4>
+                    <h4 class="card-title font-weight-bold mb-1" v-if="product.unit == 'litros'">{{product.name}}: {{product.price}} €/Litro</h4>
 
-                    <h4 class="card-title font-weight-bold mb-2" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4> 
+                    <h4 class="card-title font-weight-bold mb-1" v-if="product.unit == 'unidad'">{{product.name}}: {{product.price}} €/Unidad</h4> 
                     
-                    <h5 class="card-title font-weight-bold mb-2">Promoción disponible: {{tag.description}}</h5>             
+                    <h5 class="card-title font-weight-bold mb-1">Promoción disponible: {{tag.description}}</h5>             
                 
                         
                 </div>      
@@ -94,10 +94,10 @@
                 <br>   
                     <p>{{product.description}}</p>
                 
-                    <hr>
+                    
                         
                     <div class="" v-if="token!=null">       
-
+                        <hr>
                         <b-nav-form v-if="check_insert">
 
                             <div class="col-lg-12 mx-auto">       
@@ -117,16 +117,34 @@
                         
 
                         <div class="form-group">
-                            <div class="col-lg-12" v-if="!exists">
+                            <div v-if="!exists">
                                 <button class="btn btn btn-secondary btn-block btn-lg" v-if="!check_insert" v-on:click="checkPoint()" >Obtener promoción</button>
                             </div>
                         </div> 
-
+                        
+                        <p>Otras secciones:</p>
+                        
+                        <div class="btn-group btn-group-justified">
+                            <div class="mx-auto" >
+                            <a type="button" href="/recipe_list" class="btn btn-secondary" style="color:white">Recetas</a>
+                            <a type="button" href="/products_list" class="btn btn-secondary" style="color:white">Productos</a>
+                            <a type="button" href="/publicity_campaign_list" class="btn btn-secondary" style="color:white">Campañas</a>
+                            </div>
+                        </div>
+                    <br><br>
                     </div>
-                <br>
+                
+
+                
+
+                    
+   
+
+                    
+                    
+                
 
                 </div>
-
 
 
 
