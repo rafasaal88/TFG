@@ -18,6 +18,7 @@ class Product_ViewSet(viewsets.ModelViewSet):
 class Recipe_ViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = Recipe_Serializer
+    http_method_names = ['get']
 
 
 class User_ViewSet(viewsets.ModelViewSet):

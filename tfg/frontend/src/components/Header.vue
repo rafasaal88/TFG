@@ -74,8 +74,8 @@
                     <span class="mr-3 d-lg-inline" style="color:white"><b-icon icon="person-fill"></b-icon> Hola {{user}}</span>
                 </template>
 
-                    <b-dropdown-item href="#">Perfil <b-icon icon="gear-fill"></b-icon></b-dropdown-item>
                     <b-dropdown-item href="/point">Mis promociones <b-icon icon="award"></b-icon></b-dropdown-item>
+
 
             
                     <b-dropdown-item @click="$bvModal.show('bv-modal-example')">Cerrar sesión <b-icon icon="power"></b-icon></b-dropdown-item>

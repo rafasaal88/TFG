@@ -467,7 +467,7 @@ def recipe_delete(request, id):
 
 
 ###############################################################################################
-########################## NFT_TAG METHODS ####################################################
+########################## NFC_TAG METHODS ####################################################
 ###############################################################################################
 
 
@@ -543,7 +543,9 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
-
+###########################################################
+########################ACTIVITY###########################
+###########################################################
 
 #Ver tag
 @login_required(login_url='user_login')
@@ -576,6 +578,8 @@ def register_activity_list(request):
 
 
 from django.db.models import Q
+
+
 
 @login_required(login_url='user_login')
 def register_activity_sesions(request):    
