@@ -495,7 +495,7 @@ def tag_nfc(request, id):
 #Listar tags
 @login_required(login_url='user_login')
 def tag_nfc_list(request):
-    tag_nfc = Tag_nfc.objects.all() 
+    tag_nfc = Tag_nfc.objects.all().order_by('id').reverse()
     return render(request, 'backend/tag_nfc_list.html', {'tag_nfc':tag_nfc})
 
 

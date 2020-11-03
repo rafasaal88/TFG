@@ -17,38 +17,51 @@
               <img class="card-img-top rounded-0" :src="publicity_campaign.image" alt="Card image cap">
             </div>              
             
-            
+            <div class="card-body">      
+              <div>      
+                <h4 class="card-title mb-2">{{ publicity_campaign.description}}</h4>
+              </div>      
+            </div>            
+         
+          </div>
+        </div>
+      </div>
+    </div>   
 
-            <div class="d-none d-sm-none d-md-block" >
-                  <div class="col-lg-12 mx-auto">
-                     <br>
+    <br>
 
-                      <div class="card rounded">
-                        
-                          <div class="card-body">
-                              <div class="text-left" >          
-                                
-                                  <div>
-                                      <center><h2>¡¡Busca los siguientes productos en la tienda, toca la etiqueta NFC y consigue descuentos!!</h2></center>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+    <div class="container-fluid">
+      <div class="row">        
+        <div class="col-lg-8 mx-auto">
+          <div class="card" >
 
+            <div class="card-body">      
+              <div>      
+                <center><h2>¡¡Busca los siguientes productos en la tienda, toca la etiqueta NFC y consigue descuentos!!</h2></center>
+              </div>      
+            </div>     
+
+          </div>
+        </div>
+      </div>
+    </div>   
 
 
-
+    <br>
 
 
 
 
 
 
+    <div class="container-fluid">
+      <div class="row">        
+        <div class="col-lg-8 mx-auto">
+          <div class="card" >
 
-            <div class="container">
+
+
+            <div class="container-fluid">
               <br> 
               <div class="row">                   
 

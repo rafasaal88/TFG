@@ -45,7 +45,7 @@
             </a>
           
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-             Gráficos acumulativo
+             Gráficos acumulativos
             </a>
           </right>
         </h6> 
@@ -267,7 +267,7 @@ var myChart2 = new Chart(ctx2, {
       {% endfor %}
                 ],
           datasets: [{
-              label: 'Lista de campaña',
+              label: 'Lista de campañas',
               data: [
                   {% for item in register_activity_listcampaign_count %}
                   "{{item.count}}",

@@ -3,17 +3,19 @@
 
 
         <b-navbar toggleable="lg" type="dark" variant="dark">
-            <b-navbar-brand href="/">Inicio</b-navbar-brand>
-
+         
             <b-navbar-toggle target="nav-collapse" >
 
             
 
             </b-navbar-toggle>
-        
+            <div class="col-lg-12">
+            
+
             <b-collapse  id="nav-collapse" is-nav>
 
                 <b-navbar-nav>
+                    <b-navbar-brand href="/">Inicio</b-navbar-brand>
                     <b-nav-item href="/recipe_list">Recetas</b-nav-item>
                     <b-nav-item href="/products_list">Productos</b-nav-item>
                     <b-nav-item href="/publicity_campaign_list">Campañas</b-nav-item>            
@@ -39,7 +41,7 @@
                     
 
 
-                    <b-button size="lm" style="width: 100%" class="btn btn-dark btn-lg" type="submit">Iniciar sesión</b-button>
+                    <b-button size="lm" style="width: 100%" variant="outline-light" type="submit">Iniciar sesión</b-button>
                     &nbsp;&nbsp;
                 </b-nav-form>
             </div> 
@@ -58,7 +60,7 @@
                     &nbsp;&nbsp;                    
 
 
-                    <b-button size="lm" class="btn btn-dark" type="submit">Iniciar sesión</b-button>
+                    <b-button size="lm" variant="outline-light" type="submit">Iniciar sesión</b-button>
                     &nbsp;&nbsp;
 
                 </b-nav-form>
@@ -66,7 +68,7 @@
                 
 
 
-                <b-nav-item-dropdown left v-if="token!=null">
+                <b-nav-item-dropdown v-if="token!=null">
 
                 <!-- Using 'button-content' slot -->
 
@@ -74,7 +76,7 @@
                     <span class="mr-3 d-lg-inline" style="color:white"><b-icon icon="person-fill"></b-icon> Hola {{user}}</span>
                 </template>
 
-                    <b-dropdown-item href="/point">Mis promociones <b-icon icon="award"></b-icon></b-dropdown-item>
+                    <b-dropdown-item href="/point">Mis promociones<b-icon icon="award"></b-icon></b-dropdown-item>
 
 
             
@@ -84,6 +86,9 @@
 
             </b-navbar-nav>
             </b-collapse>
+    </div>
+
+
         </b-navbar>
 
 
@@ -115,7 +120,6 @@
 
         </div>
 
-  
     </div>
 
 </template>

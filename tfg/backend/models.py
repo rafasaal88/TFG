@@ -1,11 +1,7 @@
-#NFC TOOLS
-
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
-# from django_markdown.models import MarkdownField
 from django.utils import timezone
 from django.utils.timezone import now
-
 
 
 profile_default = 'profile_image/profile_default.png'
@@ -69,7 +65,6 @@ class Publicity_campaign(models.Model):
 
         return "{}".format(self.name)
 
-#falta relacion N a N
 
 class Recipe (models.Model):
     id = models.AutoField(primary_key=True)
@@ -83,12 +78,6 @@ class Recipe (models.Model):
     def __str__(self):
 
         return "{}".format(self.name)
-
-class Shopping_bag(models.Model):
-    id = models.AutoField(primary_key=True)
-    quantity = models.IntegerField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, default=None)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
 
 
 class Point(models.Model):

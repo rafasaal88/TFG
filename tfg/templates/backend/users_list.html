@@ -54,7 +54,7 @@
 
                         <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
                           <span class="icon">
-                            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                            <i class="fas fa-edit" aria-hidden="true"></i>
                           </span>
                           <span class="text">Editar</span>
                         </a>   
@@ -66,7 +66,7 @@
                           <span class="icon">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                           </span>
-                          <span class="text" >Deshabilitar</span>
+                          <span class="text" style="width: 120px;">Deshabilitar</span>
                         </a>
 
                         {% else %}
@@ -75,7 +75,7 @@
                           <span class="icon">
                             <i class="fa fa-power-off" aria-hidden="true"></i>
                           </span>
-                          <span class="text">Habilitar</span>
+                          <span class="text" style="width: 120px;">Habilitar</span>
                         </a>
 
                         {% endif %}
@@ -131,7 +131,7 @@
                       </a>
     
                       <a href="/backend/user_profile_edit/{{users.id}}" class="btn btn-warning btn-icon-split">
-                        <span class="text"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
+                        <span class="text"><i class="fas fa-edit" aria-hidden="true"></i></span>
                       </a>   
     
                       {% if users.is_active == True %}
