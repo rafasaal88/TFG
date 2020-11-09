@@ -111,7 +111,7 @@ export default {
             const path = 'http://127.0.0.1:8000/api/v1.0/publicity_campaign_list/'
 
             axios.get(path).then((response) => {
-                this.publicity_campaign = response.data.filter(item => item.date_end >= date)
+                this.publicity_campaign = response.data.filter(item => item.date_end >= date && item.date_start <= date)
             })
             .catch((error) => {
                 console.log(error)

@@ -46,7 +46,7 @@ def index(request):
     promotion_accept = Register_activity.objects.filter(activity_name='Promocion', tag_nfc_status='Correcto').count()
     promotion_denied = Register_activity.objects.filter(activity_name='Promocion', tag_nfc_status='Denegado. Promoción ya registrada').count()
     datetime1 = datetime.now()
-    campaign_enable = Publicity_campaign.objects.filter(date_end__gte = datetime1).count()
+    campaign_enable = Publicity_campaign.objects.filter(date_end__gte = datetime1, date_start__lte = datetime1).count()
     campaign_disable = Publicity_campaign.objects.filter(date_end__lt = datetime1).count()
     datos = Register_activity.objects.values('date').order_by('date').annotate(count=Count('date'))[:10] #IMPORTANTE, HAY QUE ELIMINAR PARA QUE SALGAN LOS 5 ÚLTIMOS DÍAS
     nfc_date = Register_activity.objects.values('date').filter(activity_name='TAG NFC').order_by('activity_name').annotate(count=Count('date'))[:10]
