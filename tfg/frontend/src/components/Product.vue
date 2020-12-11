@@ -33,7 +33,6 @@
           
           
               <h4 class="card-title font-weight-bold mb-2" v-if="check" >Recetas disponibles:</h4>  
-              <h4 class="card-title font-weight-bold mb-2" v-if="!check" >No hay recetas disponibles para este producto</h4>
 
 
                 <div v-for="item in recipe" :key="item.id">
